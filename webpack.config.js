@@ -100,6 +100,7 @@ module.exports = {
         alias: {
             assets: path.join(__dirname, 'src/assets'),
             api: path.join(__dirname, 'src/api'),
+            pages:path.join(__dirname,'src/pages')
         },
         // 省略后缀
         extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.less']
