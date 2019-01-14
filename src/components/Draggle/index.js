@@ -2,20 +2,22 @@ import _ from "lodash";
 import $ from "jquery";
 import "./index.css";
 const defaults = {
-  widget_selector: ".dragger",
-  draggable: {
-    // onResize: datas => {
-    //   console.log(datas);
-    // },
-    // onStop: () => {}
-  },
-  resizeable: {
-    // onStart: () => {},
-    // onDrag: datas => {
-    //   console.log(datas);
-    // },
-    // onStop: () => {}
-  }
+  //   widget_selector: ".dragger",
+  //   draggable: {
+  //   resizeStart:()=>{
+  //   },
+  //     onResize: datas => {
+  //       console.log(datas);
+  //     },
+  //     onStop: () => {}
+  //   },
+  //   resizeable: {
+  //     onStart: () => {},
+  //     onDrag: datas => {
+  //       console.log(datas);
+  //     },
+  //     onStop: () => {}
+  //   }
 };
 
 class Draggle {
@@ -25,17 +27,21 @@ class Draggle {
     this.$container = $(el); // 容器
     this.$player = null; // 选中组件
     this.isMoving = false;
+    this.isResizing = false;
     this.$widgets = this.$container.children(this.options.widget_selector);
-    this.$resHandles = this.$container.children(this.options.resizeable.hanle);
-    this.initDraggle();
+    this.$resHandles = this.$container.find(this.options.resizeable.handle);
+    this.init();
   }
 
   // 初始化拖拽环境
-  initDraggle() {
+  init() {
     this.$document.on("mousemove", e => {
       if (this.isMoving) {
         const posix = !this.$player ? { x: 0, y: 0 } : this.getWidgetOffset(e);
         this.dragging(posix);
+      } else if (this.isResizing) {
+        const size = !this.$player ? { w: 100, h: 100 } : this.getWidgetSize(e);
+        this.resizing(size);
       }
     });
     this.$document.on("mouseup", e => {
@@ -44,6 +50,11 @@ class Draggle {
         this.$player = null;
         const posix = this.getWidgetOffset(e);
         this.dragStop(posix);
+      }
+      if (this.isResizing) {
+        this.isResizing = false;
+        this.$player = null;
+        this.resizeStop();
       }
     });
 
@@ -62,6 +73,11 @@ class Draggle {
 
     this.$resHandles.on("mousedown", e => {
       e.stopPropagation();
+      this.$player = $(e.currentTarget).parent();
+      this.isResizing = true;
+      this.mouse_init_pos = this.get_mouse_pos(e);
+      this.el_init_size = this.get_actual_size(this.$player);
+      this.resizeStart();
     });
   }
   // 拖拽开始
@@ -94,6 +110,34 @@ class Draggle {
     }
   }
 
+  // 拉伸开始
+  resizeStart() {
+    if (this.$player === null) {
+      return false;
+    }
+    if (this.options.resizeable.onStart) {
+      this.options.resizeable.onStart.call(this);
+    }
+  }
+  // 拉伸中
+  resizing(size) {
+    this.$player.css({
+      width: size.w,
+      height: size.h
+    });
+    if (this.$player === null) {
+      return false;
+    }
+    if (this.options.resizeable.onResize) {
+      this.options.resizeable.onResize.call(this, size);
+    }
+  }
+  resizeStop() {
+    if (this.options.resizeable.onStop) {
+      this.options.resizeable.onStop.call(this);
+    }
+  }
+
   // 获取组件的相对容器位置
   getWidgetOffset(e) {
     let x = e.clientX - this.offset_pos.x - this.$container.offset().left;
@@ -108,8 +152,38 @@ class Draggle {
     } else if (y <= 0) {
       y = 0;
     }
-
     return { x, y };
+  }
+
+  // 获取组件resize尺寸
+  getWidgetSize(e) {
+    let $container_width = this.$container.width();
+    let $container_height = this.$container.height();
+    let $container_offset = this.$container.offset();
+    let _left = this.get_mouse_pos(e).left;
+    let _top = this.get_mouse_pos(e).top;
+    if (_left > $container_width + $container_offset.left) {
+      _left = $container_width + $container_offset.left;
+    }
+    if (_top > $container_height + $container_offset.top) {
+      _top = $container_height + $container_offset.top;
+    }
+    let _x = _left - this.mouse_init_pos.left;
+    let _y = _top - this.mouse_init_pos.top;
+
+    let w = _x + this.el_init_size.width;
+    let h = _y + this.el_init_size.height;
+    if (w < 0) {
+      w = 0;
+    } else if (w > $container_width) {
+      w = $container_width;
+    }
+    if (h < 0) {
+      h = 0;
+    } else if (h > $container_height) {
+      h = $container_height;
+    }
+    return { w, h };
   }
 
   // 获取鼠标位置
@@ -126,6 +200,14 @@ class Draggle {
   // 获取当前组件位置
   get_actual_pos($el) {
     return $el.offset();
+  }
+
+  // 获取当前组件的尺寸
+  get_actual_size($el) {
+    return {
+      width: $el.width(),
+      height: $el.height()
+    };
   }
 
   // 设置移动范围

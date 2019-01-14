@@ -24,6 +24,9 @@ class Editer extends Component {
       widget_selector: ".dragger",
       resizeable: {
         handle:".resize-handle",
+        onStart:()=>{
+          console.log("start resizing");
+        },
         onResize: datas => {
           console.log(datas);
         },
