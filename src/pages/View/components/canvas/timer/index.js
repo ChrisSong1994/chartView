@@ -3,11 +3,9 @@ import React, { Component } from "react";
 export default class Timer extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.param = {};
     this.timer = null;
-    this.width = props.width ? props.width : 200;
-    this.height = props.height ? props.height : 200;
+    this.width =  this.height = 200;
   }
 
   componentDidMount() {

@@ -44,9 +44,10 @@
     "yargs-parser": "^11.0.0"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.119",
     "antd": "^3.10.3",
     "axios": "^0.18.0",
-    "loadsh": "0.0.3",
+    "jquery": "^3.3.1",
     "qs": "^6.5.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",

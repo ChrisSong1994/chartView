@@ -19,6 +19,7 @@ class Head extends Component {
         >
           <Menu.Item key="1"><Link to="/">首页</Link></Menu.Item>
           <Menu.Item key="2"><Link to="/View">可视化</Link></Menu.Item>
+          <Menu.Item key="3"><Link to="/Editer">编辑区</Link></Menu.Item>
         </Menu>
       </Header>
     )

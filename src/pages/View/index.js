@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Button } from "antd";
 import Timer from "./components/canvas/timer";
-import './index.scss'
+import Star from "./components/canvas/star";
+import "./index.scss";
 
 export default class Page1 extends Component {
   render() {
@@ -10,12 +11,19 @@ export default class Page1 extends Component {
       <Router>
         <div>
           <div className="view-type">
-            <Link to="/timer">
+            <Link to="/View/timer">
               <Button type="primary">时钟</Button>
+            </Link>
+            <Link to="/View/star">
+              <Button type="primary">五角星</Button>
             </Link>
           </div>
           <div className="view-box">
-            <Route path="/timer" component={Timer} />
+            <Switch>
+              <Route exact path="/View" component={Timer} />
+              <Route path="/View/timer" component={Timer} />
+              <Route path="/View/star" component={Star} />
+            </Switch>
           </div>
         </div>
       </Router>

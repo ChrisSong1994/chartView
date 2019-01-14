@@ -7,6 +7,7 @@ const { Content, Footer } = Layout;
 import Head from 'pages/Layout/Head/index.js'
 import View from 'pages/View';
 import Home from 'pages/Home';
+import Editer from "pages/Editer"
 
 const getRouter = () => (
   <Router>
@@ -17,6 +18,7 @@ const getRouter = () => (
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/View" component={View} />
+            <Route path="/Editer" component={Editer} />
           </Switch>
         </div>
       </Content>
