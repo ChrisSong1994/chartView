@@ -140,8 +140,8 @@ class Draggle {
 
   // 获取组件的相对容器位置
   getWidgetOffset(e) {
-    let x = e.clientX - this.offset_pos.x - this.$container.offset().left;
-    let y = e.clientY - this.offset_pos.y - this.$container.offset().top;
+    let x = e.pageX - this.offset_pos.x - this.$container.offset().left;
+    let y = e.pageY - this.offset_pos.y - this.$container.offset().top;
     if (x > this.player_max_left) {
       x = this.player_max_left;
     } else if (x <= 0) {
@@ -173,13 +173,13 @@ class Draggle {
 
     let w = _x + this.el_init_size.width;
     let h = _y + this.el_init_size.height;
-    if (w < 0) {
-      w = 0;
+    if (w < 10) {
+      w = 10;
     } else if (w > $container_width) {
       w = $container_width;
     }
-    if (h < 0) {
-      h = 0;
+    if (h < 10) {
+      h = 10;
     } else if (h > $container_height) {
       h = $container_height;
     }
@@ -193,8 +193,8 @@ class Draggle {
       e = oe.touches.length ? oe.touches[0] : oe.changedTouches[0];
     }
     return {
-      left: e.clientX,
-      top: e.clientY
+      left: e.pageX,
+      top: e.pageY
     };
   }
   // 获取当前组件位置
