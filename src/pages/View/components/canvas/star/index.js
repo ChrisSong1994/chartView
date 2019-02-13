@@ -11,7 +11,7 @@ class Star extends Component {
     const r = 200;
     context.fillStyle = "#ccc";
     context.fillRect(0, 0, 500, 500);
-    context.translate(250, 250);
+    context.translate(250, 250); // 坐标位移
     context.save();
     context.fillStyle = "#eee";
     context.beginPath();

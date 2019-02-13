@@ -76,6 +76,11 @@ class Draggle {
       this.$player = $(e.currentTarget).parent();
       this.isResizing = true;
       this.mouse_init_pos = this.get_mouse_pos(e);
+      // 相对于拖动图标的位置
+      this.mouseInReshandles = {
+        left: this.mouse_init_pos.left - this.$resHandles.offset().left,
+        top: this.mouse_init_pos.top - this.$resHandles.offset().top
+      };
       this.el_init_size = this.get_actual_size(this.$player);
       this.resizeStart();
     });
@@ -132,6 +137,7 @@ class Draggle {
       this.options.resizeable.onResize.call(this, size);
     }
   }
+  // 拉伸结束
   resizeStop() {
     if (this.options.resizeable.onStop) {
       this.options.resizeable.onStop.call(this);
@@ -160,6 +166,7 @@ class Draggle {
     let $container_width = this.$container.width();
     let $container_height = this.$container.height();
     let $container_offset = this.$container.offset();
+    let $player_offset = this.$player.offset();
     let _left = this.get_mouse_pos(e).left;
     let _top = this.get_mouse_pos(e).top;
     if (_left > $container_width + $container_offset.left) {
@@ -173,16 +180,25 @@ class Draggle {
 
     let w = _x + this.el_init_size.width;
     let h = _y + this.el_init_size.height;
+
+    // 判断组件拉伸的宽高是否超出界限
     if (w < 10) {
       w = 10;
-    } else if (w > $container_width) {
-      w = $container_width;
+    } else if (
+      w >
+      $container_width + $container_offset.left - $player_offset.left
+    ) {
+      w = $container_width + $container_offset.left - $player_offset.left;
     }
     if (h < 10) {
       h = 10;
-    } else if (h > $container_height) {
-      h = $container_height;
+    } else if (
+      h >
+      $container_height + $container_offset.top - $player_offset.top
+    ) {
+      h = $container_height + $container_offset.top - $player_offset.top;
     }
+
     return { w, h };
   }
 
