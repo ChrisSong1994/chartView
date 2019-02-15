@@ -1,4 +1,4 @@
-import $ from 'jquery'
+
 
 export const delay = function(func, wait) {
     var args = Array.prototype.slice.call(arguments, 2);

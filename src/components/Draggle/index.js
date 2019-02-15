@@ -71,16 +71,11 @@ class Draggle {
       this.dragStart();
     });
 
-    this.$resHandles.on("mousedown", e => {
+    this.$resHandles.on("mousedown", e => {  // 右下角拖拽图标
       e.stopPropagation();
       this.$player = $(e.currentTarget).parent();
       this.isResizing = true;
       this.mouse_init_pos = this.get_mouse_pos(e);
-      // 相对于拖动图标的位置
-      this.mouseInReshandles = {
-        left: this.mouse_init_pos.left - this.$resHandles.offset().left,
-        top: this.mouse_init_pos.top - this.$resHandles.offset().top
-      };
       this.el_init_size = this.get_actual_size(this.$player);
       this.resizeStart();
     });

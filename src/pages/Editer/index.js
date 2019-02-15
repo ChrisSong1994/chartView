@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { findDOMNode } from "react-dom";
 import "./index.scss";
 import Draggle from "components/Draggle";
-import Widget from "./components/widget";
 
 const widgets = {
   "80204546": {
@@ -15,6 +14,9 @@ const widgets = {
 class Editer extends Component {
   constructor() {
     super();
+  }
+  addWidget(){
+
   }
 
   componentDidMount() {
@@ -51,6 +53,12 @@ class Editer extends Component {
   render() {
     return (
       <div ref="wrap" className="content-wrap">
+        <div
+          className="dragger"
+          style={{ background: "blue", width: 100, height: 100 }}
+        >
+          <span className="resize-handle" />
+        </div>
         <div
           className="dragger"
           style={{ background: "blue", width: 100, height: 100 }}
