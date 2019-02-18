@@ -1,20 +1,29 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Layout, } from 'antd';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Layout } from "antd";
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
-import Head from 'pages/Layout/Head/index.js'
-import View from 'pages/View';
-import Home from 'pages/Home';
-import Editer from "pages/Editer"
+import Head from "pages/Layout/Head";
+import Foot from "pages/Layout/Foot";
+import View from "pages/View";
+import Home from "pages/Home";
+import Editer from "pages/Editer";
 
 const getRouter = () => (
   <Router>
     <Layout>
       <Head />
-      <Content style={{ padding: '0 50px', marginTop: 64 }}>
-        <div style={{ background: '#fff', padding: 24, minHeight: 1580 }}>
+      <Content
+        style={{
+          padding: "0 50px",
+          marginTop: 64,
+        }}
+      >
+        <div
+          className="main"
+          style={{ background: "#fff", width: "100%", height: "100%" }}
+        >
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/View" component={View} />
@@ -22,9 +31,7 @@ const getRouter = () => (
           </Switch>
         </div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>
-        created by song @2019
-    </Footer>
+      <Foot />
     </Layout>
   </Router>
 );

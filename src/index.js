@@ -5,7 +5,6 @@ import getRouter from './router';
 const router = getRouter();
 /* 初始化 */
 renderWithHotReload(router);
-
 function renderWithHotReload(RootElement) {
   ReactDOM.render(
     RootElement,

@@ -14,9 +14,19 @@ const widgets = {
 class Editer extends Component {
   constructor() {
     super();
+    this.state = {
+      editerHight: 0
+    };
   }
-  addWidget(){
+  addWidget() {}
 
+  componentWillMount() {
+    let height =
+      document.body.clientHeight || document.documentElement.clientHeight;
+    console.log(height);
+    this.setState({
+      editerHight: height - 64 - 30
+    });
   }
 
   componentDidMount() {
@@ -48,23 +58,31 @@ class Editer extends Component {
         }
       }
     });
+
+    // window.onrsize
+    window.onresize = () => {
+      let height =
+        document.body.clientHeight || document.documentElement.clientHeight;
+      this.setState({
+        editerHight: height - 64 - 30
+      });
+    };
   }
 
   render() {
+    let { editerHight } = this.state;
     return (
-      <div ref="wrap" className="content-wrap">
-        <div
-          className="dragger"
-          style={{ background: "blue", width: 100, height: 100 }}
-        >
-          <span className="resize-handle" />
+      <div className="editer" style={{ height: editerHight }}>
+        <div className="left-panel">左侧边栏</div>
+        <div ref="wrap" className="content-wrap">
+          <div
+            className="dragger"
+            style={{ background: "blue", width: 100, height: 100 }}
+          >
+            <span className="resize-handle" />
+          </div>
         </div>
-        <div
-          className="dragger"
-          style={{ background: "blue", width: 100, height: 100 }}
-        >
-          <span className="resize-handle" />
-        </div>
+        <div className="right-panel">右侧边栏</div>
       </div>
     );
   }

@@ -6,6 +6,10 @@ import Star from "./components/canvas/star";
 import "./index.scss";
 
 export default class Page1 extends Component {
+  constructor(){
+    super()
+  }
+
   render() {
     return (
       <Router>
