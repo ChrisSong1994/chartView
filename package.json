@@ -34,12 +34,13 @@
     "less-loader": "^4.1.0",
     "node-sass": "^4.9.4",
     "postcss-loader": "^3.0.0",
+    "redux-devtools": "^3.5.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
+    "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.1.4",
     "yargs-parser": "^11.0.0"
   },
@@ -51,6 +52,8 @@
     "qs": "^6.5.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-router-dom": "^4.3.1"
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1"
   }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Layout } from "antd";
 
@@ -10,29 +10,61 @@ import View from "pages/View";
 import Home from "pages/Home";
 import Editer from "pages/Editer";
 
-const getRouter = () => (
-  <Router>
-    <Layout>
-      <Head />
-      <Content
-        style={{
-          padding: "0 50px",
-          marginTop: 64,
-        }}
-      >
-        <div
-          className="main"
-          style={{ background: "#fff", width: "100%", height: "100%" }}
-        >
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/View" component={View} />
-            <Route path="/Editer" component={Editer} />
-          </Switch>
-        </div>
-      </Content>
-      <Foot />
-    </Layout>
-  </Router>
-);
-export default getRouter;
+export default class Root extends Component {
+  constructor() {
+    super();
+    this.state = {
+      editerHight: 0
+    };
+  }
+  // 计算展示区高度
+  calculateViewHeight() {
+    let height =
+      document.body.clientHeight || document.documentElement.clientHeight;
+    this.setState({
+      editerHight: height - 64 - 30
+    });
+  }
+
+  componentWillMount() {
+    // 计算展示区高度
+    this.calculateViewHeight();
+  }
+
+  componentDidMount() {
+    // window.onrsize
+    window.onresize = () => {
+      this.calculateViewHeight();
+    };
+  }
+
+  render() {
+    let { editerHight } = this.state;
+    return (
+      <Router>
+        <Layout>
+          <Head />
+          <Content
+            style={{
+              padding: "0 50px",
+              marginTop: 64,
+              height: editerHight
+            }}
+          >
+            <div
+              className="main"
+              style={{ background: "#fff", width: "100%", height: "100%" }}
+            >
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/View" component={View} />
+                <Route path="/Editer" component={Editer} />
+              </Switch>
+            </div>
+          </Content>
+          <Foot />
+        </Layout>
+      </Router>
+    );
+  }
+}

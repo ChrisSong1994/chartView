@@ -6,10 +6,9 @@ import Star from "./components/canvas/star";
 import "./index.scss";
 
 export default class Page1 extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
   }
-
   render() {
     return (
       <Router>
@@ -22,7 +21,7 @@ export default class Page1 extends Component {
               <Button type="primary">五角星</Button>
             </Link>
           </div>
-          <div className="view-box">
+          <div className="view-box" >
             <Switch>
               <Route exact path="/View" component={Timer} />
               <Route path="/View/timer" component={Timer} />
