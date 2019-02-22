@@ -17,6 +17,7 @@ export default class Root extends Component {
       editerHight: 0
     };
   }
+
   // 计算展示区高度
   calculateViewHeight() {
     let height =
@@ -27,12 +28,10 @@ export default class Root extends Component {
   }
 
   componentWillMount() {
-    // 计算展示区高度
     this.calculateViewHeight();
   }
 
   componentDidMount() {
-    // window.onrsize
     window.onresize = () => {
       this.calculateViewHeight();
     };
@@ -46,7 +45,6 @@ export default class Root extends Component {
           <Head />
           <Content
             style={{
-              padding: "0 50px",
               marginTop: 64,
               height: editerHight
             }}

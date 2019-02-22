@@ -1,15 +1,34 @@
-import React, { Component } from 'react';
-import api_article from 'api/article'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import {addWidget} from "../../store/action";
 
-export default class Home extends Component {
-
-  
-
-    render() {
-        return (
-            <div>
-                this is homekljl
-            </div>
-        )
-    }
+class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    this.props.addwidget({ "232323": { id: "232323" } });
+  }
+  render() {
+    return <div>this is homekljl</div>;
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    widget: state.widget
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addwidget: widget => {
+      dispatch(addWidget(widget));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
