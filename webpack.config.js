@@ -101,6 +101,7 @@ module.exports = {
             assets: path.join(__dirname, 'src/assets'),
             api: path.join(__dirname, 'src/api'),
             pages:path.join(__dirname,'src/pages'),
+            utils:path.join(__dirname,'src/utils'),
             components:path.join(__dirname,'src/components')
         },
         // 省略后缀

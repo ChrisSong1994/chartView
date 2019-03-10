@@ -15,6 +15,7 @@ const widgets = {
 class Editer extends Component {
   constructor() {
     super();
+    this.addWidget=this.addWidget.bind(this)
   }
 
   componentDidMount() {
@@ -24,7 +25,7 @@ class Editer extends Component {
   // 初始化
   init(widgets) {
     const el = findDOMNode(this.refs.wrap);
-    window.draagle = this.draagle = new Draggle(el, {
+    window.draggle = this.draggle = new Draggle(el, {
       widgets: widgets,
       widget_selector: ".dragger",
       resizeable: {
@@ -53,7 +54,9 @@ class Editer extends Component {
     });
   }
 
-  addWidget() {}
+  addWidget(id, widget) {
+    this.draggle.addWidget(id, widget);
+  }
 
   render() {
     return (
@@ -61,7 +64,7 @@ class Editer extends Component {
         <div className="tools">工具栏</div>
         <div className="editer">
           <div className="left-panel">
-            <WidgetNav />
+            <WidgetNav addWidget={this.addWidget} />
           </div>
           <div ref="wrap" className="content-wrap">
             {/* <div
