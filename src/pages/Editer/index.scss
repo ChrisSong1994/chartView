@@ -4,15 +4,14 @@
   .tools {
     width: 100%;
     height: 40px;
-  }
-  // 三栏布局
+  } // 三栏布局
   .editer {
     width: 100%;
     height: calc(100% - 40px);
     display: flex;
     .left-panel {
       width: 50px;
-      background-color: red;
+      background-color: #7d8b8d;
     }
     .right-panel {
       width: 200px;

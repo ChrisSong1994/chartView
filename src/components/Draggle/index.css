@@ -5,6 +5,7 @@
 .dragger {
   cursor: pointer;
   position: absolute;
+  background: blue;
 }
 
 .resize-handle {
