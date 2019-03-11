@@ -247,16 +247,16 @@ class Draggle {
   addWidget(widget) {
     this.widgets[widget.id] = widget;
     const { top, left, width, height } = widget;
-    let widgetDom = `<div class="dragger" id=${
+    let widgetDom = `<div class="dragger" id="widget_${
       widget.id
-    } style="top:${top}px;left:${left}px;width:${width}px;height:${height}px;"><div class="chart" id="chart_${
+    }" style="top:${top}px;left:${left}px;width:${width}px;height:${height}px;"><div class="chart" id="${
       widget.id
     }"></div> <span class="resize-handle" /></div>`;
     this.$container.append(widgetDom);
   }
 
   /**
-   *  @param object  组件参数
+   *  @param [array]  组件参数
    **/
   addWidgets(widgets) {
     _.forEach(widgets, widget => {

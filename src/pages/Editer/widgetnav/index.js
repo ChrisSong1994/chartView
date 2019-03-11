@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "antd";
-import { getUniqueID } from "utils/util";
+import { generateUUID } from "utils/util";
 
 export default class WidgetNav extends Component {
   constructor(props) {
@@ -11,11 +11,11 @@ export default class WidgetNav extends Component {
   addWidget() {
    
     const widget = {
-      id:getUniqueID(),
+      id:generateUUID(),
       left: 50,
       top: 50,
-      width: 100,
-      height: 100
+      width: 400,
+      height: 350
     };
     this.props.addWidget( widget);
   }

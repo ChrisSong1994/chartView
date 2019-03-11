@@ -5,6 +5,7 @@ import { Select } from "antd";
 const Option = Select.Option;
 import { addWidget } from "../../store/action";
 
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -23,10 +24,6 @@ class Home extends Component {
   createChart(id, option) {
     var myChart = Echarts.init(document.getElementById(id));
     myChart.setOption({
-      title: {
-        text: "ECharts 入门示例"
-      },
-      tooltip: {},
       xAxis: {
         data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
       },

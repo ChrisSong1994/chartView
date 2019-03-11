@@ -7,6 +7,12 @@
   position: absolute;
   background: blue;
 }
+.chart{
+  margin-top: 50px;
+  height:calc(100% - 50px);
+  width: 100%;
+  background: #fff;
+}
 
 .resize-handle {
   position: absolute;

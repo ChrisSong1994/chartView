@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-import Echarts from "echarts"
+import Echarts from "echarts";
 import { findDOMNode } from "react-dom";
 import "./index.scss";
 import Draggle from "components/Draggle";
 import WidgetNav from "./widgetnav";
+import { generateUUID } from "utils/util";
 
 const widgets = [
-  {
-    id: "80204546",
-    left: 50,
-    top: 50,
-    width: 100,
-    height: 100
-  }
+  // {
+  //   id: generateUUID(),
+  //   left: 50,
+  //   top: 50,
+  //   width: 400,
+  //   height: 350
+  // }
 ];
 class Editer extends Component {
   constructor() {
@@ -56,11 +57,33 @@ class Editer extends Component {
     });
   }
 
-  addWidget(id, widget) {
-    this.draggle.addWidget(id, widget);
-
+  addWidget(widget) {
+    this.draggle.addWidget(widget);
+    this.createChart(widget.id);
   }
 
+  createChart(id, option) {
+    var myChart = Echarts.init(document.getElementById(id));
+    myChart.setOption({
+      grid: {
+        left: "8%",
+        top: 20,
+        right: "4%",
+        bottom: 30
+      },
+      xAxis: {
+        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+      },
+      yAxis: {},
+      series: [
+        {
+          name: "销量",
+          type: "bar",
+          data: [5, 20, 36, 10, 10, 20]
+        }
+      ]
+    });
+  }
   render() {
     return (
       <section className="view">
