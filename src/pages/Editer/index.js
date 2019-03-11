@@ -4,6 +4,7 @@ import { findDOMNode } from "react-dom";
 import "./index.scss";
 import Draggle from "components/Draggle";
 import WidgetNav from "./widgetnav";
+import Event from "utils/event";
 import { generateUUID } from "utils/util";
 
 const widgets = [
@@ -37,7 +38,7 @@ class Editer extends Component {
           console.log("start resizing");
         },
         onResize: datas => {
-          console.log(datas);
+          Event.emit("widgetResize", datas);
         },
         onStop: () => {
           console.log("stop resizing");
