@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Echarts from "echarts"
 import { findDOMNode } from "react-dom";
 import "./index.scss";
 import Draggle from "components/Draggle";
@@ -57,6 +58,7 @@ class Editer extends Component {
 
   addWidget(id, widget) {
     this.draggle.addWidget(id, widget);
+
   }
 
   render() {

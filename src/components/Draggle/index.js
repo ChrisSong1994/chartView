@@ -249,7 +249,9 @@ class Draggle {
     const { top, left, width, height } = widget;
     let widgetDom = `<div class="dragger" id=${
       widget.id
-    } style="top:${top}px;left:${left}px;width:${width}px;height:${height}px;"><span class="resize-handle" /></div>`;
+    } style="top:${top}px;left:${left}px;width:${width}px;height:${height}px;"><div class="chart" id="chart_${
+      widget.id
+    }"></div> <span class="resize-handle" /></div>`;
     this.$container.append(widgetDom);
   }
 
@@ -271,7 +273,5 @@ class Draggle {
   getWidgets() {
     return this.widgets;
   }
-
-  
 }
 export default Draggle;
