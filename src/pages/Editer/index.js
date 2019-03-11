@@ -4,18 +4,19 @@ import "./index.scss";
 import Draggle from "components/Draggle";
 import WidgetNav from "./widgetnav";
 
-const widgets = {
-  "80204546": {
+const widgets = [
+  {
+    id: "80204546",
     left: 50,
     top: 50,
     width: 100,
     height: 100
   }
-};
+];
 class Editer extends Component {
   constructor() {
     super();
-    this.addWidget=this.addWidget.bind(this)
+    this.addWidget = this.addWidget.bind(this);
   }
 
   componentDidMount() {

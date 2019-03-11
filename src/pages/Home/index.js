@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Echarts from "echarts";
 import { Select } from "antd";
 const Option = Select.Option;
 import { addWidget } from "../../store/action";
@@ -9,13 +10,35 @@ class Home extends Component {
     super(props);
   }
   componentDidMount() {
-    this.props.addwidget({ "232323": { id: "232323" } });
+    this.createChart("123",{})
   }
-  popupScroll(e){
-    console.log(e.target.scrollHeight-e.target.scrollTop-e.target.clientHeight)  // 获取
+  popupScroll(e) {
+    console.log(
+      e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight
+    ); // 获取
   }
   handleChange(value) {
     console.log(`selected ${value}`);
+  }
+  createChart(id, option) {
+    var myChart = Echarts.init(document.getElementById(id));
+    myChart.setOption({
+      title: {
+        text: "ECharts 入门示例"
+      },
+      tooltip: {},
+      xAxis: {
+        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+      },
+      yAxis: {},
+      series: [
+        {
+          name: "销量",
+          type: "bar",
+          data: [5, 20, 36, 10, 10, 20]
+        }
+      ]
+    });
   }
 
   render() {
@@ -25,7 +48,9 @@ class Home extends Component {
           defaultValue="lucy"
           style={{ width: 120 }}
           onChange={this.handleChange}
-          onPopupScroll={e=>{this.popupScroll(e)}}
+          onPopupScroll={e => {
+            this.popupScroll(e);
+          }}
         >
           <Option value="jack">Jack</Option>
           <Option value="lucy">Lucy</Option>
@@ -39,6 +64,7 @@ class Home extends Component {
           <Option value="Yiminghe4">yiminghe4</Option>
           <Option value="Yiminghe5">yiminghe5</Option>
         </Select>
+        <div id="123" style={{width:"400px",height:"300px"}}></div>
       </div>
     );
   }
