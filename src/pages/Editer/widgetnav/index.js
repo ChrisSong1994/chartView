@@ -9,15 +9,14 @@ export default class WidgetNav extends Component {
   }
 
   addWidget() {
-   
     const widget = {
-      id:generateUUID(),
+      id: generateUUID(),
       left: 50,
       top: 50,
       width: 400,
       height: 350
     };
-    this.props.addWidget( widget);
+    this.props.addWidget(widget);
   }
 
   render() {

@@ -1,70 +1,26 @@
 import React, { Component } from "react";
 import Echarts from "echarts";
-import { findDOMNode } from "react-dom";
 import "./index.scss";
-import Draggle from "components/Draggle";
 import WidgetNav from "./widgetnav";
 import Event from "utils/event";
-import { generateUUID } from "utils/util";
+import Content from "./content";
 
-const widgets = [
-  // {
-  //   id: generateUUID(),
-  //   left: 50,
-  //   top: 50,
-  //   width: 400,
-  //   height: 350
-  // }
-];
 class Editer extends Component {
   constructor() {
     super();
     this.addWidget = this.addWidget.bind(this);
   }
 
-  componentDidMount() {
-    this.init(widgets);
-  }
-
-  // 初始化
-  init(widgets) {
-    const el = findDOMNode(this.refs.wrap);
-    window.draggle = this.draggle = new Draggle(el, {
-      widgets: widgets,
-      widget_selector: ".dragger",
-      resizeable: {
-        handle: ".resize-handle",
-        onStart: () => {
-          console.log("start resizing");
-        },
-        onResize: datas => {
-          Event.emit("widgetResize", datas);
-        },
-        onStop: () => {
-          console.log("stop resizing");
-        }
-      },
-      draggable: {
-        onStart: () => {
-          console.log("start moving");
-        },
-        onDrag: datas => {
-          console.log(datas);
-        },
-        onStop: datas => {
-          console.log("stop moving", datas);
-        }
-      }
-    });
-  }
+  componentDidMount() {}
 
   addWidget(widget) {
-    this.draggle.addWidget(widget);
+    draggle.addWidget(widget);
     this.createChart(widget.id);
   }
 
   createChart(id, option) {
     var myChart = Echarts.init(document.getElementById(id));
+
     myChart.setOption({
       grid: {
         left: "8%",
@@ -84,6 +40,9 @@ class Editer extends Component {
         }
       ]
     });
+    Event.on("widgetResize", () => {
+      myChart.resize();
+    });
   }
   render() {
     return (
@@ -93,14 +52,7 @@ class Editer extends Component {
           <div className="left-panel">
             <WidgetNav addWidget={this.addWidget} />
           </div>
-          <div ref="wrap" className="content-wrap">
-            {/* <div
-              className="dragger"
-              style={{ background: "blue", width: 100, height: 100 }}
-            >
-              <span className="resize-handle" />
-            </div> */}
-          </div>
+          <Content />
           <div className="right-panel">右侧边栏</div>
         </div>
       </section>

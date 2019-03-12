@@ -17,10 +17,16 @@
       width: 200px;
       background: coral;
     }
-    .content-wrap {
+    .content {
       flex: 1;
-      background-color: #ccc;
+      background-color: #0e1438;
       height: 100%;
+      overflow: auto;
+      .content-wrap {
+        width: 1600px;
+        height: 900px;
+        background-color: #ccc;
+      }
     }
   }
 }

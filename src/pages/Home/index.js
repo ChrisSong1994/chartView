@@ -23,6 +23,7 @@ class Home extends Component {
   }
   createChart(id, option) {
     var myChart = Echarts.init(document.getElementById(id));
+    
     myChart.setOption({
       xAxis: {
         data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
