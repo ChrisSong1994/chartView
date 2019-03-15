@@ -3,15 +3,7 @@ import { findDOMNode } from "react-dom";
 import Draggle from "components/Draggle";
 import Event from "utils/event";
 
-const widgets = [
-  // {
-  //   id: generateUUID(),
-  //   left: 50,
-  //   top: 50,
-  //   width: 400,
-  //   height: 350
-  // }
-];
+const widgets = [];
 class Content extends Component {
   constructor() {
     super();
@@ -55,7 +47,10 @@ class Content extends Component {
   render() {
     return (
       <div className="content">
-        <div ref="wrap" className="content-wrap">
+        <div
+          ref="wrap"
+          className="content-wrap"
+        >
           {/* <div
               className="dragger"
               style={{ background: "blue", width: 100, height: 100 }}
