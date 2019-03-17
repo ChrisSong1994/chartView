@@ -1,11 +1,11 @@
-import Chart from "../chart";
+import Chart from "modules/charts/chart";
+import baseOption from "./option";
 
 class Bar extends Chart {
-  constructor(option, el, theme, props) {
-    super(option, el, theme, props);
+  constructor(elem, theme, option = baseOption) {
+    super(elem, theme, option);
     this.theme = theme;
     this.option = option;
-    this.id = props.widgetId;
   }
 }
 

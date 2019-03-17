@@ -14,11 +14,17 @@ const ChartCreator = Object.create({
       console.warn(`Can't find ${theme} constructor`);
     }
   },
-  // 拿到构造函数，实例化
-  create(option, theme) {
+  /**
+   *拿到构造函数，实例化
+   * @param {dom} elem  // 挂载echart的dom元素
+   * @param {string} theme  // 图表的主题
+   */
+  create(elem, theme) {
     return ChartCreator.getConstructor(theme).then(ChartConstructor => {
-      let chart = new ChartConstructor(option, elm, theme);
+      let chart = new ChartConstructor(elem, theme);
       return chart;
     });
   }
 });
+
+export default ChartCreator;

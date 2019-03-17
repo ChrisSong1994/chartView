@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import { findDOMNode } from "react-dom";
 import Draggle from "components/Draggle";
+import Chart from "components/Chart";
 import Event from "utils/event";
+import PropTypes from "prop-types";
 
 const widgets = [];
 class Content extends Component {
+  static propTypes = {
+    widgets: PropTypes.object,
+    activeWidgetId: PropTypes.string
+  };
   constructor() {
     super();
   }
@@ -45,12 +51,12 @@ class Content extends Component {
   }
 
   render() {
+    const {widgets,activeWidgetId} = this.props;
+    const widget =widgets[activeWidgetId]
     return (
       <div className="content">
-        <div
-          ref="wrap"
-          className="content-wrap"
-        >
+        <div ref="wrap" className="content-wrap">
+          <Chart widget={widget}  />
           {/* <div
               className="dragger"
               style={{ background: "blue", width: 100, height: 100 }}

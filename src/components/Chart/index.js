@@ -1,21 +1,36 @@
-
 import React, { Component } from "react";
-
+import ChartCreator from "modules/charts";
+import PropTypes from "prop-types";
 class Chart extends Component {
+  static propTypes = {
+    widget: PropTypes.object
+  };
   constructor() {
     super();
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    ChartCreator.create(this.refs.chart, "bar").then(chart => {
+      this.chart = chart;
+      this.chart.render()
+      draggle.init()
+    });
+  }
 
   createChart() {}
   render() {
-    return(
-      <div class="dragger" id={} style={{}}>
-      <div class="chart" id={{}}></div> 
-      <span class="resize-handle" />
+    const { id, left, top, width, height } = this.props.widget;
+    return (
+      <div className="dragger">
+        <div
+          className="chart"
+          ref="chart"
+          id={id}
+          style={{ left, top, width, height }}
+        />
+        <span className="resize-handle" />
       </div>
-    )
+    );
   }
 }
 

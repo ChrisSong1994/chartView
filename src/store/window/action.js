@@ -1,5 +1,5 @@
-export const ADD_WIDGET = "ADD_WIDGET";
-export const REMOVE_WIDGET = "REMOVE_WIDGET";
+export const ADD_WIDGET = "ADD_WIDGET"; // 添加组件
+export const REMOVE_WIDGET = "REMOVE_WIDGET"; // 删除组件
 
 export const addWidget = widget => {
   return { type: ADD_WIDGET, widget };

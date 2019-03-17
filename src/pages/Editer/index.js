@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Echarts from "echarts";
 import "./index.scss";
 import WidgetNav from "./widgetnav";
@@ -11,7 +12,9 @@ class Editer extends Component {
     this.addWidget = this.addWidget.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.props);
+  }
 
   addWidget(widget) {
     draggle.addWidget(widget);
@@ -45,6 +48,7 @@ class Editer extends Component {
     });
   }
   render() {
+    const { widgets, window, activeWidgetId } = this.props;
     return (
       <section className="view">
         <div className="tools">工具栏</div>
@@ -52,12 +56,20 @@ class Editer extends Component {
           <div className="left-panel">
             <WidgetNav addWidget={this.addWidget} />
           </div>
-          <Content />
+          <Content widgets={widgets} activeWidgetId={activeWidgetId} />
           <div className="right-panel">右侧边栏</div>
         </div>
       </section>
     );
   }
 }
+const mapStateToProps = state => {
+  const { window } = state;
+  return {
+    window: window,
+    activeWidgetId: window.activeWidgetId,
+    widgets: window.widgets
+  };
+};
 
-export default Editer;
+export default connect(mapStateToProps)(Editer);

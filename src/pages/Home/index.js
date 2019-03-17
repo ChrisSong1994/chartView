@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import Echarts from "echarts";
 import { Select } from "antd";
 const Option = Select.Option;
-import { addWidget } from "../../store/action";
 
 
 class Home extends Component {
@@ -68,21 +66,6 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    widget: state.widget
-  };
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addwidget: widget => {
-      dispatch(addWidget(widget));
-    }
-  };
-};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+export default  Home;

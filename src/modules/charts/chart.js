@@ -1,20 +1,25 @@
 import Echarts from "echarts";
 
 class Charts {
-  constructor(option, el) {
-    this.chart = Echarts.init(el);
+  constructor(elem, theme, option) {
+    this.chart = Echarts.init(elem);
+    this.theme = theme;
     this.option = option;
   }
 
   // 设置
   setOption(option) {
     this.option = option;
-    this.chart.setOption(option);
+    this.chart.setOption(this.option);
   }
 
+  // 图表绘制
+  render() {
+    this.setOption(this.option);
+  }
   // 图表重置
   resize() {
-    this.chart.resize();
+    this.chart.resize(this.option);
   }
 
   // 监听

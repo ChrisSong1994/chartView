@@ -14,7 +14,7 @@ ReactDOM.render(
   document.getElementById("app")
 );
 
-if (module.hot) {
   // 实现热更新
+if (module.hot) {
   module.hot.accept();
 }

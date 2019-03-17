@@ -102,7 +102,9 @@ module.exports = {
             api: path.join(__dirname, 'src/api'),
             pages:path.join(__dirname,'src/pages'),
             utils:path.join(__dirname,'src/utils'),
-            components:path.join(__dirname,'src/components')
+            components:path.join(__dirname,'src/components'),
+            modules:path.join(__dirname,'src/modules'),
+            http:path.join(__dirname,'src/http')
         },
         // 省略后缀
         extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.less']
