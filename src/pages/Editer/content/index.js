@@ -5,12 +5,11 @@ import Chart from "components/Chart";
 import Event from "utils/event";
 import PropTypes from "prop-types";
 import { generateUUID } from "utils/util";
-import {addWidget} from "store/window/action"
+import { addWidget } from "store/window/action";
 
-const widgets = [];
 class Content extends Component {
   static propTypes = {
-    dispatch:PropTypes.func,
+    dispatch: PropTypes.func,
     widgets: PropTypes.object,
     activeWidgetId: PropTypes.string
   };
@@ -18,14 +17,17 @@ class Content extends Component {
     super();
   }
   componentDidMount() {
+    const { widgets } = this.props;
     this.init(widgets);
-    this.props.dispatch(addWidget({
-      id: generateUUID(),
-      left: 50,
-      top: 50,
-      width: 400,
-      height: 350
-    }))
+    // this.props.dispatch(
+    //   addWidget({
+    //     id: generateUUID(),
+    //     left: 50,
+    //     top: 50,
+    //     width: 400,
+    //     height: 350
+    //   })
+    // );
   }
 
   // 初始化
@@ -39,8 +41,8 @@ class Content extends Component {
         onStart: () => {
           console.log("start resizing");
         },
-        onResize: datas => {
-          Event.emit("widgetResize", datas);
+        onResize: size => {
+          Event.emit("widgetResize", size);
         },
         onStop: () => {
           console.log("stop resizing");
@@ -61,18 +63,15 @@ class Content extends Component {
   }
 
   render() {
-    const {widgets,activeWidgetId} = this.props;
-    const widget =widgets[activeWidgetId]
+    const { widgets, activeWidgetId } = this.props;
+    const widget=widgets[activeWidgetId]
     return (
       <div className="content">
         <div ref="wrap" className="content-wrap">
-          <Chart widget={widget}  />
-          {/* <div
-              className="dragger"
-              style={{ background: "blue", width: 100, height: 100 }}
-            >
-              <span className="resize-handle" />
-            </div> */}
+          {Object.keys(widgets).map(widgetId => {
+            return <Chart key={widgetId} widget={widgets[widgetId]} />;
+          })}
+          {/* <Chart widget={widget}  /> */}
         </div>
       </div>
     );

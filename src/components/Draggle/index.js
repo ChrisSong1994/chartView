@@ -25,10 +25,7 @@ class Draggle {
     this.el = el;
     this.options = _.merge({}, defaults, options);
     this.scale = options.scale || 1; // 默认缩放为1
-    this.widgets = {};
-    _.forEach(this.options.widgets, widget => {
-      this.widgets[widget.id] = widget;
-    });
+    this.widgets = this.options.widgets;
     this.$document = $(document);
     this.$container = $(this.el); // 容器
     this.$player = null; // 选中组件
@@ -146,7 +143,7 @@ class Draggle {
   }
   // 拉伸结束
   resizeStop(size) {
-    console.log(this.$player, size);
+    console.log("resizeStop", size);
     if (this.options.resizeable.onStop) {
       this.options.resizeable.onStop.call(this);
     }
@@ -247,14 +244,13 @@ class Draggle {
   // 添加组件
   addWidget(widget) {
     this.widgets[widget.id] = widget;
-    const { top, left, width, height } = widget;
-    let widgetDom = `<div class="dragger" id="widget_${
-      widget.id
-    }" style="top:${top}px;left:${left}px;width:${width}px;height:${height}px;"><div class="chart" id="${
-      widget.id
-    }"></div> <span class="resize-handle" /></div>`;
-    this.$container.append(widgetDom);
-    this.init();
+    // const { top, left, width, height } = widget;
+    // let widgetDom = `<div class="dragger" id="widget_${
+    //   widget.id
+    // }" style="top:${top}px;left:${left}px;width:${width}px;height:${height}px;"><div class="chart" id="${
+    //   widget.id
+    // }"></div> <span class="resize-handle" /></div>`;
+    // this.$container.append(widgetDom);
   }
 
   /**

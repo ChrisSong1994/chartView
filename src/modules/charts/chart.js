@@ -18,8 +18,8 @@ class Charts {
     this.setOption(this.option);
   }
   // 图表重置
-  resize() {
-    this.chart.resize(this.option);
+  resize(size) {
+    this.chart.resize(size);
   }
 
   // 监听
