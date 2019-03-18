@@ -11,29 +11,26 @@ class Chart extends Component {
   }
 
   componentDidMount() {
-    ChartCreator.create(this.refs.chart, "bar").then(chart => {
+    this.createChart()
+  }
+
+  // 创建图表实例
+  createChart() {
+    ChartCreator.create(this.refs.chart, "line").then(chart => {
       this.chart = chart;
       this.chart.render();
       draggle.init();
-      Event.on("widgetResize", (size) => {
-        console.log(size)
-        this.chart.resize({width:size.w,height:size.h});
+      Event.on("widgetResize", size => {
+        this.chart.resize();
       });
-     
     });
   }
 
-  createChart() {}
   render() {
     const { id, left, top, width, height } = this.props.widget;
     return (
-      <div className="dragger">
-        <div
-          className="chart"
-          ref="chart"
-          id={id}
-          style={{ left, top, width, height }}
-        />
+      <div className="dragger" style={{ left, top, width, height }}>
+        <div className="chart" ref="chart" id={id} />
         <span className="resize-handle" />
       </div>
     );

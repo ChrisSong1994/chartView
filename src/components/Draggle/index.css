@@ -8,8 +8,7 @@
   background: blue;
 }
 .chart{
-  margin-top: 50px;
-  height:calc(100% - 50px);
+  height:100%;
   width: 100%;
   background: #fff;
 }

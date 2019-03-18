@@ -7,7 +7,7 @@ class Charts {
     this.option = option;
   }
 
-  // 设置
+  // 设置配置
   setOption(option) {
     this.option = option;
     this.chart.setOption(this.option);
@@ -17,8 +17,9 @@ class Charts {
   render() {
     this.setOption(this.option);
   }
+
   // 图表重置
-  resize(size) {
+  resize(size = {}) {
     this.chart.resize(size);
   }
 
