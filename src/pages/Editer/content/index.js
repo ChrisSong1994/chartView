@@ -4,10 +4,13 @@ import Draggle from "components/Draggle";
 import Chart from "components/Chart";
 import Event from "utils/event";
 import PropTypes from "prop-types";
+import { generateUUID } from "utils/util";
+import {addWidget} from "store/window/action"
 
 const widgets = [];
 class Content extends Component {
   static propTypes = {
+    dispatch:PropTypes.func,
     widgets: PropTypes.object,
     activeWidgetId: PropTypes.string
   };
@@ -16,6 +19,13 @@ class Content extends Component {
   }
   componentDidMount() {
     this.init(widgets);
+    this.props.dispatch(addWidget({
+      id: generateUUID(),
+      left: 50,
+      top: 50,
+      width: 400,
+      height: 350
+    }))
   }
 
   // 初始化

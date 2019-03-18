@@ -48,7 +48,7 @@ class Editer extends Component {
     });
   }
   render() {
-    const { widgets, window, activeWidgetId } = this.props;
+    const { widgets, window, activeWidgetId, dispatch } = this.props;
     return (
       <section className="view">
         <div className="tools">工具栏</div>
@@ -56,7 +56,11 @@ class Editer extends Component {
           <div className="left-panel">
             <WidgetNav addWidget={this.addWidget} />
           </div>
-          <Content widgets={widgets} activeWidgetId={activeWidgetId} />
+          <Content
+            dispatch={dispatch}
+            widgets={widgets}
+            activeWidgetId={activeWidgetId}
+          />
           <div className="right-panel">右侧边栏</div>
         </div>
       </section>

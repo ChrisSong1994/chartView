@@ -5,7 +5,7 @@ let initialState = {
   height: "auto",
   title: "",
   background: "",
-  activeWidgetId:"yfy6657uhyhgt88",
+  activeWidgetId: "yfy6657uhyhgt88",
   widgets: {
     yfy6657uhyhgt88: {
       id: "yfy6657uhyhgt88",
@@ -20,7 +20,11 @@ let initialState = {
 const windowReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_WIDGET:
-      return Object.assign({}, state, { widgets: { ...action } });
+      return Object.assign({}, state, {
+        widgets: Object.assign({}, state.widgets, {
+          [action.widget.id]: action.widget
+        })
+      });
     case REMOVE_WIDGET:
       state.widgets.delete(action.widgetId);
       return state;

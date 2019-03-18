@@ -13,7 +13,6 @@ class Chart extends Component {
     ChartCreator.create(this.refs.chart, "bar").then(chart => {
       this.chart = chart;
       this.chart.render()
-      draggle.init()
     });
   }
 
