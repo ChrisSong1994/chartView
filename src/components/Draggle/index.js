@@ -244,13 +244,6 @@ class Draggle {
   // 添加组件
   addWidget(widget) {
     this.widgets[widget.id] = widget;
-    // const { top, left, width, height } = widget;
-    // let widgetDom = `<div class="dragger" id="widget_${
-    //   widget.id
-    // }" style="top:${top}px;left:${left}px;width:${width}px;height:${height}px;"><div class="chart" id="${
-    //   widget.id
-    // }"></div> <span class="resize-handle" /></div>`;
-    // this.$container.append(widgetDom);
   }
 
   /**

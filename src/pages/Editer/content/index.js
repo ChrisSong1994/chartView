@@ -4,8 +4,6 @@ import Draggle from "components/Draggle";
 import Chart from "components/Chart";
 import Event from "utils/event";
 import PropTypes from "prop-types";
-import { generateUUID } from "utils/util";
-import { addWidget } from "store/window/action";
 
 class Content extends Component {
   static propTypes = {
@@ -19,15 +17,6 @@ class Content extends Component {
   componentDidMount() {
     const { widgets } = this.props;
     this.init(widgets);
-    // this.props.dispatch(
-    //   addWidget({
-    //     id: generateUUID(),
-    //     left: 50,
-    //     top: 50,
-    //     width: 400,
-    //     height: 350
-    //   })
-    // );
   }
 
   // 初始化
@@ -64,14 +53,13 @@ class Content extends Component {
 
   render() {
     const { widgets, activeWidgetId } = this.props;
-    const widget=widgets[activeWidgetId]
+    const widget = widgets[activeWidgetId];
     return (
       <div className="content">
         <div ref="wrap" className="content-wrap">
           {Object.keys(widgets).map(widgetId => {
             return <Chart key={widgetId} widget={widgets[widgetId]} />;
           })}
-          {/* <Chart widget={widget}  /> */}
         </div>
       </div>
     );
