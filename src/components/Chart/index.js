@@ -24,6 +24,10 @@ class Chart extends Component {
       Event.on("widgetResize", size => {
         this.chart.resize();
       });
+      // echart点击事件注册
+      this.chart.on("click", params => {
+        console.log(params);
+      });
     });
   }
 

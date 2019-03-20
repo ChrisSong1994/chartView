@@ -20,7 +20,15 @@ const chartConfig = {
     type: "line",
     left: 150,
     top: 150,
-    width: 350,
+    width: 400,
+    height: 350
+  },
+  scatter:{
+    name: "散点图",
+    type: "scatter",
+    left: 200,
+    top: 200,
+    width: 400,
     height: 350
   }
 };

@@ -1,7 +1,7 @@
 import Chart from "modules/charts/chart";
 import baseOption from "./option";
 
-class Bar extends Chart {
+class Scatter extends Chart {
   constructor(elem, theme, option = baseOption) {
     super(elem, theme, option);
     this.theme = theme;
@@ -11,4 +11,4 @@ class Bar extends Chart {
 
 }
 
-export default Bar;
+export default Scatter;
