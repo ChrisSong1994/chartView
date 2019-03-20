@@ -17,7 +17,12 @@ const defaults = {
   //       console.log(datas);
   //     },
   //     onStop: () => {}
+  //   },
+  // click:{
+  //   rightClick:()=>{
+  //     console.log("右击")
   //   }
+  // }
 };
 
 class Draggle {
@@ -39,6 +44,11 @@ class Draggle {
   init() {
     this.$widgets = this.$container.children(this.options.widget_selector);
     this.$resHandles = this.$container.find(this.options.resizeable.handle);
+    // 先解绑，避免重复绑定带来的多次触发副作用
+    this.$widgets.off();
+    this.$resHandles.off()
+    this.$document.off()
+
     // 监听document
     this.$document.on("mousemove", e => {
       if (this.isMoving) {
@@ -49,6 +59,7 @@ class Draggle {
         this.resizing(size);
       }
     });
+
     this.$document.on("mouseup", e => {
       if (this.isMoving) {
         const posix = this.getWidgetOffset(e);
@@ -64,7 +75,14 @@ class Draggle {
       }
     });
 
+    this.$widgets.on("contextmenu",e=>{
+      // 阻止浏览器默认右击事件
+      console.log("阻止浏览器默认右击事件")
+      return false
+    })
+
     this.$widgets.on("mousedown", e => {
+      e.stopPropagation();
       // 这里用箭头函数避免this指向被替换（this始终保持指向Draggle实例）
       this.$player = $(e.currentTarget);
       this.el_init_pos = this.get_actual_pos(this.$player);
@@ -73,8 +91,12 @@ class Draggle {
         x: this.mouse_init_pos.left - this.el_init_pos.left,
         y: this.mouse_init_pos.top - this.el_init_pos.top
       };
-      this.isMoving = true;
-      this.dragStart();
+      if (e.button === 0) {
+        this.isMoving = true;
+        this.dragStart();
+      } else if (e.button === 2) {
+       this.rightClick()
+      }
     });
 
     this.$resHandles.on("mousedown", e => {
@@ -86,6 +108,13 @@ class Draggle {
       this.el_init_size = this.get_actual_size(this.$player);
       this.resizeStart();
     });
+  }
+
+  // 右击事件
+  rightClick() {
+    if (this.options.click.rightClick) {
+      this.options.click.rightClick.call(this);
+    }
   }
 
   // 拖拽开始

@@ -47,6 +47,11 @@ class Content extends Component {
         onStop: datas => {
           console.log("stop moving", datas);
         }
+      },
+      click:{
+        rightClick:()=>{
+          console.log("右击")
+        }
       }
     });
   }
