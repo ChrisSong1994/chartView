@@ -10,12 +10,12 @@
     height: calc(100% - 40px);
     display: flex;
     .left-panel {
-      width: 50px;
+      width: 80px;
       background-color: #7d8b8d;
     }
     .right-panel {
       width: 200px;
-      background: coral;
+      background: #7d8b8d;
     }
     .content {
       flex: 1;

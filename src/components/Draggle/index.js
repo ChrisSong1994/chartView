@@ -46,8 +46,8 @@ class Draggle {
     this.$resHandles = this.$container.find(this.options.resizeable.handle);
     // 先解绑，避免重复绑定带来的多次触发副作用
     this.$widgets.off();
-    this.$resHandles.off()
-    this.$document.off()
+    this.$resHandles.off();
+    this.$document.off();
 
     // 监听document
     this.$document.on("mousemove", e => {
@@ -75,11 +75,11 @@ class Draggle {
       }
     });
 
-    this.$widgets.on("contextmenu",e=>{
+    this.$widgets.on("contextmenu", e => {
       // 阻止浏览器默认右击事件
-      console.log("阻止浏览器默认右击事件")
-      return false
-    })
+      console.log("阻止浏览器默认右击事件");
+      return false;
+    });
 
     this.$widgets.on("mousedown", e => {
       e.stopPropagation();
@@ -95,7 +95,7 @@ class Draggle {
         this.isMoving = true;
         this.dragStart();
       } else if (e.button === 2) {
-       this.rightClick()
+        this.rightClick();
       }
     });
 

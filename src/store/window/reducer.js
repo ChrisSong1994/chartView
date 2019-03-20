@@ -9,6 +9,8 @@ let initialState = {
   widgets: {
     yfy6657uhyhgt88: {
       id: "yfy6657uhyhgt88",
+      name: "柱状图",
+      type: "bar",
       left: 50,
       top: 50,
       width: 400,

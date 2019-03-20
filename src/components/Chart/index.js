@@ -16,7 +16,8 @@ class Chart extends Component {
 
   // 创建图表实例
   createChart() {
-    ChartCreator.create(this.refs.chart, "line").then(chart => {
+    const { type } = this.props.widget;
+    ChartCreator.create(this.refs.chart, type).then(chart => {
       this.chart = chart;
       this.chart.render();
       draggle.init();

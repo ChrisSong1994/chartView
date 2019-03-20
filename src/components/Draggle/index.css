@@ -23,5 +23,5 @@
   background-position: top left;
   background-repeat: no-repeat;
   cursor: se-resize;
-  z-index: 10;
+  /* z-index: 10; */
 }

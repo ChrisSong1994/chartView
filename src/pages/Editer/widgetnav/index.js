@@ -3,6 +3,7 @@ import { Button } from "antd";
 import { generateUUID } from "utils/util";
 import PropTypes from "prop-types";
 import { addWidget } from "store/window/action";
+import chartConfig from "modules/charts/chartConfig";
 
 export default class WidgetNav extends Component {
   static propTypes = {
@@ -13,13 +14,11 @@ export default class WidgetNav extends Component {
     this.addWidget = this.addWidget.bind(this);
   }
 
-  addWidget() {
+  addWidget(chartType) {
+    console.log(chartType);
     const widget = {
       id: generateUUID(),
-      left: 50,
-      top: 50,
-      width: 400,
-      height: 350
+      ...chartConfig[chartType]
     };
     this.props.dispatch(addWidget(widget));
   }
@@ -28,7 +27,13 @@ export default class WidgetNav extends Component {
     return (
       <nav className="widget-nav">
         <div className="widget-chart">
-          <Button shape="circle" icon="plus" onClick={this.addWidget} />
+          {Object.keys(chartConfig).map(item => {
+            return (
+              <Button key={item} onClick={this.addWidget.bind(this, item)}>
+                {chartConfig[item].name}
+              </Button>
+            );
+          })}
         </div>
       </nav>
     );
