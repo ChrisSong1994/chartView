@@ -30,6 +30,26 @@ const windowReducer = (state = initialState, action) => {
     case REMOVE_WIDGET:
       state.widgets.delete(action.widgetId);
       return state;
+    case UPDATE_WIDGET_POSITION:
+      return Object.assign({}, state, {
+        widgets: {
+          [action.widgetId]: Object.assign(
+            {},
+            widgets[action.widgetId],
+            action.position
+          )
+        }
+      });
+      case UPDATE_WIDGET_SIZE:
+      return Object.assign({}, state, {
+        widgets: {
+          [action.widgetId]: Object.assign(
+            {},
+            widgets[action.widgetId],
+            action.size
+          )
+        }
+      });
     default:
       return state;
   }
