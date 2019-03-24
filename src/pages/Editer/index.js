@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "./index.scss";
 import WidgetNav from "./widgetnav";
 import Content from "./content";
+import Panel from "./panel";
 
 class Editer extends Component {
   constructor() {
@@ -18,7 +19,6 @@ class Editer extends Component {
     draggle.addWidget(widget);
   }
 
- 
   render() {
     const { widgets, window, activeWidgetId, dispatch } = this.props;
     return (
@@ -33,7 +33,9 @@ class Editer extends Component {
             widgets={widgets}
             activeWidgetId={activeWidgetId}
           />
-          <div className="right-panel">右侧边栏</div>
+          <div className="right-panel">
+            <Panel />
+          </div>
         </div>
       </section>
     );
