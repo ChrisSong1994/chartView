@@ -1,11 +1,17 @@
-import { ADD_WIDGET, REMOVE_WIDGET } from "./action";
+import {
+  ADD_WIDGET,
+  REMOVE_WIDGET,
+  UPDATE_WIDGET_POSITION,
+  UPDATE_WIDGET_SIZE,
+  SET_ACTIVE_WIDGET_ID,
+} from "./action";
 
 let initialState = {
   width: "auto",
   height: "auto",
   title: "",
   background: "",
-  activeWidgetId: "yfy6657uhyhgt88",
+  activeWidgetId: "",
   widgets: {
     yfy6657uhyhgt88: {
       id: "yfy6657uhyhgt88",
@@ -40,7 +46,7 @@ const windowReducer = (state = initialState, action) => {
           )
         }
       });
-      case UPDATE_WIDGET_SIZE:
+    case UPDATE_WIDGET_SIZE:
       return Object.assign({}, state, {
         widgets: {
           [action.widgetId]: Object.assign(
@@ -49,6 +55,10 @@ const windowReducer = (state = initialState, action) => {
             action.size
           )
         }
+      });
+    case SET_ACTIVE_WIDGET_ID:
+      return Object.assign({}, state, {
+        activeWidgetId: action.widgetId
       });
     default:
       return state;

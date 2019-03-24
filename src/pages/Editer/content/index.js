@@ -4,6 +4,7 @@ import Draggle from "components/Draggle";
 import Chart from "components/Chart";
 import Event from "utils/event";
 import PropTypes from "prop-types";
+import { setActiveWidgetId } from "store/window/action";
 
 class Content extends Component {
   static propTypes = {
@@ -48,9 +49,12 @@ class Content extends Component {
           console.log("stop moving", datas);
         }
       },
-      click:{
-        rightClick:()=>{
-          console.log("右击")
+      click: {
+        rightClick: () => {
+          console.log("右击");
+        },
+        selectedClick: (id, player) => {
+          this.props.dispatch(setActiveWidgetId(id));
         }
       }
     });

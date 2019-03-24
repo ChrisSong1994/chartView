@@ -9,10 +9,11 @@ import Foot from "pages/Layout/Foot";
 import View from "pages/View";
 import Home from "pages/Home";
 import Editer from "pages/Editer";
+import Data from "pages/Data";
 
 export default class Root extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       editerHight: 0
     };
@@ -56,6 +57,7 @@ export default class Root extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/View" component={View} />
+                <Route path="/Data" component={Data} />
                 <Route path="/Editer" component={Editer} />
               </Switch>
             </div>

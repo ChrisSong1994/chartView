@@ -34,7 +34,7 @@ class Chart extends Component {
   render() {
     const { id, left, top, width, height } = this.props.widget;
     return (
-      <div className="dragger" style={{ left, top, width, height }}>
+      <div className="dragger"  style={{ left, top, width, height }}>
         <div className="chart" ref="chart" id={id} />
         <span className="resize-handle" />
       </div>
