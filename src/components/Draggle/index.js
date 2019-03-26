@@ -122,7 +122,7 @@ class Draggle {
   // 清除选中项
   clearPlayer(player) {
     if (this.$player || !player) {
-      this.$player.removeClass("selected");
+      this.$player && this.$player.removeClass("selected");
       this.$player = null;
       this.selectedId = "";
       this.options.click.selectedClick.call(this, "", null);
@@ -205,7 +205,7 @@ class Draggle {
   // 拉伸结束
   resizeStop(size) {
     if (this.options.resizeable.onStop) {
-      this.options.resizeable.onStop.call(this,size);
+      this.options.resizeable.onStop.call(this, size);
     }
   }
 
