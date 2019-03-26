@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input } from "antd";
+import { Form, Input, Row, Col, InputNumber } from "antd";
 import _ from "lodash";
 const FormItem = Form.Item;
 const formItemLayout = {
@@ -13,7 +13,8 @@ class WindowSetting extends Component {
   }
 
   handleChange = _.debounce(() => {
-    const name = this.props.form.getFieldValue("windowName");
+    const setting = this.props.form.getFieldsValue();
+    console.log(setting);
   }, 200);
 
   render() {
@@ -26,10 +27,35 @@ class WindowSetting extends Component {
               <Input onChange={this.handleChange} />
             )}
           </FormItem>
+          <FormItem label="窗口宽度" key="window-width" {...formItemLayout}>
+            {getFieldDecorator("windowSizeWidth")(
+              <InputNumber onChange={this.handleChange} />
+            )}
+          </FormItem>
+          <FormItem label="窗口高度" key="window-height" {...formItemLayout}>
+            {getFieldDecorator("windowSizeHeight")(
+              <InputNumber onChange={this.handleChange} />
+            )}
+          </FormItem>
         </Form>
       </div>
     );
   }
 }
+WindowSetting = Form.create({
+  mapPropsToFields: props => {
+    return {
+      windowName: {
+        value: ""
+      },
+      windowSizeWidth: {
+        value: 100
+      },
+      windowSizeHeight: {
+        value: 100
+      }
+    };
+  }
+})(WindowSetting);
 
-export default Form.create({})(WindowSetting);
+export default WindowSetting;
