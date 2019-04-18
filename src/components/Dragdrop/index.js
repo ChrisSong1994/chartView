@@ -29,10 +29,9 @@ class DragDrop {
   initDrop() {
     let { elem } = this.opts.drop
     this.elemDrop = $(elem)
-
-    this.elemDrop.on('dragover.dragdrop', (e) => {
+    this.elemDrop.on('dragover', (e) => {
       let event = e.originalEvent
-      event.preventDefault()
+      event.preventDefault()  // 需要在dragover 的时候阻止默认事件
       event.dataTransfer.dropEffect = 'move'
     })
       .on("drop", (e) => {

@@ -33,20 +33,27 @@ class Editer extends Component {
         elem: ".content-wrap",
         onDrop: (event, text) => {
           let position = {
-            left: event.clientX,
-            top: event.clientY
+            left: event.offsetX,
+            top: event.offsetY
           }
-          this.addWidget(text)
+          console.log(position, text)
+          this.addWidget(text, position)
         }
       }
     })
   }
 
-  addWidget(chartType) {
-    const widget = {
+  addWidget(chartType, pos) {
+    const widget = Object.assign({}, {
       id: generateUUID(),
       ...chartConfig[chartType]
-    };
+    }, {
+        // 合并拖入的坐标
+        left: pos.left,
+        top: pos.top
+      })
+
+    console.log(widget)
     this.props.dispatch(addWidget(widget));
   }
 
