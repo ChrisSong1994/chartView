@@ -29,6 +29,9 @@ class Head extends Component {
           <Menu.Item key="4">
             <Link to="/Editer">编辑区</Link>
           </Menu.Item>
+          <Menu.Item key="5">
+            <Link to="/ChatRoom">聊天室</Link>
+          </Menu.Item>
         </Menu>
       </Header>
     );

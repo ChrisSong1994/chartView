@@ -116,23 +116,16 @@ module.exports = {
         hot: true,               // 开启热更新
         overlay: true, // 浏览器页面上显示错误
         historyApiFallback: true,
-        proxy: { //通过代理解决本地跨域
-            // '/api': {
-            //     target: 'http://localhost:4000', // 服务端
-            //     changeOrigin: true,
-            //     ws: true,
-            //     pathRewrite: {
-            //         '^/api': '/api'
-            //     }
-            // },
-            // '/files': {    // 静态文件图片等
-            //     target: 'http://localhost:4000', // 服务端
-            //     changeOrigin: true,
-            //     ws: true,
-            //     pathRewrite: {
-            //         '^/files': '/files'
-            //     }
-            // }
+        proxy: { 
+            //通过代理解决本地跨域
+            '/server': {   
+                target: 'http://localhost:4200', // 服务端
+                changeOrigin: true,
+                ws: true,
+                pathRewrite: {
+                    '^/server': '/server'
+                }
+            }
         }
     },
     //  提取公共代码

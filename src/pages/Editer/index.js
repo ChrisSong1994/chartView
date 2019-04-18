@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./index.scss";
+import { generateUUID } from "utils/util";
+import { addWidget } from "store/window/action";
+import chartConfig from "modules/charts/chartConfig";
+import DragDrop from "components/Dragdrop"
 import WidgetNav from "./widgetnav";
 import Content from "./content";
 import Panel from "./panel";
@@ -12,11 +16,38 @@ class Editer extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    this.initDragDrop()
   }
 
-  addWidget(widget) {
-    draggle.addWidget(widget);
+  initDragDrop() {
+    this.dragdrop = new DragDrop({
+      drag: {
+        elem: ".widget-btn",
+        parentSelector: ".widget-nav",
+        onStart: (event, elem) => {
+          let type = elem.getAttribute("data-type")
+          event.dataTransfer.setData("Text", type)
+        }
+      },
+      drop: {
+        elem: ".content-wrap",
+        onDrop: (event, text) => {
+          let position = {
+            left: event.clientX,
+            top: event.clientY
+          }
+          this.addWidget(text)
+        }
+      }
+    })
+  }
+
+  addWidget(chartType) {
+    const widget = {
+      id: generateUUID(),
+      ...chartConfig[chartType]
+    };
+    this.props.dispatch(addWidget(widget));
   }
 
   render() {
