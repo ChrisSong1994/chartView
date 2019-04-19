@@ -1,24 +1,14 @@
 const Koa = require("koa");
 const app = new Koa();
+// 对于POST请求的处理，koa-bodyparser中间件可以把koa2上下文的formData数据解析到ctx.request.body中
+const bodyParser = require('koa-bodyparser')  // 
 const Static = require("koa-static")
 const Router = require("koa-router")
+const Window = require("./routes/window")
 
-const router =new Router()
+const router = new Router()
 
-// app.use(async ctx => {
-//   ctx.body = "hello world";
-// });
-
-
-router.get("/server",async (ctx) => {
-  let html = `
-  <ul>
-    <li><a href="/page/helloworld">/page/helloworld</a></li>
-    <li><a href="/page/404">/page/404</a></li>
-  </ul>
-`
-  ctx.body = html
-})
-
+app.use(bodyParser())
+app.use(Window.routes())
 app.use(router.routes())
 app.listen(4200);
