@@ -46,6 +46,12 @@ router.post("/api/window/getWindows", async ctx => {
       limit: params.limit // 一页条数
     };
   }
+
+  // 查询
+  if (params.windowId) {
+    query.windowId = params.windowId; //查寻单个窗口
+  }
+
   try {
     let result = await DB.find("Window", query, pagination, sort);
     data = result;
