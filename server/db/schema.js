@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 //
-const WindowsSchema = new Schema({
+const WindowSchema = new Schema({
   windowId: String, // id
   title: String,  // 标题
   date: String,  // 创建日期
@@ -12,7 +12,7 @@ const WindowsSchema = new Schema({
 });
 
 const Models = {
-  Windows: mongoose.model("todo", WindowsSchema)
+  Window: mongoose.model("window", WindowSchema)
 };
 
 module.exports = Models;

@@ -36,17 +36,17 @@ class Db {
           if (!this.MongoConnection) {
             // 假如没有connection实例，创建实例
             this.MongoConnection = mongoose.connection;
-            this.MongoConnection.on("connected", function(err) {
+            this.MongoConnection.on("connected", function (err) {
               if (err) logger.error("Database connection failure");
             });
-            this.MongoConnection.on("error", function(err) {
+            this.MongoConnection.on("error", function (err) {
               logger.error("Mongoose connected error " + err);
             });
-            this.MongoConnection.on("disconnected", function() {
+            this.MongoConnection.on("disconnected", function () {
               logger.error("Mongoose disconnected");
             });
             process.on("SIGINT", () => {
-              this.MongoConnection.close(function() {
+              this.MongoConnection.close(function () {
                 logger.info("Mongoose disconnected through app termination");
                 process.exit(0);
               });
@@ -138,6 +138,7 @@ class Db {
    *  查询数据库
    * @param {String} collectionName  表名
    * @param {Object} conditions      查询条件
+   *  @param {Object} query      分页
    */
   find(collectionName, conditions, query, sort) {
     return new Promise((resolve, reject) => {
