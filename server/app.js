@@ -5,10 +5,16 @@ const bodyParser = require('koa-bodyparser')  //
 const Static = require("koa-static")
 const Router = require("koa-router")
 const Window = require("./routes/window")
+const Data = require("./routes/data")
 
 const router = new Router()
 
 app.use(bodyParser())
 app.use(Window.routes())
+app.use(Data.routes())
 app.use(router.routes())
+
+app.use(ctx=>{
+  ctx.response.body="hello world"
+})
 app.listen(4200);

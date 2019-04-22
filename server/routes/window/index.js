@@ -38,8 +38,9 @@ router.post("/api/window/getWindows", async ctx => {
   let msg, isSuccess, data, total; // 接口返回信息
   let query = {}; // 查询条件
   let sort = {};
-  const params = ctx.request.body;
   let pagination = {};
+
+  const params = ctx.request.body;
   if (params.page !== undefined && params.limit !== undefined) {
     pagination = {
       page: params.page, // 页码
@@ -47,13 +48,38 @@ router.post("/api/window/getWindows", async ctx => {
     };
   }
 
-  // 查询
-  if (params.windowId) {
-    query.windowId = params.windowId; //查寻单个窗口
-  }
-
   try {
     let result = await DB.find("Window", query, pagination, sort);
+    let allResult = await DB.find("Window", {}, {}, {})
+    data = result;
+    total = allResult.length
+
+    if (data) {
+      isSuccess = true;
+      msg = "获取窗口成功!";
+    } else {
+      isSuccess = false;
+      msg = "获取窗口失败!";
+    }
+  } catch (e) {
+    isSuccess = false;
+    msg = "获取窗口失败!";
+  }
+
+  ctx.body = {
+    success: isSuccess,
+    message: msg,
+    data: data,
+    total: total
+  };
+})
+
+// 根据窗口id获取窗口信息
+router.get("/api/window/getWindow/:id", async ctx => {
+  let msg, isSuccess, data; // 接口返回信息
+  const windowId = ctx.params.id
+  try {
+    let result = await DB.find("Window", { windowId });
     data = result;
     if (data) {
       isSuccess = true;
@@ -73,6 +99,8 @@ router.post("/api/window/getWindows", async ctx => {
     data: data
   };
 })
+
+
 
 // 更新窗口
 router.post("/api/window/updateWindow", async ctx => {
