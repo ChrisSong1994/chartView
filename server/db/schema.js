@@ -12,7 +12,7 @@ const WindowSchema = new Schema({
 });
 
 const DataSchema = new Schema({
-  id: String,// 数据id
+  dataId: String,// 数据id
   name: String,// 名称
   data: Object // 数据
 })
