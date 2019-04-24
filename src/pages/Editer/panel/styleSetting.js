@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import Config from "modules/charts/config.js"
 
 class StyleSetting extends Component {
   constructor() {
     super();
+  }
+  componentDidMount(){
+    Config.getConfig()
   }
   render() {
     return <div className="style-setting">样式配置</div>;

@@ -17,7 +17,6 @@ class Chart extends Component {
 
   componentDidMount() {
     this.createChart();
-
   }
 
   // 创建图表实例
