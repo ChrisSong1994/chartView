@@ -12,13 +12,13 @@ export default function () {
           value: true,
           action: 'toggle'
         },
-        {
-          name: "xAxis_axisLine_show",
-          rel: "toggle:xAxis_axisLine_show",
-          lable: "轴线",
-          type: 'color',
-          value: '#ccc',
-        }
+        // {
+        //   name: "xAxis_axisLine_show",
+        //   rel: "toggle:xAxis_axisLine_show",
+        //   lable: "轴线",
+        //   type: 'color',
+        //   value: '#ccc',
+        // }
       ]
     }
   ]
