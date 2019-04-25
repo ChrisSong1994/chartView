@@ -5,8 +5,9 @@ class StyleSetting extends Component {
   constructor() {
     super();
   }
-  componentDidMount(){
-    Config.getConfig()
+  componentDidMount() {
+    const styleConfig = Config.getConfig("bar")
+    console.log(styleConfig)
   }
   render() {
     return <div className="style-setting">样式配置</div>;
