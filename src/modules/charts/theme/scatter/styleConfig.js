@@ -7,7 +7,7 @@ export default function () {
       fields: [
         {
           name: "xAxis_axisLine_show",
-          lable: "轴线",
+          label: "轴线",
           type: "checkbox",
           value: true,
           action: 'toggle'
@@ -15,7 +15,7 @@ export default function () {
         {
           name: "xAxis_axisLine_show",
           rel: "toggle:xAxis_axisLine_show",
-          lable: "轴线",
+          label: "轴线",
           type: 'color',
           value: '#ccc',
         }

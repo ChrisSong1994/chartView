@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Config from "modules/charts/config.js"
+import Config from "modules/charts/config"
 import Form from "components/Form"
+import ChartOptionSettingItem from "../components/ChartOptionSettingItem"
 
 class StyleSetting extends Component {
   constructor() {
@@ -18,7 +19,9 @@ class StyleSetting extends Component {
       {
         styleConfig.map((config, index) => {
           return (
-            <Form {...config} key={index} ></Form>
+            <ChartOptionSettingItem key={config.type} title={config.title}>
+              <Form {...config} key={index} />
+            </ChartOptionSettingItem>
           )
         })
       }

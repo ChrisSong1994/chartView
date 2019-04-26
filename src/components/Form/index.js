@@ -15,7 +15,7 @@ class FormComponent extends Component {
 
   createFormItem(field, key) {
     return (
-      <FormItem {...formItemLayout} key={key} >
+      <FormItem {...formItemLayout} key={key} label={field.label}>
         <FormControl
           {...field}
           form={this.props.form}
