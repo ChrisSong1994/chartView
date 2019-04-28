@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types"
 import "./index.scss";
 import { generateUUID } from "utils/util";
 import { addWidget } from "store/window/action";
@@ -10,6 +11,7 @@ import Content from "./content";
 import Panel from "./panel";
 
 class Editer extends Component {
+  static propTypes = {}
   constructor() {
     super();
     this.addWidget = this.addWidget.bind(this);
@@ -72,7 +74,12 @@ class Editer extends Component {
             activeWidgetId={activeWidgetId}
           />
           <div className="right-panel">
-            <Panel />
+            <Panel
+              dispatch={dispatch}
+              activeWidgetId={activeWidgetId}
+              widgets={widgets}
+              window={window}
+            />
           </div>
         </div>
       </section>

@@ -7,9 +7,9 @@ import {
 } from "./action";
 
 let initialState = {
-  width: "auto",
-  height: "auto",
-  title: "",
+  width: 1600,
+  height: 900,
+  name: "可视化",
   background: "",
   activeWidgetId: "",
   widgets: {

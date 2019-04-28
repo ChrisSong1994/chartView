@@ -20,6 +20,19 @@ export default function () {
         //   value: '#ccc',
         // }
       ]
+    },
+    {
+      title: '值标签' ,
+      type: 'labelValue',
+      fields: [
+        {
+          name: "series_label_normal_show",
+          label: "轴线",
+          type: "checkbox",
+          value: true,
+          action: 'toggle'
+        }
+      ]
     }
   ]
 }
