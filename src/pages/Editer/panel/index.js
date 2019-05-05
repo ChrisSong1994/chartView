@@ -11,7 +11,7 @@ class Panel extends Component {
     dispatch: PropTypes.func,
     window: PropTypes.object,
     activeWidgetId: PropTypes.object,
-    widgets: PropTypes.string
+    widgets: PropTypes.object
   }
 
   constructor() {
@@ -45,11 +45,7 @@ class Panel extends Component {
       <div className="panel-setting">
         <Tabs activeKey={activeKey} onChange={this.handleTabChange}>
           <TabPane tab="窗口配置" key="windowSetting">
-            <WindowSetting
-              dispatch={dispatch}
-              window={window}
-              activeWidgetId={activeWidgetId}
-            />
+            <WindowSetting/>
           </TabPane>
           {
             activeWidgetId ? <TabPane tab="样式配置" key="styleSetting">

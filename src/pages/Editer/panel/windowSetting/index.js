@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Input, Row, Col, InputNumber } from "antd";
+import { connect } from 'react-redux'
 import _ from "lodash";
 import PropTypes from "prop-types"
 
@@ -13,6 +14,8 @@ class WindowSetting extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     window: PropTypes.object,
+    activeWidgetId: PropTypes.object,
+    widgets: PropTypes.object
   }
   constructor() {
     super();
@@ -57,4 +60,14 @@ class WindowSetting extends Component {
   }
 }
 
-export default Form.create()(WindowSetting);
+WindowSetting=Form.create()(WindowSetting)
+
+const mapStateToProps = state => {
+  const { window } = state;
+  return {
+    window: window,
+    activeWidgetId: window.activeWidgetId,
+    widgets: window.widgets
+  };
+};
+export default   connect(mapStateToProps)(WindowSetting) 

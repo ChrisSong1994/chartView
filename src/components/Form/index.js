@@ -18,11 +18,15 @@ class FormComponent extends Component {
       <FormItem {...formItemLayout} key={key} label={field.label}>
         <FormControl
           {...field}
+          onChange={this.handleChange.bind(this)}
           form={this.props.form}
         />
       </FormItem>
     )
+  }
 
+  handleChange(key, value) {
+    console.log(key, value)
   }
 
 

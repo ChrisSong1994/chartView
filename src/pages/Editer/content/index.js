@@ -61,8 +61,7 @@ class Content extends Component {
   }
 
   render() {
-    const { widgets, activeWidgetId } = this.props;
-    const widget = widgets[activeWidgetId];
+    const { widgets } = this.props;
     return (
       <div className="content">
         <div ref="wrap" className="content-wrap">
