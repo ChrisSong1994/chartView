@@ -4,7 +4,7 @@ import Draggle from "components/Draggle";
 import Chart from "components/Chart";
 import Event from "utils/event";
 import PropTypes from "prop-types";
-import { setActiveWidgetId } from "store/window/action";
+import { setActiveWidgetId, updateWidgetPosition } from "store/window/action";
 
 class Content extends Component {
   static propTypes = {
@@ -29,24 +29,26 @@ class Content extends Component {
       resizeable: {
         handle: ".resize-handle",
         onStart: (id) => {
-          console.log("start resizing",id);
+          console.log("start resizing", id);
         },
-        onResize: (id,size) => {
-          Event.emit("widgetResize",id, size);
+        onResize: (id, size) => {
+          Event.emit("widgetResize", id, size);
+          this.props.dispatch(updateWidgetPosition(id, { width: size.w, height: size.h }))
         },
-        onStop: (id,size) => {
-          console.log("stop resizing",id,size);
+        onStop: (id, size) => {
+          console.log("stop resizing", id, size);
         }
       },
       draggable: {
         onStart: (id) => {
-          console.log("start moving",id);
+          console.log("start moving", id);
         },
-        onDrag: (id,pos) => {
-          console.log(id,pos);
+        onDrag: (id, pos) => {
+          console.log(id, pos);
+          this.props.dispatch(updateWidgetPosition(id, { left: pos.x, top: pos.y }))
         },
-        onStop: (id,pos) => {
-          console.log("stop moving", id,pos);
+        onStop: (id, pos) => {
+          console.log("stop moving", id, pos);
         }
       },
       click: {

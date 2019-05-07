@@ -14,7 +14,7 @@ class WindowSetting extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     window: PropTypes.object,
-    activeWidgetId: PropTypes.object,
+    activeWidgetId: PropTypes.string,
     widgets: PropTypes.object
   }
   constructor() {

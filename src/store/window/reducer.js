@@ -26,42 +26,20 @@ let initialState = {
 };
 
 const windowReducer = (state = initialState, action) => {
+  let copyState = Object.assign({}, state)
   switch (action.type) {
     case ADD_WIDGET:
-      return Object.assign({}, state, {
-        widgets: Object.assign({}, state.widgets, {
-          [action.widget.id]: action.widget
-        })
-      });
+      copyState.widgets[action.widget.id] = action.widget
     case REMOVE_WIDGET:
-      state.widgets.delete(action.widgetId);
-      return state;
+      copyState.widgets.delete(action.widgetId);
     case UPDATE_WIDGET_POSITION:
-      return Object.assign({}, state, {
-        widgets: {
-          [action.widgetId]: Object.assign(
-            {},
-            widgets[action.widgetId],
-            action.position
-          )
-        }
-      });
+      copyState.widgets[action.widgetId] = Object.assign({}, copyState.widgets[action.widgetId], { ...action.position })
     case UPDATE_WIDGET_SIZE:
-      return Object.assign({}, state, {
-        widgets: {
-          [action.widgetId]: Object.assign(
-            {},
-            widgets[action.widgetId],
-            action.size
-          )
-        }
-      });
+      copyState.widgets[action.widgetId] = Object.assign({}, copyState.widgets[action.widgetId], { ...action.size })
     case SET_ACTIVE_WIDGET_ID:
-      return Object.assign({}, state, {
-        activeWidgetId: action.widgetId
-      });
+      copyState["activeWidgetId"] = action.widgetId
     default:
-      return state;
+      return copyState;
   }
 };
 

@@ -85,7 +85,7 @@ class Draggle {
     this.$widgets.on("mousedown", e => {
       // 这里用箭头函数避免this指向被替换（this始终保持指向Draggle实例）
       e.stopPropagation();
-      this.clearPlayer($(e.currentTarget));
+      // this.clearPlayer($(e.currentTarget));
       this.setPlayer($(e.currentTarget));
       this.$player.addClass("selected");
       this.el_init_pos = this.get_actual_pos(this.$player);
@@ -105,7 +105,7 @@ class Draggle {
     this.$resHandles.on("mousedown", e => {
       // 右下角拖拽图标
       e.stopPropagation();
-      this.clearPlayer($(e.currentTarget).parent());
+      // this.clearPlayer($(e.currentTarget).parent());
       this.setPlayer($(e.currentTarget).parent());
       this.$player.addClass("selected");
       this.isResizing = true;
@@ -115,6 +115,7 @@ class Draggle {
     });
 
     this.$container.on("mousedown", e => {
+      console.log(e)
       this.clearPlayer();
     });
   }

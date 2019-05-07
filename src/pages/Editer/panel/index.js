@@ -10,7 +10,7 @@ class Panel extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     window: PropTypes.object,
-    activeWidgetId: PropTypes.object,
+    activeWidgetId: PropTypes.string,
     widgets: PropTypes.object
   }
 
@@ -22,9 +22,9 @@ class Panel extends Component {
     this.handleTabChange = this.handleTabChange.bind(this);
   }
 
-  componentWillReceiveProps(nextProps){
-    if(!nextProps.activeWidgetId){
-      this.setState({activeKey:"windowSetting"})
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.activeWidgetId ) {
+      this.setState({ activeKey: "windowSetting" })
     }
   }
 
@@ -45,7 +45,7 @@ class Panel extends Component {
       <div className="panel-setting">
         <Tabs activeKey={activeKey} onChange={this.handleTabChange}>
           <TabPane tab="窗口配置" key="windowSetting">
-            <WindowSetting/>
+            <WindowSetting />
           </TabPane>
           {
             activeWidgetId ? <TabPane tab="样式配置" key="styleSetting">
