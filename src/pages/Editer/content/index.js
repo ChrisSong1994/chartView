@@ -28,25 +28,25 @@ class Content extends Component {
       widget_selector: ".dragger",
       resizeable: {
         handle: ".resize-handle",
-        onStart: () => {
-          console.log("start resizing");
+        onStart: (id) => {
+          console.log("start resizing",id);
         },
-        onResize: size => {
-          Event.emit("widgetResize", size);
+        onResize: (id,size) => {
+          Event.emit("widgetResize",id, size);
         },
-        onStop: () => {
-          console.log("stop resizing");
+        onStop: (id,size) => {
+          console.log("stop resizing",id,size);
         }
       },
       draggable: {
-        onStart: () => {
-          console.log("start moving");
+        onStart: (id) => {
+          console.log("start moving",id);
         },
-        onDrag: datas => {
-          console.log(datas);
+        onDrag: (id,pos) => {
+          console.log(id,pos);
         },
-        onStop: datas => {
-          console.log("stop moving", datas);
+        onStop: (id,pos) => {
+          console.log("stop moving", id,pos);
         }
       },
       click: {

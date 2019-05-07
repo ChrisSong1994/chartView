@@ -29,6 +29,7 @@ class Chart extends Component {
       this.calculateReact()
       Event.on("widgetResize", size => {
         this.chart.resize();
+        console.log(111)
       });
       // echart点击事件注册
       this.chart.on("click", params => {
@@ -63,6 +64,10 @@ class Chart extends Component {
         <span className="resize-handle" />
       </div>
     );
+  }
+
+  componentWillUnmount(){
+    Event.removeListener("widgetResize")
   }
 }
 
