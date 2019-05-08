@@ -7,9 +7,9 @@ import {
 } from "./action";
 
 let initialState = {
-  width: "auto",
-  height: "auto",
-  title: "",
+  width: 1600,
+  height: 900,
+  name: "可视化",
   background: "",
   activeWidgetId: "",
   widgets: {
@@ -25,44 +25,29 @@ let initialState = {
   }
 };
 
+ // 需要返回的是state的浅拷贝的对象，才能让引入props的组件触发 componentwillreciveprops钩子
 const windowReducer = (state = initialState, action) => {
+  let copyState = Object.assign({}, state)
   switch (action.type) {
     case ADD_WIDGET:
-      return Object.assign({}, state, {
-        widgets: Object.assign({}, state.widgets, {
-          [action.widget.id]: action.widget
-        })
-      });
+      copyState.widgets[action.widget.id] = action.widget
+      return Object.assign({},state,copyState)
     case REMOVE_WIDGET:
-      state.widgets.delete(action.widgetId);
-      return state;
+    state.widgets.delete(action.widgetId);
+    return state
     case UPDATE_WIDGET_POSITION:
-      return Object.assign({}, state, {
-        widgets: {
-          [action.widgetId]: Object.assign(
-            {},
-            widgets[action.widgetId],
-            action.position
-          )
-        }
-      });
+      copyState.widgets[action.widgetId] = Object.assign({}, copyState.widgets[action.widgetId], { ...action.position })
+      return Object.assign({},state,copyState)
     case UPDATE_WIDGET_SIZE:
-      return Object.assign({}, state, {
-        widgets: {
-          [action.widgetId]: Object.assign(
-            {},
-            widgets[action.widgetId],
-            action.size
-          )
-        }
-      });
+      copyState.widgets[action.widgetId] = Object.assign({}, copyState.widgets[action.widgetId], { ...action.size })
+      return Object.assign({},state,copyState)
     case SET_ACTIVE_WIDGET_ID:
-      return Object.assign({}, state, {
-        activeWidgetId: action.widgetId
-      });
+      copyState["activeWidgetId"] = action.widgetId
+      return Object.assign({},state,copyState)
     default:
       return state;
   }
 };
+
 
 export default windowReducer;
