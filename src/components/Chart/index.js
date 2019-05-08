@@ -1,17 +1,30 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import ChartCreator from "modules/charts";
 import PropTypes from "prop-types";
 import Event from "utils/event";
 
-class Chart extends Component {
+class Chart extends PureComponent {
   static propTypes = {
     widget: PropTypes.object
   };
   constructor(props) {
     super(props);
+    this.chart = null
     this.state = {
-        left: props.widget.left,
-        top: props.widget.top
+      left: props.widget.left,
+      top: props.widget.top
+    }
+  }
+
+// 当组件的位置和尺寸改变的时候 处理
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      left: nextProps.widget.left,
+      top: nextProps.widget.top
+    })
+    if (nextProps.widget.width !== this.props.widget.width ||
+      nextProps.widget.height !== this.props.widget.height) {
+      this.chart.resize()
     }
   }
 
@@ -38,7 +51,7 @@ class Chart extends Component {
     });
   }
 
-    // 计算边界条件（避免超出下和右边界）
+  // 计算边界条件（避免超出下和右边界）
   calculateReact() {
     const { left, top, width, height } = this.props.widget;
     const wrapWidth = draggle.$container.css("width")
@@ -66,7 +79,7 @@ class Chart extends Component {
     );
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     Event.removeListener("widgetResize")
   }
 }

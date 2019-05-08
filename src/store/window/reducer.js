@@ -25,7 +25,7 @@ let initialState = {
   }
 };
 
- // 需要返回的是state的浅拷贝的对象，才能让引入props的组件触发 componentwillreciveprops钩子
+// 需要返回的是state的浅拷贝的对象，才能让引入props的组件触发 componentwillreciveprops钩子
 const windowReducer = (state = initialState, action) => {
   let copyState = Object.assign({}, state)
   switch (action.type) {

@@ -13,19 +13,17 @@ class StyleSetting extends Component {
     widget: PropTypes.object
   }
 
-  constructor() {
+  constructor(props) {
     super();
   }
 
-  componentDidMount() {
 
-  }
   render() {
-    const { widget, activeWidgetId } = this.props
+    const { widget, activeWidgetId, dispatch } = this.props
     const styleConfig = Config.getConfig(widget.type)
     return <div className="style-setting">
       <ChartOptionSettingItem key={"base-config"} title={"基础配置"}>
-        <BaseSetting />
+        <BaseSetting widget={widget} activeWidgetId={activeWidgetId} dispatch={dispatch} />
       </ChartOptionSettingItem>
       {
         styleConfig.map((config, index) => {
