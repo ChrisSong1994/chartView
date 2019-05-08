@@ -17,11 +17,12 @@ export const updateWidgetPosition = (widgetId, position) => {
   return { type: UPDATE_WIDGET_POSITION, widgetId, position };
 };
 
-export const updateWidgetSize = size => {
-  return { type: UPDATE_WIDGET_SIZE, size };
+export const updateWidgetSize = (widgetId, size) => {
+  return { type: UPDATE_WIDGET_SIZE, widgetId, size };
 };
 
 export const setActiveWidgetId = widgetId => {
   return { type: SET_ACTIVE_WIDGET_ID, widgetId };
 };
+
 

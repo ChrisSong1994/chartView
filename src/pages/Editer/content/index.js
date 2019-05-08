@@ -4,7 +4,7 @@ import Draggle from "components/Draggle";
 import Chart from "components/Chart";
 import Event from "utils/event";
 import PropTypes from "prop-types";
-import { setActiveWidgetId } from "store/window/action";
+import { setActiveWidgetId, updateWidgetPosition } from "store/window/action";
 
 class Content extends Component {
   static propTypes = {
@@ -28,25 +28,27 @@ class Content extends Component {
       widget_selector: ".dragger",
       resizeable: {
         handle: ".resize-handle",
-        onStart: () => {
-          console.log("start resizing");
+        onStart: (id) => {
+          console.log("start resizing", id);
         },
-        onResize: size => {
-          Event.emit("widgetResize", size);
+        onResize: (id, size) => {
+          Event.emit("widgetResize", id, size);
+          this.props.dispatch(updateWidgetPosition(id, { width: size.w, height: size.h }))
         },
-        onStop: () => {
-          console.log("stop resizing");
+        onStop: (id, size) => {
+          console.log("stop resizing", id, size);
         }
       },
       draggable: {
-        onStart: () => {
-          console.log("start moving");
+        onStart: (id) => {
+          console.log("start moving", id);
         },
-        onDrag: datas => {
-          console.log(datas);
+        onDrag: (id, pos) => {
+          console.log(id, pos);
+          this.props.dispatch(updateWidgetPosition(id, { left: pos.x, top: pos.y }))
         },
-        onStop: datas => {
-          console.log("stop moving", datas);
+        onStop: (id, pos) => {
+          console.log("stop moving", id, pos);
         }
       },
       click: {
@@ -61,8 +63,7 @@ class Content extends Component {
   }
 
   render() {
-    const { widgets, activeWidgetId } = this.props;
-    const widget = widgets[activeWidgetId];
+    const { widgets } = this.props;
     return (
       <div className="content">
         <div ref="wrap" className="content-wrap">

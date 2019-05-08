@@ -1,0 +1,30 @@
+// ant  样式覆盖
+
+.ant-collapse .ant-collapse-item .ant-collapse-header .anticon {
+  left: initial;
+  right: 16px;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.ant-collapse {
+  border-radius: 0 !important;
+  border: none !important;
+
+  .ant-collapse-item {
+    border-radius: 0 !important;
+    border: none !important;
+
+    .ant-collapse-header {
+      border-radius: 0 !important;
+      border: none !important;
+      padding: 12px 0 12px 12px;
+    }
+  }
+}
+
+.ant-tabs {
+  .ant-tabs-bar {
+    margin: 0;
+  }
+}

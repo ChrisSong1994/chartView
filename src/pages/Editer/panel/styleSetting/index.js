@@ -1,21 +1,32 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types"
 import Config from "modules/charts/config"
 import Form from "components/Form"
 import ChartOptionSettingItem from "../components/ChartOptionSettingItem"
+import BaseSetting from "./baseSetting"
 
 class StyleSetting extends Component {
+
+  static propTypes = {
+    dispatch: PropTypes.func,
+    activeWidgetId: PropTypes.object,
+    widget: PropTypes.object
+  }
+
   constructor() {
     super();
   }
+
   componentDidMount() {
-    const styleConfig = Config.getConfig("bar")
-    console.log(styleConfig)
+
   }
   render() {
-    const styleConfig = Config.getConfig("bar")
-
+    const { widget, activeWidgetId } = this.props
+    const styleConfig = Config.getConfig(widget.type)
     return <div className="style-setting">
-      <h3>样式配置</h3>
+      <ChartOptionSettingItem key={"base-config"} title={"基础配置"}>
+        <BaseSetting />
+      </ChartOptionSettingItem>
       {
         styleConfig.map((config, index) => {
           return (
