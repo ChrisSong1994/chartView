@@ -46,8 +46,17 @@
         .ant-collapse-header {
           background-color: #ccc;
         }
-      }
 
+        // 基础配置表单
+        .base-setting-form{
+          .input-number{
+            .input-number-label{
+              display: inline-block;
+               width:20px;
+            }
+          }
+        }
+      }
     }
 
     .content {

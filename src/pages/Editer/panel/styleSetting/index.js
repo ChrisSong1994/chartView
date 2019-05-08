@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import Config from "modules/charts/config"
 import Form from "components/Form"
 import ChartOptionSettingItem from "../components/ChartOptionSettingItem"
+import BaseSetting from "./baseSetting"
 
 class StyleSetting extends Component {
 
@@ -17,12 +18,15 @@ class StyleSetting extends Component {
   }
 
   componentDidMount() {
-  
+
   }
   render() {
-    const {widget,activeWidgetId} =this.props
+    const { widget, activeWidgetId } = this.props
     const styleConfig = Config.getConfig(widget.type)
     return <div className="style-setting">
+      <ChartOptionSettingItem key={"base-config"} title={"基础配置"}>
+        <BaseSetting />
+      </ChartOptionSettingItem>
       {
         styleConfig.map((config, index) => {
           return (
