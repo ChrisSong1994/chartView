@@ -28,6 +28,7 @@ class StyleSetting extends Component {
   render() {
     const { widget, activeWidgetId, dispatch } = this.props
     const styleConfig = Config.getConfig(widget.type)
+    console.log(styleConfig)
     return <div className="style-setting">
       <ChartOptionSettingItem key={"base-config"} title={"基础配置"}>
         <BaseSetting widget={widget} activeWidgetId={activeWidgetId} dispatch={dispatch} />

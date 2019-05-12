@@ -45,16 +45,21 @@ class Chart extends PureComponent {
       Event.on("widgetResize", (id, size) => {
         if (id === widgetId) {
           this.chart.resize();
-          console.log(12121)
         }
       });
+
       // 样式更新
       Event.on("updateWidgetStyleSetting", (id, style) => {
         if (id === widgetId) {
-          this.chart.setStyleSetting()
-          console.log(id, style)
+          this.chart.setStyleSetting(style)
         }
       });
+
+      // 数据更新
+      Event.on("updateWidgetDataSetting", (id, data) => {
+        if (id === widgetId) { }
+      });
+
       // echart点击事件注册
       this.chart.on("click", params => {
         console.log(params);

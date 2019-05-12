@@ -8,8 +8,9 @@ class Bar extends Chart {
     this.option = option;
   }
 
-  setStyleSetting(){
-    console.log("style")
+  setStyleSetting(style){
+    console.log(style)
+    console.log(this.option)
   }
 
 }
