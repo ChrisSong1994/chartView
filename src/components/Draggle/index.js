@@ -85,7 +85,7 @@ class Draggle {
     this.$widgets.on("mousedown", e => {
       // 这里用箭头函数避免this指向被替换（this始终保持指向Draggle实例）
       e.stopPropagation();
-      // this.clearPlayer($(e.currentTarget));
+      this.clearPlayer($(e.currentTarget));
       this.setPlayer($(e.currentTarget));
       this.$player.addClass("selected");
       this.el_init_pos = this.get_actual_pos(this.$player);
@@ -105,7 +105,7 @@ class Draggle {
     this.$resHandles.on("mousedown", e => {
       // 右下角拖拽图标
       e.stopPropagation();
-      // this.clearPlayer($(e.currentTarget).parent());
+      this.clearPlayer($(e.currentTarget).parent());
       this.setPlayer($(e.currentTarget).parent());
       this.$player.addClass("selected");
       this.isResizing = true;
@@ -122,11 +122,18 @@ class Draggle {
 
   // 清除选中项
   clearPlayer(player) {
-    if (this.$player || !player) {
-      this.$player && this.$player.removeClass("selected");
-      this.$player = null;
-      this.selectedId = "";
-      this.options.click.selectedClick.call(this, "", null);
+    let selectedID
+    if (player) {
+      selectedID = player.find(".chart").attr("id");
+    }
+    if (this.$player) {
+      let selectedPlayerID = this.$player.find(".chart").attr("id");
+      if (selectedID !== selectedPlayerID) {
+        this.$player && this.$player.removeClass("selected");
+        this.$player = null;
+        this.selectedId = "";
+        this.options.click.selectedClick.call(this, "", null);
+      }
     }
   }
 
@@ -135,7 +142,7 @@ class Draggle {
     let selectedID = player.find(".chart").attr("id");
     if (this.selectedId !== selectedID) {
       this.$player = player;
-      this.selectedId = player.find(".chart").attr("id");
+      this.selectedId = selectedID;
       this.options.click.selectedClick.call(
         this,
         this.selectedId,
@@ -148,7 +155,7 @@ class Draggle {
   rightClick() {
     let selectedID = this.$player.find(".chart").attr("id");
     if (this.options.click.rightClick) {
-      this.options.click.rightClick.call(this,selectedID);
+      this.options.click.rightClick.call(this, selectedID);
     }
   }
 
@@ -160,7 +167,7 @@ class Draggle {
     let selectedID = this.$player.find(".chart").attr("id");
     this.set_limits();
     if (this.options.draggable.onStart) {
-      this.options.draggable.onStart.call(this,selectedID);
+      this.options.draggable.onStart.call(this, selectedID);
     }
   }
   // 拖拽中
@@ -170,7 +177,7 @@ class Draggle {
     }
     let selectedID = this.$player.find(".chart").attr("id");
     if (this.options.draggable.onDrag) {
-      this.options.draggable.onDrag.call(this,selectedID, pos);
+      this.options.draggable.onDrag.call(this, selectedID, pos);
     }
     this.$player.css({
       top: pos.y / this.scale,
@@ -184,7 +191,7 @@ class Draggle {
     }
     let selectedID = this.$player.find(".chart").attr("id");
     if (this.options.draggable.onStop) {
-      this.options.draggable.onStop.call(this,selectedID, pos);
+      this.options.draggable.onStop.call(this, selectedID, pos);
     }
   }
 
@@ -195,7 +202,7 @@ class Draggle {
     }
     let selectedID = this.$player.find(".chart").attr("id");
     if (this.options.resizeable.onStart) {
-      this.options.resizeable.onStart.call(this,selectedID);
+      this.options.resizeable.onStart.call(this, selectedID);
     }
   }
   // 拉伸中
@@ -209,7 +216,7 @@ class Draggle {
     }
     let selectedID = this.$player.find(".chart").attr("id");
     if (this.options.resizeable.onResize) {
-      this.options.resizeable.onResize.call(this,selectedID, size);
+      this.options.resizeable.onResize.call(this, selectedID, size);
     }
   }
   // 拉伸结束
@@ -219,7 +226,7 @@ class Draggle {
     }
     let selectedID = this.$player.find(".chart").attr("id");
     if (this.options.resizeable.onStop) {
-      this.options.resizeable.onStop.call(this, selectedID,size);
+      this.options.resizeable.onStop.call(this, selectedID, size);
     }
   }
 

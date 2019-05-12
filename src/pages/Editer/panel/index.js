@@ -23,7 +23,7 @@ class Panel extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.activeWidgetId ) {
+    if (!nextProps.activeWidgetId) {
       this.setState({ activeKey: "windowSetting" })
     }
   }
@@ -48,22 +48,24 @@ class Panel extends Component {
             <WindowSetting />
           </TabPane>
           {
-            activeWidgetId ? <TabPane tab="样式配置" key="styleSetting">
-              <StyleSetting
-                dispatch={dispatch}
-                activeWidgetId={activeWidgetId}
-                widget={widget}
-              />
-            </TabPane> : null
+            activeWidgetId ?
+              <TabPane tab="样式配置" key="styleSetting">
+                <StyleSetting
+                  dispatch={dispatch}
+                  activeWidgetId={activeWidgetId}
+                  widget={widget}
+                />
+              </TabPane> : null
           }
           {
-            activeWidgetId ? <TabPane tab="数据配置" key="dataSetting">
-              <DataSetting
-                dispatch={dispatch}
-                activeWidgetId={activeWidgetId}
-                widget={widget}
-              />
-            </TabPane> : null
+            activeWidgetId ?
+              <TabPane tab="数据配置" key="dataSetting">
+                <DataSetting
+                  dispatch={dispatch}
+                  activeWidgetId={activeWidgetId}
+                  widget={widget}
+                />
+              </TabPane> : null
           }
         </Tabs>
       </div>

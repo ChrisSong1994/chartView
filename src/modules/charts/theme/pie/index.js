@@ -7,6 +7,10 @@ class Pie extends Chart {
     this.theme = theme;
     this.option = option;
   }
+
+  setStyleSetting(){
+    console.log("style")
+  }
 }
 
 export default Pie;

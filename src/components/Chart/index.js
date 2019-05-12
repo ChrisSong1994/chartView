@@ -5,7 +5,8 @@ import Event from "utils/event";
 
 class Chart extends PureComponent {
   static propTypes = {
-    widget: PropTypes.object
+    widget: PropTypes.object,
+    widgetId: PropTypes.string
   };
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ class Chart extends PureComponent {
     }
   }
 
-// 当组件的位置和尺寸改变的时候 处理
+  // 当组件的位置和尺寸改变的时候 处理
   componentWillReceiveProps(nextProps) {
     this.setState({
       left: nextProps.widget.left,
@@ -34,15 +35,25 @@ class Chart extends PureComponent {
 
   // 创建图表实例
   createChart() {
-    const { type } = this.props.widget;
-    ChartCreator.create(this.refs.chart, type).then(chart => {
+    const { widget, widgetId } = this.props
+    ChartCreator.create(this.refs.chart, widget.type).then(chart => {
       this.chart = chart;
       this.chart.render();
       draggle.init();
       this.calculateReact()
-      Event.on("widgetResize", size => {
-        this.chart.resize();
-        console.log(111)
+      // 尺寸改变
+      Event.on("widgetResize", (id, size) => {
+        if (id === widgetId) {
+          this.chart.resize();
+          console.log(12121)
+        }
+      });
+      // 样式更新
+      Event.on("updateWidgetStyleSetting", (id, style) => {
+        if (id === widgetId) {
+          this.chart.setStyleSetting()
+          console.log(id, style)
+        }
       });
       // echart点击事件注册
       this.chart.on("click", params => {

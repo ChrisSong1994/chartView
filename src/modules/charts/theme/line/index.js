@@ -7,6 +7,10 @@ class Line extends Chart {
     this.theme = theme;
     this.option = option;
   }
+
+  setStyleSetting(){
+    console.log("style")
+  }
 }
 
 export default Line;
