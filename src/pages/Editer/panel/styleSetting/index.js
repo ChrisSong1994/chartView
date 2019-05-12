@@ -4,6 +4,7 @@ import Config from "modules/charts/config"
 import Form from "components/Form"
 import ChartOptionSettingItem from "../components/ChartOptionSettingItem"
 import BaseSetting from "./baseSetting"
+import Event from "utils/event";
 
 class StyleSetting extends Component {
 
@@ -15,6 +16,12 @@ class StyleSetting extends Component {
 
   constructor(props) {
     super();
+  }
+
+  handleChange(key, value) {
+    const {activeWidgetId} =this.props
+    Event.emit("updateWidgetStyleSetting",activeWidgetId,{[key]:value})
+    console.log(key, value)
   }
 
 
@@ -29,7 +36,11 @@ class StyleSetting extends Component {
         styleConfig.map((config, index) => {
           return (
             <ChartOptionSettingItem key={config.type} title={config.title}>
-              <Form {...config} key={index} />
+              <Form
+                {...config}
+                activeWidgetId={activeWidgetId}
+                onChange={this.handleChange.bind(this)}
+                key={index} />
             </ChartOptionSettingItem>
           )
         })

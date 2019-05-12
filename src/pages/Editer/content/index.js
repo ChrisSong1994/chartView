@@ -68,7 +68,11 @@ class Content extends Component {
       <div className="content">
         <div ref="wrap" className="content-wrap">
           {Object.keys(widgets).map(widgetId => {
-            return <Chart key={widgetId} widget={widgets[widgetId]} />;
+            return <Chart
+              key={widgetId}
+              widget={widgets[widgetId]}
+              widgetId={widgetId}
+            />;
           })}
         </div>
       </div>

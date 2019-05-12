@@ -8,6 +8,10 @@ class Scatter extends Chart {
     this.option = option;
   }
 
+  setStyleSetting(){
+    console.log("style")
+  }
+
 
 }
 
