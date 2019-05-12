@@ -10,7 +10,7 @@ class StyleSetting extends Component {
 
   static propTypes = {
     dispatch: PropTypes.func,
-    activeWidgetId: PropTypes.object,
+    activeWidgetId: PropTypes.string,
     widget: PropTypes.object
   }
 

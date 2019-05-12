@@ -63,12 +63,13 @@ class Content extends Component {
   }
 
   render() {
-    const { widgets } = this.props;
+    const { widgets, dispatch } = this.props;
     return (
       <div className="content">
         <div ref="wrap" className="content-wrap">
           {Object.keys(widgets).map(widgetId => {
             return <Chart
+              dispatch={dispatch}
               key={widgetId}
               widget={widgets[widgetId]}
               widgetId={widgetId}

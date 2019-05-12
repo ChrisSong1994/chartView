@@ -14,8 +14,15 @@ export function generateUUID() {
 export function parseKeyToObj(key, value) {
   if (typeof key !== "string") return
   let obj = {}
+  let objKey = {}
   const keyArr = key.split("_")
   for (let i = 0; i < keyArr.length; i++) {
-  
+    // if(i<keyArr.length-1){
+    //   obj[keyArr[i]] = {}
+    //   objKey = obj[keyArr[i]]
+    // }else{
+
+    // }
+
   }
 }

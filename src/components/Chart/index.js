@@ -5,6 +5,7 @@ import Event from "utils/event";
 
 class Chart extends PureComponent {
   static propTypes = {
+    dispatch: PropTypes.func,
     widget: PropTypes.object,
     widgetId: PropTypes.string
   };
@@ -35,7 +36,7 @@ class Chart extends PureComponent {
 
   // 创建图表实例
   createChart() {
-    const { widget, widgetId } = this.props
+    const { widget, widgetId,dispatch } = this.props
     ChartCreator.create(this.refs.chart, widget.type).then(chart => {
       this.chart = chart;
       this.chart.render();
@@ -51,7 +52,9 @@ class Chart extends PureComponent {
       // 样式更新
       Event.on("updateWidgetStyleSetting", (id, style) => {
         if (id === widgetId) {
+          // this.parseSetting()
           this.chart.setStyleSetting(style)
+        
         }
       });
 
