@@ -2,6 +2,7 @@ import React, { Component, PureComponent } from "react";
 import ChartCreator from "modules/charts";
 import PropTypes from "prop-types";
 import Event from "utils/event";
+import {parseKeyToObj} from "utils/util"
 
 class Chart extends PureComponent {
   static propTypes = {
@@ -50,11 +51,11 @@ class Chart extends PureComponent {
       });
 
       // 样式更新
-      Event.on("updateWidgetStyleSetting", (id, style) => {
+      Event.on("updateWidgetStyleSetting", (id, key,value) => {
         if (id === widgetId) {
-          // this.parseSetting()
+          let style= parseSetting(key,value)
+          console.log(style)
           this.chart.setStyleSetting(style)
-        
         }
       });
 

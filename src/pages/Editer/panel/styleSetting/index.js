@@ -19,9 +19,8 @@ class StyleSetting extends Component {
   }
 
   handleChange(key, value) {
-    const {activeWidgetId} =this.props
-    Event.emit("updateWidgetStyleSetting",activeWidgetId,{[key]:value})
-    console.log(key, value)
+    const { activeWidgetId } = this.props
+    Event.emit("updateWidgetStyleSetting", activeWidgetId, key, value)
   }
 
 
