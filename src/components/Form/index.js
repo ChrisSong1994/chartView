@@ -32,7 +32,8 @@ class FormComponent extends Component {
   }
 
   handleChange(key, value) {
-    this.props.onChange(key,value)
+    console.log(key, value)
+    this.props.onChange(key, value)
   }
 
 

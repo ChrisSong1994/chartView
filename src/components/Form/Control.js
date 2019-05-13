@@ -35,7 +35,9 @@ class FormControl extends Component {
 
     return (
       <div className="form-control">
-        {getFieldDecorator(name, { initialValue: value })(Control)}
+        {getFieldDecorator(name,
+          { initialValue: value }
+        )(Control)}
       </div>
 
     )

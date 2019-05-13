@@ -53,8 +53,7 @@ class Chart extends PureComponent {
       // 样式更新
       Event.on("updateWidgetStyleSetting", (id, key,value) => {
         if (id === widgetId) {
-          let style= parseSetting(key,value)
-          console.log(style)
+          let style= parseKeyToObj(key,value)
           this.chart.setStyleSetting(style)
         }
       });

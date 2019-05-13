@@ -8,8 +8,7 @@ class Charts {
   }
 
   // 设置配置
-  setOption(option) {
-    this.option = option;
+  setOption() {
     this.chart.setOption(this.option);
   }
 
