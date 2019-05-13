@@ -16,6 +16,8 @@ class FormControl extends Component {
     let value
     if (typeof val === "object" && val.target) {
       value = val.target.value
+    }else{
+      value = val
     }
     this.props.onChange(this.props.name, value)
   }
@@ -39,7 +41,6 @@ class FormControl extends Component {
           { initialValue: value }
         )(Control)}
       </div>
-
     )
   }
 }
