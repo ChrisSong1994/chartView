@@ -37,10 +37,13 @@ class Panel extends Component {
   render() {
     const { activeKey } = this.state;
     const { dispatch, activeWidgetId, widgets } = this.props
-    let widget = {}
+    let widget, styleSetting, dataSetting
     if (activeWidgetId && widgets[activeWidgetId]) {
       widget = widgets[activeWidgetId]
+        styleSetting=widget.styleSetting
+        dataSetting=widget.dataSetting
     }
+
     return (
       <div className="panel-setting">
         <Tabs activeKey={activeKey} onChange={this.handleTabChange}>
@@ -53,6 +56,7 @@ class Panel extends Component {
                 <StyleSetting
                   dispatch={dispatch}
                   activeWidgetId={activeWidgetId}
+                  data={styleSetting}
                   widget={widget}
                 />
               </TabPane> : null
@@ -63,6 +67,7 @@ class Panel extends Component {
                 <DataSetting
                   dispatch={dispatch}
                   activeWidgetId={activeWidgetId}
+                  data={dataSetting}
                   widget={widget}
                 />
               </TabPane> : null

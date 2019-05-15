@@ -20,9 +20,6 @@ class Editer extends Component {
   componentDidMount() {
     this.initDragDrop()
   }
-  // shouldComponentUpdate(nextProps) {
-  //   console.log(nextProps)
-  // }
 
   initDragDrop() {
     this.dragdrop = new DragDrop({

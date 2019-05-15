@@ -22,7 +22,7 @@ export default function () {
       ]
     },
     {
-      title: '值标签' ,
+      title: '值标签',
       type: 'labelValue',
       fields: [
         {
@@ -33,6 +33,7 @@ export default function () {
           action: 'toggle'
         },
         {
+          relName:"toggle=series_label_normal_show",
           name: "series_label_normal_fontSize",
           label: "字体",
           type: "inputNumber",

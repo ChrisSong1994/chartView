@@ -26,13 +26,17 @@
     .right-panel {
       width: 360px;
       background-color: $right_panel_bg;
-      .panel-setting{
+
+      .panel-setting {
         height: 100%;
-        .ant-tabs{
+
+        .ant-tabs {
           height: 100%;
-          .ant-tabs-content{
+
+          .ant-tabs-content {
             height: calc(100% - 45px);
-            .ant-tabs-tabpane{
+
+            .ant-tabs-tabpane {
               height: 100%;
               overflow-y: auto;
             }
@@ -46,12 +50,15 @@
         }
       }
 
-
       .window-setting {
         padding: 20px;
       }
 
       .style-setting {
+        .hide {
+          display: none;
+        }
+
         .ant-form-item {
           margin: 10px;
         }
@@ -61,11 +68,11 @@
         }
 
         // 基础配置表单
-        .base-setting-form{
-          .input-number{
-            .input-number-label{
+        .base-setting-form {
+          .input-number {
+            .input-number-label {
               display: inline-block;
-               width:20px;
+              width: 20px;
             }
           }
         }

@@ -5,7 +5,9 @@ const chartConfig = {
     left: 50,
     top: 50,
     width: 400,
-    height: 350
+    height: 350,
+    styleSetting: {},
+    dataSetting: {}
   },
   pie: {
     name: "饼图",
@@ -13,7 +15,9 @@ const chartConfig = {
     left: 100,
     top: 100,
     width: 350,
-    height: 350
+    height: 350,
+    styleSetting: {},
+    dataSetting: {}
   },
   line: {
     name: "折线图",
@@ -21,15 +25,19 @@ const chartConfig = {
     left: 150,
     top: 150,
     width: 400,
-    height: 350
+    height: 350,
+    styleSetting: {},
+    dataSetting: {}
   },
-  scatter:{
+  scatter: {
     name: "散点图",
     type: "scatter",
     left: 200,
     top: 200,
     width: 400,
-    height: 350
+    height: 350,
+    styleSetting: {},
+    dataSetting: {}
   }
 };
 
