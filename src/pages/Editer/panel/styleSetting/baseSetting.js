@@ -11,13 +11,12 @@ const formItemLayout = {
 class BaseSetting extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
-    activeWidgetId: PropTypes.object,
+    activeWidgetId: PropTypes.string,
     widget: PropTypes.object
   }
 
   constructor() {
     super()
-
   }
   handleChange(type, value) {
     const { activeWidgetId, dispatch } = this.props

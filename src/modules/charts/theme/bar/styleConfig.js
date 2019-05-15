@@ -12,13 +12,6 @@ export default function () {
           value: false,
           action: 'toggle'
         },
-        // {
-        //   name: "xAxis_axisLine_show",
-        //   rel: "toggle:xAxis_axisLine_show",
-        //   label: "轴线",
-        //   type: 'color',
-        //   value: '#ccc',
-        // }
       ]
     },
     {
@@ -27,16 +20,18 @@ export default function () {
       fields: [
         {
           name: "series_label_normal_show",
-          label: "轴线",
+          label: "标签",
           type: "checkbox",
           value: false,
           action: 'toggle'
         },
         {
-          relName:"toggle=series_label_normal_show",
+          relName: "toggle=series_label_normal_show",
           name: "series_label_normal_fontSize",
           label: "字体",
           type: "inputNumber",
+          min:12,
+          max:100,
           value: 12
         }
       ]

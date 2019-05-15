@@ -84,8 +84,13 @@
       background-color: $content_bg;
       height: 100%;
       overflow: auto;
+      position: relative;
 
       .content-wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 1600px;
         height: 900px;
         background-color: #ccc; // transform: scale(0.5);

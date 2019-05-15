@@ -3,6 +3,7 @@ import { Form, Input, Row, Col, InputNumber } from "antd";
 import { connect } from 'react-redux'
 import _ from "lodash";
 import PropTypes from "prop-types"
+import ColorPicker from "components/Form/Controls/ColorPicker"
 
 
 const FormItem = Form.Item;
@@ -19,13 +20,22 @@ class WindowSetting extends Component {
   }
   constructor() {
     super();
+    this.handleChangeValue = _.debounce(this.handleChangeValue, 300)
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange = _.debounce(() => {
-    const setting = this.props.form.getFieldsValue();
-    console.log(setting);
-  }, 200);
+  handleChangeValue(name, value) {
+    console.log(name, value)
+  }
+
+  handleChange(name, value) {
+    if (name === "name") {
+      value.persist()
+      this.handleChangeValue(name, value.target.value)
+    } else {
+      this.handleChangeValue(name, value)
+    }
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -54,13 +64,16 @@ class WindowSetting extends Component {
               <InputNumber onChange={this.handleChange.bind(this, "height")} />
             )}
           </FormItem>
+          <FormItem label="背景颜色" key="window-background" {...formItemLayout}>
+            <ColorPicker value="#ccc" onChange={this.handleChange.bind(this, "background")} />
+          </FormItem>
         </Form>
       </div>
     );
   }
 }
 
-WindowSetting=Form.create()(WindowSetting)
+WindowSetting = Form.create()(WindowSetting)
 
 const mapStateToProps = state => {
   const { window } = state;
@@ -70,4 +83,4 @@ const mapStateToProps = state => {
     widgets: window.widgets
   };
 };
-export default   connect(mapStateToProps)(WindowSetting) 
+export default connect(mapStateToProps)(WindowSetting) 
