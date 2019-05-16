@@ -6,8 +6,7 @@ import PropTypes from "prop-types"
 class ColorPicker extends Component {
   static propTypes = {
     value: PropTypes.string,
-    onChange: PropTypes.func,
-    name: PropTypes.name
+    onChange: PropTypes.func
   }
   constructor(props) {
     super()
@@ -32,11 +31,7 @@ class ColorPicker extends Component {
 
   handleChange = (color) => {
     this.setState({ color: color.hex })
-    if (!this.props.name) {
-      this.props.onChange(color.hex)
-    } else {
-      this.props.onChange(this.props.name, color.hex)
-    }
+    this.props.onChange(color.hex)
   };
 
   render() {

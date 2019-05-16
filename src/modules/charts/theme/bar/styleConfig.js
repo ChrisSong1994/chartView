@@ -28,11 +28,18 @@ export default function () {
         {
           relName: "toggle=series_label_normal_show",
           name: "series_label_normal_fontSize",
-          label: "字体",
+          label: "字体大小",
           type: "inputNumber",
-          min:12,
-          max:100,
+          min: 12,
+          max: 100,
           value: 12
+        },
+        {
+          relName: "toggle=series_label_normal_show",
+          name: "series_label_normal_color",
+          label: "字体颜色",
+          type: "colorPicker",
+          value: "#fff"
         }
       ]
     }
