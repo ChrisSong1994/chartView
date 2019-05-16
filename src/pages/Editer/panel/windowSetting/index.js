@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Form, Input, Row, Col, InputNumber } from "antd";
-import { connect } from 'react-redux'
 import _ from "lodash";
 import PropTypes from "prop-types"
 import ColorPicker from "components/Form/Controls/ColorPicker"
+import { updateWindowSetting } from "store/window/action"
 
 
 const FormItem = Form.Item;
@@ -14,9 +14,7 @@ const formItemLayout = {
 class WindowSetting extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
-    window: PropTypes.object,
-    activeWidgetId: PropTypes.string,
-    widgets: PropTypes.object
+    window: PropTypes.object
   }
   constructor() {
     super();
@@ -25,6 +23,7 @@ class WindowSetting extends Component {
   }
 
   handleChangeValue(name, value) {
+    this.props.dispatch(updateWindowSetting(name, value))
     console.log(name, value)
   }
 
@@ -39,7 +38,7 @@ class WindowSetting extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { name, width, height } = this.props.window
+    const { name, width, height, background } = this.props.window
     return (
       <div className="window-setting">
         <Form>
@@ -65,7 +64,7 @@ class WindowSetting extends Component {
             )}
           </FormItem>
           <FormItem label="背景颜色" key="window-background" {...formItemLayout}>
-            <ColorPicker value="#ccc" onChange={this.handleChange.bind(this, "background")} />
+            <ColorPicker value={background} onChange={this.handleChange.bind(this, "background")} />
           </FormItem>
         </Form>
       </div>
@@ -75,12 +74,4 @@ class WindowSetting extends Component {
 
 WindowSetting = Form.create()(WindowSetting)
 
-const mapStateToProps = state => {
-  const { window } = state;
-  return {
-    window: window,
-    activeWidgetId: window.activeWidgetId,
-    widgets: window.widgets
-  };
-};
-export default connect(mapStateToProps)(WindowSetting) 
+export default WindowSetting

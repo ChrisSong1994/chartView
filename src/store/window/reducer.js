@@ -4,7 +4,8 @@ import {
   UPDATE_WIDGET_POSITION,
   UPDATE_WIDGET_SIZE,
   SET_ACTIVE_WIDGET_ID,
-  UPDATE_WIDGET_STYLE_SETTING
+  UPDATE_WIDGET_STYLE_SETTING,
+  UPDATE_WINDOW_SETTING
 } from "./action";
 
 let initialState = {
@@ -53,7 +54,11 @@ const windowReducer = (state = initialState, action) => {
       return Object.assign({}, state, copyState)
 
     case UPDATE_WIDGET_STYLE_SETTING:
-      copyState.widgets[action.widgetId].styleSetting = Object.assign({}, copyState.widgets[action.widgetId].styleSetting, {  ...action.style  })
+      copyState.widgets[action.widgetId].styleSetting = Object.assign({}, copyState.widgets[action.widgetId].styleSetting, { ...action.style })
+      return Object.assign({}, state, copyState)
+      
+    case UPDATE_WINDOW_SETTING:
+      copyState = Object.assign({}, copyState, { [action.key]: action.value })
       return Object.assign({}, state, copyState)
     default:
       return state;

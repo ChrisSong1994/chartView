@@ -5,6 +5,7 @@ export const UPDATE_WIDGET_SIZE = "UPDATE_WIDGET_SIZE"; // 更新组件的尺寸
 export const SET_ACTIVE_WIDGET_ID = "SET_ACTIVE_WIDGET_ID";
 export const DELETE_ACTIVE_WIDGET_ID = "DELETE_ACTIVE_WIDGET_ID";
 export const UPDATE_WIDGET_STYLE_SETTING = "UPDATE_WIDGET_STYLE_SETTING"
+export const UPDATE_WINDOW_SETTING = "UPDATE_WINDOW_SETTING"
 
 export const addWidget = widget => {
   return { type: ADD_WIDGET, widget };
@@ -30,3 +31,6 @@ export const updateStyleSetting = (widgetId, style) => {
   return { type: UPDATE_WIDGET_STYLE_SETTING, widgetId, style };
 }
 
+export const updateWindowSetting = (key, value) => {
+  return { type: UPDATE_WINDOW_SETTING, key, value };
+}

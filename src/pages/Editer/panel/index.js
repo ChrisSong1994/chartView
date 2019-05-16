@@ -36,19 +36,22 @@ class Panel extends Component {
 
   render() {
     const { activeKey } = this.state;
-    const { dispatch, activeWidgetId, widgets } = this.props
+    const { dispatch, activeWidgetId, widgets, window } = this.props
     let widget, styleSetting, dataSetting
     if (activeWidgetId && widgets[activeWidgetId]) {
       widget = widgets[activeWidgetId]
-        styleSetting=widget.styleSetting
-        dataSetting=widget.dataSetting
+      styleSetting = widget.styleSetting
+      dataSetting = widget.dataSetting
     }
 
     return (
       <div className="panel-setting">
         <Tabs activeKey={activeKey} onChange={this.handleTabChange}>
           <TabPane tab="窗口配置" key="windowSetting">
-            <WindowSetting />
+            <WindowSetting
+              window={window}
+              dispatch={dispatch} 
+              />
           </TabPane>
           {
             activeWidgetId ?
