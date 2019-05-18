@@ -23,7 +23,7 @@ class ColorModal extends Component {
 
   handleChange = (color) => {
     this.setState({ color: color.hex })
-    this.props.onChange(color.hex)
+    console.log(color)
   };
 
   render() {

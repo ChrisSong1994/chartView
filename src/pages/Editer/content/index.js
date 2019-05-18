@@ -5,6 +5,9 @@ import Chart from "components/Chart";
 import Event from "utils/event";
 import PropTypes from "prop-types";
 import { setActiveWidgetId, updateWidgetPosition } from "store/window/action";
+import ColorPicker from "components/ColorPicker";
+
+const ColorModal = ColorPicker.ColorModal;
 
 class Content extends Component {
   static propTypes = {
@@ -76,6 +79,8 @@ class Content extends Component {
             />;
           })}
         </div>
+        {/* 颜色选择组件 */}
+        <ColorModal />
       </div>
     );
   }
