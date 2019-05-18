@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Input, Row, Col, InputNumber } from "antd";
 import _ from "lodash";
 import PropTypes from "prop-types"
-import ColorPicker from "components/Form/Controls/ColorPicker"
+import Color from "components/Form/Controls/Color"
 import { updateWindowSetting } from "store/window/action"
 
 
@@ -64,7 +64,7 @@ class WindowSetting extends Component {
             )}
           </FormItem>
           <FormItem label="背景颜色" key="window-background" {...formItemLayout}>
-            <ColorPicker value={background} onChange={this.handleChange.bind(this, "background")} />
+            <Color value={background} onChange={this.handleChange.bind(this, "background")} />
           </FormItem>
         </Form>
       </div>

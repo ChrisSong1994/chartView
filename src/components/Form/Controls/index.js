@@ -1,11 +1,11 @@
 import Input from "./Input"
 import Checkbox from "./Checkbox"
 import InputNumber from "./InputNumber"
-import ColorPicker from "./ColorPicker"
+import Color from "./Color"
 
 export default {
   Input,
   Checkbox,
   InputNumber,
-  ColorPicker
+  Color
 }

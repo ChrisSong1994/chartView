@@ -38,7 +38,7 @@ export default function () {
           relName: "toggle=series_label_normal_show",
           name: "series_label_normal_color",
           label: "字体颜色",
-          type: "colorPicker",
+          type: "color",
           value: "#fff"
         }
       ]

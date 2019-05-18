@@ -3,44 +3,36 @@ import reactCSS from 'reactcss'
 import { SketchPicker } from 'react-color'
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
+import Event from "utils/event";
+import { changeColor, updateColorModalStyle } from "store/color/action"
 
 class ColorModal extends Component {
-  constructor(props) {
-    super()
-    this.state = {
-    }
+  static propTypes = {
+    dispatch: PropTypes.func,
+    onChange: PropTypes.func,
   }
 
+  constructor(props) {
+    super()
+  }
 
-
-  handleClick = () => {
-    this.setState({ displayColorPicker: !this.state.displayColorPicker })
+  handleClose() {
+    const style = { display: "none" }
+    this.props.dispatch(updateColorModalStyle(style))
   };
 
-  handleClose = () => {
-    this.setState({ displayColorPicker: false })
-  };
 
-  handleChange = (color) => {
-    this.setState({ color: color.hex })
-    console.log(color)
+  handleChange(color) {
+    this.props.dispatch(changeColor(color.hex))
+    Event.emit("colorChange",color.hex)
   };
 
   render() {
-    const { color } = this.props
+    const { color, style } = this.props.color
+
     const styles = reactCSS({
       'default': {
-        color: {
-          width: '25px',
-          height: '25px',
-          borderRadius: '2px',
-          background: this.state.color,
-        },
-        popover: {
-          position: 'absolute',
-          zIndex: '2',
-          left: "-60px"
-        },
+        popover: Object.assign({}, { position: 'fixed', zIndex: '2' }, style),
         cover: {
           position: 'fixed',
           top: '0px',
@@ -53,8 +45,8 @@ class ColorModal extends Component {
 
     return (
       <div className="color-modal" style={styles.popover}>
-        <div style={styles.cover} onClick={this.handleClose} />
-        <SketchPicker color={this.state.color} onChange={this.handleChange} />
+        <div style={styles.cover} onClick={this.handleClose.bind(this)} />
+        <SketchPicker color={color} onChange={this.handleChange.bind(this)} />
       </div>
     )
   }
