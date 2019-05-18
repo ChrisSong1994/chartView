@@ -3,7 +3,7 @@ import reactCSS from 'reactcss'
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import Event from "utils/event";
-import { updateColorModalStyle } from "store/color/action"
+import { updateColorModalStyle, changeColor } from "store/color/action"
 
 class ColorTrigger extends Component {
   static propTypes = {
@@ -14,16 +14,29 @@ class ColorTrigger extends Component {
   constructor(props) {
     super()
     this.state = {
+      color: props.value || ""
     }
   }
 
-  handleClick() {
+  componentWillReceiveProps(nextProps) {
+    this.setState({ color: nextProps.value })
+  }
+
+  handleClick(e) {
+    const clientRectObject = document.body.getBoundingClientRect()
+    console.log(clientRectObject)
+    const targetRectObject = e.target.getBoundingClientRect();
+    const left = targetRectObject.left - 240
+    const bottom = clientRectObject.height - targetRectObject.top > 310 ?
+      clientRectObject.height - targetRectObject.top - 310 : 20
+    const { color } = this.state
     let style = {
       display: "block",
-      left: 200,
-      top: 200
+      left: left,
+      bottom: bottom
     }
     this.props.dispatch(updateColorModalStyle(style))
+    this.props.dispatch(changeColor(color))
   };
 
   componentDidMount() {
@@ -31,12 +44,13 @@ class ColorTrigger extends Component {
   }
 
   handleChange(color) {
-    if (!this.props.onChange) return
+    if (!this.props.onChange || !color) return
     this.props.onChange(color)
+    this.setState({ color })
   }
 
   render() {
-    const { color } = this.props.color
+    const { color } = this.state
     const styles = reactCSS({
       'default': {
         color: {
@@ -63,6 +77,10 @@ class ColorTrigger extends Component {
         </div>
       </div>
     )
+  }
+
+  componentWillUnmount() {
+    Event.removeListener("colorChange")
   }
 }
 

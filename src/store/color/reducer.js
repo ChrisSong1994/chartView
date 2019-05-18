@@ -5,7 +5,7 @@ let initialState = {
   style: {
     display: "none",
     left: 0,
-    top: 0
+    bottom: 0
   }
 }
 

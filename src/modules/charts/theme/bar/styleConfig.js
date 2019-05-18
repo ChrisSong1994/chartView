@@ -39,7 +39,7 @@ export default function () {
           name: "series_label_normal_color",
           label: "字体颜色",
           type: "color",
-          value: "#fff"
+          value: "#ccc"
         }
       ]
     }
