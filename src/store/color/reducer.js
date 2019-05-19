@@ -1,6 +1,7 @@
-import { CHANGE_COLOR, UPDATE_COLOR_MODAL_STYLE } from "./action"
+import { CHANGE_COLOR, UPDATE_COLOR_MODAL_STYLE,SET_COLOR_TRIGGER_ID } from "./action"
 
 let initialState = {
+  triggerId: "",
   color: "",
   style: {
     display: "none",
@@ -18,6 +19,10 @@ const colorReducer = (state = initialState, action) => {
 
     case UPDATE_COLOR_MODAL_STYLE:
       copyState.style = Object.assign({}, copyState.style, action.style)
+      return Object.assign({}, state, copyState)
+
+    case SET_COLOR_TRIGGER_ID:
+      copyState["triggerId"] = action.id
       return Object.assign({}, state, copyState)
     default:
       return state;

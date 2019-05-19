@@ -3,7 +3,8 @@ import reactCSS from 'reactcss'
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import Event from "utils/event";
-import { updateColorModalStyle, changeColor } from "store/color/action"
+import { generateUUID } from "utils/util"
+import { updateColorModalStyle, changeColor, setColorTriggerId } from "store/color/action"
 
 class ColorTrigger extends Component {
   static propTypes = {
@@ -16,6 +17,7 @@ class ColorTrigger extends Component {
     this.state = {
       color: props.value || ""
     }
+    this.triggerId = generateUUID()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,7 +26,6 @@ class ColorTrigger extends Component {
 
   handleClick(e) {
     const clientRectObject = document.body.getBoundingClientRect()
-    console.log(clientRectObject)
     const targetRectObject = e.target.getBoundingClientRect();
     const left = targetRectObject.left - 240
     const bottom = clientRectObject.height - targetRectObject.top > 310 ?
@@ -37,10 +38,11 @@ class ColorTrigger extends Component {
     }
     this.props.dispatch(updateColorModalStyle(style))
     this.props.dispatch(changeColor(color))
+    this.props.dispatch(setColorTriggerId(this.triggerId))
   };
 
   componentDidMount() {
-    Event.on("colorChange", this.handleChange.bind(this))
+    Event.on(`colorChange_${this.triggerId}`, this.handleChange.bind(this))
   }
 
   handleChange(color) {
@@ -81,6 +83,7 @@ class ColorTrigger extends Component {
 
   componentWillUnmount() {
     Event.removeListener("colorChange")
+    console.log(Event)
   }
 }
 

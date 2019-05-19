@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import reactCSS from 'reactcss'
 import PropTypes from "prop-types"
 import ColorPicker from "components/ColorPicker"
 const ColorTrigger = ColorPicker.ColorTrigger

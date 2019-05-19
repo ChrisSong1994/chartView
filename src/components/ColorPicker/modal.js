@@ -23,8 +23,9 @@ class ColorModal extends Component {
 
 
   handleChange(color) {
+    const { triggerId } = this.props.color
     this.props.dispatch(changeColor(color.hex))
-    Event.emit("colorChange",color.hex)
+    Event.emit(`colorChange_${triggerId}`, color.hex)
   };
 
   render() {
