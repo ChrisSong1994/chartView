@@ -2,7 +2,7 @@ import React, { Component, PureComponent } from "react";
 import ChartCreator from "modules/charts";
 import PropTypes from "prop-types";
 import Event from "utils/event";
-import {parseKeyToObj} from "utils/util"
+import { parseKeyToObj } from "utils/util"
 
 class Chart extends PureComponent {
   static propTypes = {
@@ -37,7 +37,7 @@ class Chart extends PureComponent {
 
   // 创建图表实例
   createChart() {
-    const { widget, widgetId,dispatch } = this.props
+    const { widget, widgetId, dispatch } = this.props
     ChartCreator.create(this.refs.chart, widget.type).then(chart => {
       this.chart = chart;
       this.chart.render();
@@ -51,9 +51,9 @@ class Chart extends PureComponent {
       });
 
       // 样式更新
-      Event.on("updateWidgetStyleSetting", (id, key,value) => {
+      Event.on("updateWidgetStyleSetting", (id, key, value) => {
         if (id === widgetId) {
-          let style= parseKeyToObj(key,value)
+          let style = parseKeyToObj(key, value)
           this.chart.setStyleSetting(style)
         }
       });
@@ -88,10 +88,14 @@ class Chart extends PureComponent {
   }
 
   render() {
-    const { id, width, height } = this.props.widget;
-    const { left, top, } = this.state
+    const { id, width, height, backgroundType, background } = this.props.widget;
+    const { left, top } = this.state
+    let backgroundValue = background
+    if (backgroundType === "picture") {
+      backgroundValue = `url(${background})`
+    }
     return (
-      <div className="dragger" style={{ left, top, width, height }}>
+      <div className="dragger" style={{ left, top, width, height, background: backgroundValue }}>
         <div className="chart" ref="chart" id={id} />
         <span className="resize-handle" />
       </div>

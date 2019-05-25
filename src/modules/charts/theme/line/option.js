@@ -1,4 +1,8 @@
 const option = {
+  title: {
+    text: "标准折线图",
+    x: "center",
+},
   xAxis: {
     type: "category",
     data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]

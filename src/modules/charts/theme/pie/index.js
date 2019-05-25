@@ -8,8 +8,9 @@ class Pie extends Chart {
     this.option = option;
   }
 
-  setStyleSetting(){
-    console.log("style")
+  setStyleSetting(style) {
+    this.option = Object.assign({}, this.option, style)
+    this.setOption()
   }
 }
 

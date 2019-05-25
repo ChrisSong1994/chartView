@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Form, Input, Row, Col, InputNumber } from "antd";
+import { Form, Input, Radio, InputNumber } from "antd";
 import _ from "lodash";
 import PropTypes from "prop-types"
 import Color from "components/Form/Controls/Color"
 import { updateWindowSetting } from "store/window/action"
 
+const RadioGroup = Radio.Group;
 
 const FormItem = Form.Item;
 const formItemLayout = {
@@ -37,8 +38,8 @@ class WindowSetting extends Component {
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
-    const { name, width, height, background } = this.props.window
+    const { getFieldDecorator, getFieldValue } = this.props.form;
+    const { name, width, height, backgroundType, background } = this.props.window
     return (
       <div className="window-setting">
         <Form>
@@ -63,9 +64,25 @@ class WindowSetting extends Component {
               <InputNumber onChange={this.handleChange.bind(this, "height")} />
             )}
           </FormItem>
-          <FormItem label="背景颜色" key="window-background" {...formItemLayout}>
-            <Color value={background} onChange={this.handleChange.bind(this, "background")} />
+          <FormItem {...formItemLayout} label={'背景'}>
+            {getFieldDecorator('backgroundType', {
+              initialValue: backgroundType
+            })(
+              <RadioGroup onChange={(value) => { this.handleChange("backgroundType", value) }}>
+                <Radio value="color">背景色</Radio>
+                <Radio value="picture">背景图片</Radio>
+              </RadioGroup>
+            )}
           </FormItem>
+          {
+            getFieldValue(backgroundType) === "color" ?
+              <FormItem {...formItemLayout} label={'颜色'}>
+                <Color value={background} onChange={(value) => { this.handleChange("background", value) }} />
+              </FormItem> :
+              <FormItem {...formItemLayout} label={'背景图片'}>
+                <Color value={background} onChange={(value) => { this.handleChange("background", value) }} />
+              </FormItem>
+          }
         </Form>
       </div>
     );

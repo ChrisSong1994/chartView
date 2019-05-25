@@ -6,6 +6,8 @@ const chartConfig = {
     top: 50,
     width: 400,
     height: 350,
+    backgroundType: "color",
+    background: "#fff",
     styleSetting: {},
     dataSetting: {}
   },
@@ -16,6 +18,8 @@ const chartConfig = {
     top: 100,
     width: 350,
     height: 350,
+    backgroundType: "color",
+    background: "#fff",
     styleSetting: {},
     dataSetting: {}
   },
@@ -26,6 +30,8 @@ const chartConfig = {
     top: 150,
     width: 400,
     height: 350,
+    backgroundType: "color",
+    background: "#fff",
     styleSetting: {},
     dataSetting: {}
   },
@@ -36,6 +42,8 @@ const chartConfig = {
     top: 200,
     width: 400,
     height: 350,
+    backgroundType: "color",
+    background: "#fff",
     styleSetting: {},
     dataSetting: {}
   }

@@ -12,7 +12,8 @@ let initialState = {
   width: 1600,
   height: 900,
   name: "可视化",
-  background: "",
+  backgroundType: "color",
+  background: "#ccc",
   activeWidgetId: "",
   widgets: {
     yfy6657uhyhgt88: {
@@ -23,6 +24,8 @@ let initialState = {
       top: 50,
       width: 400,
       height: 350,
+      backgroundType: "color",
+      background: "#fff",
       styleSetting: {},
       dataSetting: {}
     }
@@ -56,7 +59,7 @@ const windowReducer = (state = initialState, action) => {
     case UPDATE_WIDGET_STYLE_SETTING:
       copyState.widgets[action.widgetId].styleSetting = Object.assign({}, copyState.widgets[action.widgetId].styleSetting, { ...action.style })
       return Object.assign({}, state, copyState)
-      
+
     case UPDATE_WINDOW_SETTING:
       copyState = Object.assign({}, copyState, { [action.key]: action.value })
       return Object.assign({}, state, copyState)
