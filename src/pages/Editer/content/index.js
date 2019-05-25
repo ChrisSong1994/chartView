@@ -6,6 +6,7 @@ import Event from "utils/event";
 import PropTypes from "prop-types";
 import { setActiveWidgetId, updateWidgetPosition } from "store/window/action";
 import ColorPicker from "components/ColorPicker";
+import Zoom from "components/Zoom"
 
 const ColorModal = ColorPicker.ColorModal;
 
@@ -81,6 +82,8 @@ class Content extends Component {
         </div>
         {/* 颜色选择组件 */}
         <ColorModal />
+        {/* 缩放组件 */}
+        <Zoom value={50} onChange={() => { }} />
       </div>
     );
   }

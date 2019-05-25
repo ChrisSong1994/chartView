@@ -9,7 +9,7 @@ export default function () {
           name: "xAxis_axisLine_show",
           label: "轴线",
           type: "checkbox",
-          value: false,
+          value: true,
           action: 'toggle'
         },
       ]

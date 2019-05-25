@@ -23,6 +23,7 @@ class FormComponent extends Component {
 
   // 组件生成器
   createFormItem(field, key) {
+    field = _.cloneDeep(field)  // 为了防止去染源数据，需要做深拷贝处理
     const { data } = this.props
     let formItemProps = {
       key: key,
@@ -72,7 +73,6 @@ class FormComponent extends Component {
 
   // 组件change事件
   handleChange(key, value) {
-    console.log(key, value)
     this.props.onChange(key, value)
   }
   render() {
