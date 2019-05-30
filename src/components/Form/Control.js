@@ -28,6 +28,7 @@ class FormControl extends Component {
     const { name, value, type } = this.props
     let Control = null
     let props = Object.assign({}, this.props, { onChange: this.handleChange.bind(this) })
+    
     // 控件名称
     let controlName = type.charAt(0).toUpperCase() + type.slice(1)
     // 动态生成控件

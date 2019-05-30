@@ -6,6 +6,43 @@ export default function () {
       type: "xAxis",
       fields: [
         {
+          name: "xAxis_show",
+          label: "轴线",
+          type: "checkbox",
+          value: false,
+          action: 'toggle'
+        }, {
+          name: "xAxis_nameTextStyle_color",
+          label: "轴线",
+          type: "color",
+          value: '#000'
+        },
+        {
+          name: "xAxis_nameTextStyle_fontWeight",
+          label: "轴线",
+          type: "select",
+          value: 'normal',
+          props: {
+            options: [
+              {
+                value: "normal",
+                label: "normal"
+              },
+              {
+                value: "bold",
+                label: "bold"
+              },
+              {
+                value: "bolder",
+                label: "bolder"
+              }, {
+                value: "lighter",
+                label: "lighter"
+              }
+            ]
+          }
+        },
+        {
           name: "xAxis_axisLine_show",
           label: "轴线",
           type: "checkbox",
@@ -41,6 +78,17 @@ export default function () {
           type: "color",
           value: "#ccc"
         }
+      ]
+    }, {
+      title: "值系列",
+      type: "series",
+      fields: [
+        {
+          name: "series_itemStyle_color",
+          label: "柱体颜色",
+          type: "color",
+          value: "#c23531",
+        },
       ]
     }
   ]
