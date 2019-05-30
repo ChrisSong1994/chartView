@@ -6,9 +6,9 @@ import { generateUUID } from "utils/util";
 import { addWidget } from "store/window/action";
 import chartConfig from "modules/charts/chartConfig";
 import DragDrop from "components/Dragdrop"
-import WidgetNav from "./widgetnav";
-import Content from "./content";
 import Panel from "./panel";
+import Content from "./content";
+import Setting from "./setting";
 
 class Editer extends Component {
   static propTypes = {}
@@ -66,7 +66,7 @@ class Editer extends Component {
         <div className="tools">工具栏</div>
         <div className="editer">
           <div className="left-panel">
-            <WidgetNav dispatch={dispatch} addWidget={this.addWidget} />
+            <Panel dispatch={dispatch} addWidget={this.addWidget} />
           </div>
           <Content
             dispatch={dispatch}
@@ -74,7 +74,7 @@ class Editer extends Component {
             activeWidgetId={activeWidgetId}
           />
           <div className="right-panel">
-            <Panel
+            <Setting
               dispatch={dispatch}
               activeWidgetId={activeWidgetId}
               widgets={widgets}

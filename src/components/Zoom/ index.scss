@@ -1,0 +1,34 @@
+@import "assets/style/variable.scss";
+@import "assets/style/coverAntd.scss";
+
+
+.zoom-wrap {
+    position: fixed;
+    right: 400px;
+    bottom: 50px;
+    height: 42px;
+    line-height: 42px;
+    width: 400px;
+    padding: 0 40px;
+    z-index: 1000;
+
+    .zoom-btn {
+        font-size: 18px;
+        cursor: pointer;
+        position: absolute;
+        top: 0px;
+    }
+
+    .zoom-minus {
+        left: 0px;
+    }
+
+    .zoom-plus {
+        right: 0px;
+    }
+
+    .zoom-slider {
+        width: 300px;
+        display: inline-block;
+    }
+}

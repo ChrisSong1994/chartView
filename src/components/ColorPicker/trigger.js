@@ -83,7 +83,6 @@ class ColorTrigger extends Component {
 
   componentWillUnmount() {
     Event.removeListener("colorChange")
-    console.log(Event)
   }
 }
 

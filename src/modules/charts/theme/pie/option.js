@@ -3,10 +3,9 @@ const option = {
     trigger: "item",
     formatter: "{a} <br/>{b}: {c} ({d}%)"
   },
-  legend: {
-    orient: "vertical",
-    x: "left",
-    data: ["直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎"]
+  title: {
+    text: "标准饼图",
+    x: "center",
   },
   series: [
     {

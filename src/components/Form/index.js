@@ -7,8 +7,8 @@ import _ from "lodash"
 
 const FormItem = Form.Item
 const formItemLayout = {
-  labelCol: { span: 10 },
-  wrapperCol: { span: 14 },
+  labelCol: { span: 6 },
+  wrapperCol: { span: 18 },
 }
 class FormComponent extends Component {
   static propTypes = {
@@ -23,6 +23,7 @@ class FormComponent extends Component {
 
   // 组件生成器
   createFormItem(field, key) {
+    field = _.cloneDeep(field)  // 为了防止去染源数据，需要做深拷贝处理
     const { data } = this.props
     let formItemProps = {
       key: key,

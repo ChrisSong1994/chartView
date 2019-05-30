@@ -5,12 +5,12 @@
 .dragger {
   cursor: pointer;
   position: absolute;
-  background: blue;
+  background: transparent;
 }
 .chart{
   height:100%;
   width: 100%;
-  background: #fff;
+  /* background: #fff; */
 }
 .selected{
   border: 1px solid #000;
