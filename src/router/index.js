@@ -10,7 +10,6 @@ import View from "pages/View";
 import Home from "pages/Home";
 import Editer from "pages/Editer";
 import Data from "pages/Data";
-import ChatRoom from "pages/ChatRoom"
 
 export default class Root extends Component {
   constructor(props) {
@@ -60,7 +59,6 @@ export default class Root extends Component {
                 <Route path="/View" component={View} />
                 <Route path="/Data" component={Data} />
                 <Route path="/Editer" component={Editer} />
-                <Route path="/ChatRoom" component={ChatRoom} />
               </Switch>
             </div>
           </Content>
