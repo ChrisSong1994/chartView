@@ -36,8 +36,8 @@ class DragDrop {
     })
       .on("drop", (e) => {
         let event = e.originalEvent
-        let text = event.dataTransfer.getData("Text")
-        this.opts.drop.onDrop(event, text)
+        let data = event.dataTransfer.getData("DATA")
+        this.opts.drop.onDrop(event, data)
       })
   }
 

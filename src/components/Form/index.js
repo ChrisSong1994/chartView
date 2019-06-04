@@ -75,6 +75,7 @@ class FormComponent extends Component {
   handleChange(key, value) {
     this.props.onChange(key, value)
   }
+  
   render() {
     const { fields } = this.props
     const Groups = fields.map((field, i) => this.createFormItem(field, i))

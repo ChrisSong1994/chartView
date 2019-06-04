@@ -14,6 +14,7 @@ class Content extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     widgets: PropTypes.object,
+    window: PropTypes.object,
     activeWidgetId: PropTypes.string
   };
   constructor() {
@@ -67,10 +68,17 @@ class Content extends Component {
   }
 
   render() {
-    const { widgets, dispatch } = this.props;
+    const { widgets, dispatch, window } = this.props;
+    const { width, height, backgroundType, background } = window
+    let backgroundValue
+    if (backgroundType !== 'color') {
+      backgroundValue = `url(${background})`
+    } else {
+      backgroundValue = background
+    }
     return (
       <div className="content">
-        <div ref="wrap" className="content-wrap">
+        <div ref="wrap" className="content-wrap" style={{ width, height, background: backgroundValue }} >
           {Object.keys(widgets).map(widgetId => {
             return <Chart
               dispatch={dispatch}

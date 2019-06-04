@@ -24,31 +24,32 @@ class Editer extends Component {
   initDragDrop() {
     this.dragdrop = new DragDrop({
       drag: {
-        elem: ".widget-btn",
+        elem: ".chart-selecor",
         parentSelector: ".widget-nav",
         onStart: (event, elem) => {
+          let theme = elem.getAttribute("data-theme")
           let type = elem.getAttribute("data-type")
-          event.dataTransfer.setData("Text", type)
+          event.dataTransfer.setData("DATA", `${theme}-${type}`)
         }
       },
       drop: {
         elem: ".content-wrap",
-        onDrop: (event, text) => {
+        onDrop: (event, data) => {
           let position = {
             left: event.offsetX,
             top: event.offsetY
           }
-          console.log(position, text)
-          this.addWidget(text, position)
+          const chartName = data.split('-')
+          this.addWidget(chartName[0], chartName[1], position)
         }
       }
     })
   }
 
-  addWidget(chartType, pos) {
+  addWidget(theme, chartType, pos) {
     const widget = Object.assign({}, {
       id: generateUUID(),
-      ...chartConfig[chartType]
+      ...chartConfig[theme].children[chartType]
     }, {
         // 合并拖入的坐标
         left: pos.left,
@@ -71,6 +72,7 @@ class Editer extends Component {
           <Content
             dispatch={dispatch}
             widgets={widgets}
+            window={window}
             activeWidgetId={activeWidgetId}
           />
           <div className="right-panel">
