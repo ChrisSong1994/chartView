@@ -111,7 +111,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.less']
     },
     devServer: {
-        port: 4100,             // 端口
+        port: 8080,             // 端口
         open: true,             // 自动打开浏览器
         hot: true,               // 开启热更新
         overlay: true, // 浏览器页面上显示错误
