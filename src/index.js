@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import "./assets/style/index.scss"; // 引入css
+import "./assets/iconfont/iconfont.css"
 import "antd/dist/antd.css";
+import "./assets/style/index.scss"; // 引入css
 import Root from "./router";
 import store from "./store";
 

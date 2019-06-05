@@ -29,8 +29,8 @@ class FormComponent extends Component {
       key: key,
       className: name
     }
-    if (field.hasOwnProperty("relName")) {
-      this.relNameParse(field["relName"], formItemProps)
+    if (field.hasOwnProperty("relname")) {
+      this.relnameParse(field["relname"], formItemProps)
     }
     if (data.hasOwnProperty(field["name"])) {
       field["value"] = data[field["name"]]
@@ -49,9 +49,9 @@ class FormComponent extends Component {
 
 
   // 解析关联设置
-  relNameParse(relName, formItemProps) {
-    if (!relName) return
-    let [action, name] = relName.split('=')
+  relnameParse(relname, formItemProps) {
+    if (!relname) return
+    let [action, name] = relname.split('=')
     if (action === 'toggle') {
       let relValue = this.getFieldValue(name)
       formItemProps.className += relValue ? "show" : "hide"

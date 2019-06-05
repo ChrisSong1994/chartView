@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "antd";
 import PropTypes from "prop-types";
 import chartConfig from "modules/charts/chartConfig";
 
@@ -26,13 +25,15 @@ class Panel extends Component {
                       let chart = chartConfig[theme].children[type]
                       return (
                         <li
+                          key={chart.type}
                           className="chart-selecor"
                           draggable={true}
                           data-theme={theme}
                           data-type={chart.type}
                           data-name={chart.name}
                           onClick={this.props.addWidget.bind(this, theme, chart.type)}>
-                          {chart.name}
+                          <span className={`iconfont icon ${chart.icon}`} ></span>
+                          <div className="chart-name">{chart.name}</div>
                         </li>)
                     })
                   }

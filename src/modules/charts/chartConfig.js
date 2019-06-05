@@ -4,6 +4,7 @@ const chartConfig = {
     children: {
       bar: {
         name: "柱状图",
+        icon: "icon-bar",
         type: "bar",
         left: 50,
         top: 50,
@@ -16,6 +17,7 @@ const chartConfig = {
       },
       pie: {
         name: "饼图",
+        icon: "icon-pie",
         type: "pie",
         left: 100,
         top: 100,
@@ -28,6 +30,7 @@ const chartConfig = {
       },
       line: {
         name: "折线图",
+        icon: "icon-line",
         type: "line",
         left: 150,
         top: 150,
@@ -40,6 +43,7 @@ const chartConfig = {
       },
       scatter: {
         name: "散点图",
+        icon: "icon-scatter",
         type: "scatter",
         left: 200,
         top: 200,

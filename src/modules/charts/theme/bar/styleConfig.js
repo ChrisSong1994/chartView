@@ -13,14 +13,14 @@ export default function () {
           action: 'toggle'
         },
         {
-          relName: "toggle=title_show",
+          relname: "toggle=title_show",
           name: "title_text",
           label: "标题内容",
           type: "input",
           value: "标准柱状图",
         },
         {
-          relName: "toggle=title_show",
+          relname: "toggle=title_show",
           name: "title_x",
           label: "位置",
           type: "radioGroup",
@@ -34,7 +34,7 @@ export default function () {
           }
         },
         {
-          relName: "toggle=title_show",
+          relname: "toggle=title_show",
           name: "title_textStyle_fontSize",
           label: "字体大小",
           type: "inputNumber",
@@ -43,7 +43,7 @@ export default function () {
           value: 18
         },
         {
-          relName: "toggle=title_show",
+          relname: "toggle=title_show",
           name: "title_textStyle_color",
           label: "字体颜色",
           type: "color",
@@ -113,7 +113,7 @@ export default function () {
           action: 'toggle'
         },
         {
-          relName: "toggle=series_label_normal_show",
+          relname: "toggle=series_label_normal_show",
           name: "series_label_normal_fontSize",
           label: "字体大小",
           type: "inputNumber",
@@ -122,14 +122,15 @@ export default function () {
           value: 12
         },
         {
-          relName: "toggle=series_label_normal_show",
+          relname: "toggle=series_label_normal_show",
           name: "series_label_normal_color",
           label: "字体颜色",
           type: "color",
           value: "#ccc"
         }
       ]
-    }, {
+    }, 
+    {
       title: "值系列",
       type: "series",
       fields: [
