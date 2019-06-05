@@ -1,5 +1,5 @@
 {
-  "name": "front_end",
+  "name": "chart-view",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -24,6 +24,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-register": "^6.26.0",
+    "browserslist": "^4.6.1",
     "clean-webpack-plugin": "^0.1.19",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
@@ -73,5 +74,11 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
-  }
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ]
 }

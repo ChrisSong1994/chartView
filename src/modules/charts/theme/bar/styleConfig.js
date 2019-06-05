@@ -57,47 +57,28 @@ export default function () {
       fields: [
         {
           name: "xAxis_show",
-          label: "轴线",
+          label: "轴名称",
           type: "checkbox",
-          value: false,
+          value: true,
           action: 'toggle'
         }, {
           name: "xAxis_nameTextStyle_color",
-          label: "轴线",
+          label: "字体颜色",
           type: "color",
           value: '#000'
         },
         {
           name: "xAxis_nameTextStyle_fontWeight",
-          label: "轴线",
-          type: "select",
-          value: 'normal',
+          label: "字体粗细",
+          type: "radioGroup",
+          value: "normal",
           props: {
-            options: [
-              {
-                value: "normal",
-                label: "normal"
-              },
-              {
-                value: "bold",
-                label: "bold"
-              },
-              {
-                value: "bolder",
-                label: "bolder"
-              }, {
-                value: "lighter",
-                label: "lighter"
-              }
+            radios: [
+              { value: "normal", label: "正常" },
+              { value: "bloder", label: "较粗" },
+              { value: "lighter", label: "较细" }
             ]
           }
-        },
-        {
-          name: "xAxis_axisLine_show",
-          label: "轴线",
-          type: "checkbox",
-          value: true,
-          action: 'toggle'
         },
       ]
     },
@@ -129,7 +110,7 @@ export default function () {
           value: "#ccc"
         }
       ]
-    }, 
+    },
     {
       title: "值系列",
       type: "series",

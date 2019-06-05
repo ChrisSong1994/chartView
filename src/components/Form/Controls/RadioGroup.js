@@ -13,14 +13,14 @@ class RadioGroupWrap extends Component {
     }
 
     render() {
-        const { value, props } = this.props
+        const { props } = this.props
         let mergeProps = Object.assign({}, this.props, {
             onChange: this.handleChange.bind(this)
         })
         return (
             <RadioGroup {...mergeProps}>
                 {props.radios.map(item => {
-                  return  <Radio key={item.value} value={item.value}>{item.label}</Radio>
+                    return <Radio key={item.value} value={item.value}>{item.label}</Radio>
                 })}
             </RadioGroup>
         )

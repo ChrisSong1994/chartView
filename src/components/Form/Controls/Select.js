@@ -3,7 +3,7 @@ import { Select } from "antd"
 import PropTypes from "prop-types"
 const Option = Select.Option
 
-class Select extends Component {
+class SelectWrap extends Component {
   static propTypes = {
     onChange: PropTypes.func,
     options: PropTypes.array,
@@ -17,11 +17,11 @@ class Select extends Component {
   }
 
   render() {
-    const { options } = this.props
+    const { props } = this.props
     return (
-      <Select>
+      <Select >
         {
-          options.map((option, index) => {
+          props.options.map((option, index) => {
             return (
               <Option key={index} {...option} value={'' + option.value} disabled={option.disabled} title={option.label}>
                 {option.label}
@@ -34,4 +34,4 @@ class Select extends Component {
   }
 }
 
-export default Input
+export default SelectWrap
