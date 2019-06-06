@@ -62,24 +62,121 @@ export default function () {
           value: true,
           action: 'toggle'
         }, {
-          name: "xAxis_nameTextStyle_color",
+          relname: "toggle=xAxis_show",
+          name: "xAxis_axisLabel_color",
           label: "字体颜色",
           type: "color",
           value: '#000'
         },
         {
-          name: "xAxis_nameTextStyle_fontWeight",
+          relname: "toggle=xAxis_show",
+          name: "xAxis_axisLabel_fontWeight",
           label: "字体粗细",
           type: "radioGroup",
-          value: "normal",
+          value: 400,
           props: {
             radios: [
-              { value: "normal", label: "正常" },
-              { value: "bloder", label: "较粗" },
-              { value: "lighter", label: "较细" }
+              { value: 400, label: "正常" },
+              { value: 600, label: "较粗" },
+              { value: 200, label: "较细" }
             ]
           }
         },
+        {
+          relname: "toggle=xAxis_show",
+          name: "xAxis_axisLabel_fontSize",
+          label: "字体大小",
+          type: "inputNumber",
+          min: 12,
+          max: 50,
+          value: 12
+        },
+        {
+          name: "xAxis_axisLine_show",
+          label: "轴线",
+          type: "checkbox",
+          value: true,
+          action: 'toggle'
+        }, {
+          relname: "toggle=xAxis_axisLine_show",
+          name: "xAxis_axisLine_lineStyle_color",
+          label: "轴线颜色",
+          type: "color",
+          value: '#000'
+        },
+        {
+          relname: "toggle=xAxis_axisLine_show",
+          name: "xAxis_axisLine_lineStyle_width",
+          label: "轴线宽度",
+          type: "inputNumber",
+          min: 1,
+          max: 5,
+          value: 1
+        }
+      ]
+    },
+    {
+      title: "Y 轴",
+      type: "yAxis",
+      fields: [
+        {
+          name: "yAxis_show",
+          label: "轴名称",
+          type: "checkbox",
+          value: true,
+          action: 'toggle'
+        }, {
+          relname: "toggle=yAxis_show",
+          name: "yAxis_axisLabel_color",
+          label: "字体颜色",
+          type: "color",
+          value: '#000'
+        },
+        {
+          relname: "toggle=yAxis_show",
+          name: "yAxis_axisLabel_fontWeight",
+          label: "字体粗细",
+          type: "radioGroup",
+          value: 400,
+          props: {
+            radios: [
+              { value: 400, label: "正常" },
+              { value: 600, label: "较粗" },
+              { value: 200, label: "较细" }
+            ]
+          }
+        },
+        {
+          relname: "toggle=yAxis_show",
+          name: "yAxis_axisLabel_fontSize",
+          label: "字体大小",
+          type: "inputNumber",
+          min: 12,
+          max: 50,
+          value: 12
+        },
+        {
+          name: "yAxis_axisLine_show",
+          label: "轴线",
+          type: "checkbox",
+          value: true,
+          action: 'toggle'
+        }, {
+          relname: "toggle=yAxis_axisLine_show",
+          name: "yAxis_axisLine_lineStyle_color",
+          label: "轴线颜色",
+          type: "color",
+          value: '#000'
+        },
+        {
+          relname: "toggle=yAxis_axisLine_show",
+          name: "yAxis_axisLine_lineStyle_width",
+          label: "轴线宽度",
+          type: "inputNumber",
+          min: 1,
+          max: 5,
+          value: 1
+        }
       ]
     },
     {
@@ -95,19 +192,19 @@ export default function () {
         },
         {
           relname: "toggle=series_label_normal_show",
+          name: "series_label_normal_color",
+          label: "字体颜色",
+          type: "color",
+          value: "#ccc"
+        },
+        {
+          relname: "toggle=series_label_normal_show",
           name: "series_label_normal_fontSize",
           label: "字体大小",
           type: "inputNumber",
           min: 12,
           max: 50,
           value: 12
-        },
-        {
-          relname: "toggle=series_label_normal_show",
-          name: "series_label_normal_color",
-          label: "字体颜色",
-          type: "color",
-          value: "#ccc"
         }
       ]
     },
