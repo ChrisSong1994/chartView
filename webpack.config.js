@@ -3,6 +3,7 @@ const webpack = require('webpack')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');// html 模版插件
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');// 拆分css样式的插件
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;  // 包依赖可视化
 const CleanWebpackPlugin = require('clean-webpack-plugin');// 清理模块
 
 const argv = require('yargs-parser')(process.argv.slice(2));  //  yargs-parser 模块用来获取命令行参数
@@ -20,6 +21,7 @@ if (pro) {
         // 拆分后会把css文件放到dist目录下的css/style.css
         new ExtractTextWebpackPlugin('css/[name].[chunkhash].css'),
         new CleanWebpackPlugin('dist'),
+        new BundleAnalyzerPlugin()
     )
 } else {
     //  开发环境
@@ -31,6 +33,7 @@ if (pro) {
         // 拆分后会把css文件放到dist目录下的css/style.css
         new ExtractTextWebpackPlugin('css/[name].[chunkhash].css'),
         new webpack.HotModuleReplacementPlugin(),  // 热更新，热更新不是刷新
+        new BundleAnalyzerPlugin()
     )
 }
 
