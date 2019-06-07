@@ -1,14 +1,16 @@
 // 数据管理
-const router = require("koa-router")();
+const Router = require("koa-router");
 const DB = require("../../db/db");
+const router = new Router()
 
 // 添加数据
 router.post("/api/data/addData", async ctx => {
   let msg, isSuccess, data; // 接口返回信息
   const params = ctx.request.body;
+  console.log(params)
 
   let newData = {
-    dataId: params.dataId,
+    id: params.id,
     name: params.name,
     data: params.data
   };
@@ -92,7 +94,7 @@ router.post("/api/data/getDatas", async ctx => {
     success: isSuccess,
     message: msg,
     data: data,
-    total:total
+    total: total
   };
 });
 

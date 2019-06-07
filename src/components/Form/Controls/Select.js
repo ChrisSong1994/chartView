@@ -16,10 +16,17 @@ class SelectWrap extends Component {
     super()
   }
 
+  handleChange(value) {
+    this.props.onChange(value)
+  }
+
   render() {
     const { props } = this.props
+    let mergeProps = Object.assign({}, this.props, {
+      onChange: this.handleChange.bind(this)
+    })
     return (
-      <Select >
+      <Select  {...mergeProps} >
         {
           props.options.map((option, index) => {
             return (

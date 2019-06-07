@@ -12,7 +12,7 @@ const formItemLayout = {
 }
 class FormComponent extends Component {
   static propTypes = {
-    activeWidgetId: PropTypes.object,
+    activeWidgetId: PropTypes.string,
     onChange: PropTypes.func,
     data: PropTypes.object
   }

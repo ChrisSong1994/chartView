@@ -21,7 +21,7 @@ const chartConfig = {
         type: "pie",
         left: 100,
         top: 100,
-        width: 300,
+        width: 360,
         height: 300,
         backgroundType: "color",
         background: "#fff",

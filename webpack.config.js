@@ -103,12 +103,12 @@ module.exports = {
         alias: {
             assets: path.join(__dirname, 'src/assets'),
             api: path.join(__dirname, 'src/api'),
-            pages:path.join(__dirname,'src/pages'),
-            utils:path.join(__dirname,'src/utils'),
-            components:path.join(__dirname,'src/components'),
-            modules:path.join(__dirname,'src/modules'),
-            http:path.join(__dirname,'src/http'),
-            store:path.join(__dirname,'src/store'),
+            pages: path.join(__dirname, 'src/pages'),
+            utils: path.join(__dirname, 'src/utils'),
+            components: path.join(__dirname, 'src/components'),
+            modules: path.join(__dirname, 'src/modules'),
+            http: path.join(__dirname, 'src/http'),
+            store: path.join(__dirname, 'src/store'),
         },
         // 省略后缀
         extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.less']
@@ -119,14 +119,14 @@ module.exports = {
         hot: true,               // 开启热更新
         overlay: true, // 浏览器页面上显示错误
         historyApiFallback: true,
-        proxy: { 
+        proxy: {
             //通过代理解决本地跨域
-            '/server': {   
+            '/api': {
                 target: 'http://localhost:4200', // 服务端
                 changeOrigin: true,
                 ws: true,
                 pathRewrite: {
-                    '^/server': '/server'
+                    '^/api': '/api'
                 }
             }
         }

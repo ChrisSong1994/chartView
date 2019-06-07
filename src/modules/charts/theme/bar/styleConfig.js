@@ -205,6 +205,21 @@ export default function () {
           min: 12,
           max: 50,
           value: 12
+        },
+        {
+          relname: "toggle=series_label_normal_show",
+          name: "series_label_normal_position",
+          label: "标签位置",
+          type: "select",
+          value: "inside",
+          props: {
+            options: [
+              { value: "top", label: "顶部" },
+              { value: "inside", label: "内部-中间" },
+              { value: "insideTop", label: "内部-顶部" },
+              { value: "insideBottom", label: "内部-底部" }
+            ]
+          }
         }
       ]
     },
@@ -217,6 +232,14 @@ export default function () {
           label: "柱体颜色",
           type: "color",
           value: "#c23531",
+        },
+        {
+          name: "series_itemStyle_barBorderRadius",
+          label: "柱体圆角",
+          type: "inputNumber",
+          min: 0,
+          max: 50,
+          value: 0
         },
       ]
     }

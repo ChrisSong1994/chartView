@@ -7,6 +7,10 @@ const option = {
     text: "标准饼图",
     x: "center",
   },
+  legend: {
+    left: 'left',
+    orient: 'vertical',
+  },
   series: [
     {
       name: "访问来源",

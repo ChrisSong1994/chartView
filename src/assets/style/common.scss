@@ -6,3 +6,21 @@ ul {
 li {
     list-style-type: none;
 }
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix::after {
+    visibility: hidden;
+    display: block;
+    clear: both;
+    content: " ";
+    height: 0;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}

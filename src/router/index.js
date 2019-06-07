@@ -8,7 +8,6 @@ import Head from "pages/Layout/Head";
 import Foot from "pages/Layout/Foot";
 import View from "pages/View";
 import Home from "pages/Home";
-import Editer from "pages/Editer";
 import Data from "pages/Data";
 
 export default class Root extends Component {
@@ -56,9 +55,8 @@ export default class Root extends Component {
             >
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/View" component={View} />
-                <Route path="/Data" component={Data} />
-                <Route path="/Editer" component={Editer} />
+                <Route path="/view" component={View} />
+                <Route path="/data" component={Data} />
               </Switch>
             </div>
           </Content>

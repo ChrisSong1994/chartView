@@ -1,19 +1,22 @@
 // 保存窗口
 // 修改窗口名称
-const router = require("koa-router")();
+const Router = require("koa-router");
 const DB = require("../../db/db");
+const router = new Router()
 
 // 保存窗口
 router.post("/api/window/addWindow", async ctx => {
   let msg, isSuccess, data; // 接口返回信息
   const params = ctx.request.body;
-
   let newWindow = {
-    windowId: params.windowId,
-    title: params.title,
+    id: params.id,
+    name: params.name,
+    createTime: params.createTime ? params.createTime : new Date(),
     widgets: params.widgets,
-    date: params.date ? params.date : new Date(),
-    size: params.size
+    width: params.width,
+    height: params.height,
+    backgroundType: params.backgroundType,
+    background: params.background,
   };
 
   try {
@@ -43,7 +46,7 @@ router.post("/api/window/getWindows", async ctx => {
   const params = ctx.request.body;
   if (params.page !== undefined && params.limit !== undefined) {
     pagination = {
-      page: params.page, // 页码
+      page: params.page + 1, // 页码
       limit: params.limit // 一页条数
     };
   }

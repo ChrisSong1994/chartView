@@ -3,6 +3,7 @@ const option = {
         text: "标准柱状图",
         x: "center",
     },
+   
     xAxis: {
         type: 'category',
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

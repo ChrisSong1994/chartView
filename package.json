@@ -7,7 +7,6 @@
     "start": "cross-env webpack-dev-server --open --mode development",
     "build": "cross-env npm run clean && webpack --mode production",
     "clean": "cross-env rm -rf dist && mkdir dist",
-    "lint": "eslint --ext .js src",
     "server": "node ./server/app.js"
   },
   "author": "",

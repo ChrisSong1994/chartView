@@ -9,6 +9,7 @@ import DragDrop from "components/Dragdrop"
 import Panel from "./panel";
 import Content from "./content";
 import Setting from "./setting";
+import Tool from "./tool"
 
 class Editer extends Component {
   static propTypes = {}
@@ -55,8 +56,6 @@ class Editer extends Component {
         left: pos.left,
         top: pos.top
       })
-
-    console.log(widget)
     this.props.dispatch(addWidget(widget));
   }
 
@@ -64,7 +63,7 @@ class Editer extends Component {
     const { widgets, window, activeWidgetId, dispatch } = this.props;
     return (
       <section className="view">
-        <div className="tools">工具栏</div>
+        <Tool dispatch={dispatch} window={window} />
         <div className="editer">
           <div className="left-panel">
             <Panel dispatch={dispatch} addWidget={this.addWidget} />

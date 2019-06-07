@@ -10,7 +10,6 @@ class Bar extends Chart {
 
   setStyleSetting(style) {
     this.option = Object.assign({}, this.option, style)
-    console.log(this.option,'this.option')
     this.setOption()
   }
 
