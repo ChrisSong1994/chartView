@@ -39,4 +39,4 @@
 - delete 删除组件事件 待完善 0%
 
 ##### 半成品展示
-![半成品](https://github.com/song111/react-view/blob/master/src/assets/images/%E5%8D%8A%E6%88%90%E5%93%81.png)
+![半成品](https://github.com/song111/chart-view/blob/master/src/assets/images/shotscreen.jpeg)
