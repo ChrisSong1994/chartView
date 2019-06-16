@@ -7,7 +7,6 @@ const router = new Router()
 router.post("/api/data/addData", async ctx => {
   let msg, isSuccess, data; // 接口返回信息
   const params = ctx.request.body;
-  console.log(params)
 
   let newData = {
     id: params.id,

@@ -25,7 +25,7 @@ class WindowSetting extends Component {
 
   handleChangeValue(name, value) {
     this.props.dispatch(updateWindowSetting(name, value))
-    console.log(name, value)
+    
   }
 
   handleChange(name, value) {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import { Layout } from "antd";
 import Head from "components/Layout/Head";
 import Foot from "components/Layout/Foot";
@@ -38,13 +38,14 @@ export default class Root extends Component {
   render() {
     let { editerHight } = this.state;
     return (
-      <Router>
+      <Router  >
         <Layout>
           <Head />
           <Content style={{ marginTop: 64, height: editerHight }} >
             <div className="main" style={{ background: "#fff", width: "100%", height: "100%" }} >
               <Switch>
                 <Route exact path="/" component={View} />
+                <Route path="/view" component={View} />
                 <Route path="/data" component={Data} />
                 <Route component={NotFound} />
               </Switch>

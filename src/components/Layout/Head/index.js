@@ -38,7 +38,7 @@ class Head extends Component {
             this.mathPath(item.key)
           }}>
           <Menu.Item key="view">
-            <Link to="/">可视化</Link>
+            <Link to="/view">可视化</Link>
           </Menu.Item>
           <Menu.Item key="data">
             <Link to="/data">数据管理</Link>

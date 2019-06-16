@@ -66,7 +66,7 @@ class List extends Component {
         const { name } = this.state
         if (name.trim() !== '') {
             const id = generateUUID()
-            this.props.history.push(`/edit/${id}`)
+            this.props.history.push(`/view/edit/${id}`)
         } else {
             message.warning('请输入窗口名称')
         }

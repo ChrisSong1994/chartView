@@ -14,7 +14,6 @@ modules.forEach(module => {
   }
 })
 
-console.log(charts)
 
 Object.keys(charts).map( (item) => {
   ChartCreator.register(item, charts[item])

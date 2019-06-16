@@ -27,7 +27,7 @@ class Tool extends Component {
                     <span className="iconfont icon ops-btn icon-preview">  </span>
                     <span className="iconfont icon ops-btn icon-full-screen">  </span>
                     {/* 返回 */}
-                    <Link to="/"><span className="iconfont icon ops-btn icon-return"> </span></Link>
+                    <Link to="/view"><span className="iconfont icon ops-btn icon-return"> </span></Link>
                 </div>
             </div>
         );
