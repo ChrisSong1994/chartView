@@ -33,7 +33,6 @@ if (pro) {
         // 拆分后会把css文件放到dist目录下的css/style.css
         new ExtractTextWebpackPlugin('css/[name].[chunkhash].css'),
         new webpack.HotModuleReplacementPlugin(),  // 热更新，热更新不是刷新
-        new BundleAnalyzerPlugin()
     )
 }
 

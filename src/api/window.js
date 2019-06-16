@@ -1,20 +1,26 @@
 import http from '../http'
 
-class WindewApi {
-  constructor() {
-
-  }
-
-  // 查询文章
-  queryArticle(data) {
-    return http.post('/api/queryArticles', data)
-  }
-
-  // 获取文章详情
-  getArticleById(id) {
-    return http.get(`/api/getArticle/${id}`)
-  }
-
+// 查询窗口
+export function queryWindows(data) {
+  return http.post('/api/window/getWindows', data)
 }
 
-export default new Api_article()
+// 获取窗口详情
+export function getWindowById(id) {
+  return http.get(`/api/window/getWindow/${id}`)
+}
+
+// 新增窗口
+export function addWindow(data) {
+  return http.post('/api/window/addWindow', data)
+}
+
+// 更新窗口
+export function updateWindow(data) {
+  return http.post('/api/window/updateWindow', data)
+}
+
+// 删除窗口
+export function deleteWindow(data) {
+  return http.post('/api/window/deleteWindow', data)
+}

@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import { Layout } from "antd";
+import Head from "components/Layout/Head";
+import Foot from "components/Layout/Foot";
+import View from "pages/View";
+import Data from "pages/Data";
+import NotFound from 'pages/NotFound'
 
 const { Content } = Layout;
-
-import Head from "pages/Layout/Head";
-import Foot from "pages/Layout/Foot";
-import View from "pages/View";
-import Home from "pages/Home";
-import Data from "pages/Data";
-
 export default class Root extends Component {
   constructor(props) {
     super(props);
@@ -43,20 +41,12 @@ export default class Root extends Component {
       <Router>
         <Layout>
           <Head />
-          <Content
-            style={{
-              marginTop: 64,
-              height: editerHight
-            }}
-          >
-            <div
-              className="main"
-              style={{ background: "#fff", width: "100%", height: "100%" }}
-            >
+          <Content style={{ marginTop: 64, height: editerHight }} >
+            <div className="main" style={{ background: "#fff", width: "100%", height: "100%" }} >
               <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/view" component={View} />
+                <Route exact path="/" component={View} />
                 <Route path="/data" component={Data} />
+                <Route component={NotFound} />
               </Switch>
             </div>
           </Content>

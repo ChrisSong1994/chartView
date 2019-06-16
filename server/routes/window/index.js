@@ -46,9 +46,13 @@ router.post("/api/window/getWindows", async ctx => {
   const params = ctx.request.body;
   if (params.page !== undefined && params.limit !== undefined) {
     pagination = {
-      page: params.page + 1, // 页码
+      page: params.page - 1, // 页码
       limit: params.limit // 一页条数
     };
+  }
+
+  if (params.title !== undefined) {
+    query.title = params.title
   }
 
   try {
@@ -78,11 +82,11 @@ router.post("/api/window/getWindows", async ctx => {
 })
 
 // 根据窗口id获取窗口信息
-router.get("/api/window/getWindow/:id", async ctx => {
+router.get("/api/window/getWindow", async ctx => {
   let msg, isSuccess, data; // 接口返回信息
-  const windowId = ctx.params.id
+  const id = ctx.query.id
   try {
-    let result = await DB.find("Window", { windowId });
+    let result = await DB.findOne("Window", { id },{},{});
     data = result;
     if (data) {
       isSuccess = true;
@@ -109,7 +113,7 @@ router.get("/api/window/getWindow/:id", async ctx => {
 router.post("/api/window/updateWindow", async ctx => {
   let msg, isSuccess, data; // 接口返回信息
   const params = ctx.request.body;
-  const windowId = params.windowId;
+  const id = params.id;
   let newWindow = {
     title: params.title,
     widgets: params.widgets,
@@ -117,7 +121,7 @@ router.post("/api/window/updateWindow", async ctx => {
     size: params.size
   };
   try {
-    let result = await DB.update("Window", { articleId }, newWindow);
+    let result = await DB.update("Window", { id }, newWindow);
     data = result;
     isSuccess = true;
     msg = "更新窗口成功!";
@@ -138,9 +142,9 @@ router.post("/api/window/updateWindow", async ctx => {
 router.post("/api/window/deleteWindow", async ctx => {
   let msg, isSuccess, data; // 接口返回信息
   const params = ctx.request.body;
-  const windowId = params.windowId
+  const id = params.id
   try {
-    let result = await DB.remove("Window", { windowId });
+    let result = await DB.remove("Window", { id });
     data = result;
     if (data) {
       isSuccess = true;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class Tool extends Component {
     static propTypes = {
@@ -25,7 +26,8 @@ class Tool extends Component {
                     <span className="iconfont icon ops-btn icon-save">  </span>
                     <span className="iconfont icon ops-btn icon-preview">  </span>
                     <span className="iconfont icon ops-btn icon-full-screen">  </span>
-                    <span className="iconfont icon ops-btn icon-return">  </span>
+                    {/* 返回 */}
+                    <Link to="/"><span className="iconfont icon ops-btn icon-return"> </span></Link>
                 </div>
             </div>
         );

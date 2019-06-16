@@ -1,0 +1,30 @@
+.view-list {
+    max-width: 1600px;
+    height: 100%;
+    margin: 0 auto;
+
+    .view-list-head {
+        padding: 20px 20px;
+        text-align: right;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .view-list-content {
+        padding: 30px 0;
+
+        .view-list-card {
+            float: left;
+            margin: 20px 20px;
+
+            .ant-card-actions {
+                li {
+                    margin: 8px 0 !important;
+
+                    i {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}

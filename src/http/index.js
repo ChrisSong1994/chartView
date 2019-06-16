@@ -63,7 +63,7 @@ let http = {
           cancel = c
         })
       }).then(res => {
-        resolve(res)
+        resolve(res.data)
       }).then(err => {
         reject(err)
       })
@@ -81,7 +81,7 @@ let http = {
           cancel = c
         })
       }).then(res => {
-        resolve(res)
+        resolve(res.data)
       }).then(err => {
         reject(err)
       })
