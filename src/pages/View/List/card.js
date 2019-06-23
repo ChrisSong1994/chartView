@@ -38,7 +38,7 @@ class CardWrap extends Component {
                     title={name}
                     style={{ width: 360 }}
                     actions={[
-                        <Icon type="edit" onClick={() => { this.props.history.push(`/edit/${id}`) }} />,
+                        <Icon type="edit" onClick={() => { this.props.history.push(`/view/edit/${id}`) }} />,
                         <i className="iconfont icon-preview" onClick={() => { this.handlePreview() }} />,
                         <Icon type="delete" onClick={() => { this.handleDelete(id, name) }} />
                     ]}  >
