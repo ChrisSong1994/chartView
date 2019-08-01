@@ -87,9 +87,8 @@ class ColorTrigger extends Component {
 }
 
 const mapStateToProps = state => {
-  const { color } = state;
   return {
-    color: color
+    color: state.get('color')
   };
 };
 

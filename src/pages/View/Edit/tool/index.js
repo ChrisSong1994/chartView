@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { ActionCreators as UndoActionCreators } from 'redux-undo'
 
 class Tool extends Component {
     static propTypes = {
@@ -11,13 +12,22 @@ class Tool extends Component {
         super(props);
     }
 
+    handleUndo() {
+        this.props.dispatch(UndoActionCreators.undo())
+    }
+
+    handleRedo() {
+        this.props.dispatch(UndoActionCreators.redo())
+    }
+
+
     render() {
         const { name } = this.props.window
         return (
             <div className="tools clearfix">
                 <div className="options-edit">
-                    <span className="iconfont icon ops-btn icon-repeal"> </span>
-                    <span className="iconfont icon ops-btn icon-recover">  </span>
+                    <span className="iconfont icon ops-btn icon-repeal" onClick={this.handleUndo.bind(this)}> </span>
+                    <span className="iconfont icon ops-btn icon-recover" onClick={this.handleRedo.bind(this)} >  </span>
                 </div>
                 <div className="window-title">
                     {name}

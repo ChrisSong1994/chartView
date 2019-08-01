@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types"
 import "./index.scss";
 import { generateUUID } from "utils/util";
-import { addWidget } from "store/window/action";
+import { addWidget } from "store/widgets/action";
 import chartConfig from "modules/charts/chartConfig";
 import DragDrop from "components/Dragdrop"
 import Panel from "./panel";
@@ -68,7 +68,7 @@ class Editer extends Component {
           <div className="left-panel">
             <Panel dispatch={dispatch} addWidget={this.addWidget} />
           </div>
-          <Content
+          {/* <Content
             dispatch={dispatch}
             widgets={widgets}
             window={window}
@@ -81,18 +81,17 @@ class Editer extends Component {
               widgets={widgets}
               window={window}
             />
-          </div>
+          </div> */}
         </div>
       </section>
     );
   }
 }
 const mapStateToProps = state => {
-  const { window } = state;
   return {
-    window: window,
-    activeWidgetId: window.activeWidgetId,
-    widgets: window.widgets
+    window: state.getIn(['window', 'present']),
+    activeWidgetId: state.getIn(['window', 'present', 'activeWidgetId']),
+    widgets: state.getIn(['widgets', 'present'])
   };
 };
 
