@@ -1,7 +1,8 @@
 import { fromJS, Map, isKeyed } from 'immutable'
 
 import {
-  UPDATE_WINDOW_SETTING
+  UPDATE_WINDOW_SETTING,
+  SET_ACTIVE_WIDGET_ID
 } from "./action";
 
 
@@ -19,6 +20,9 @@ const windowReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_WINDOW_SETTING:
       return state.set(action.key, action.value)
+
+    case SET_ACTIVE_WIDGET_ID:
+      return state.set('activeWidgetId', action.widgetId)
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types"
 import { Form, InputNumber, Radio } from 'antd'
-import { updateWidgetPosition } from "store/window/action";
+import { updateWidgetPosition } from "store/widgets/action";
 import Color from "components/Form/Controls/Color"
 
 const RadioGroup = Radio.Group;

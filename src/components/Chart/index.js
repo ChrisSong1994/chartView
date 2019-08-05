@@ -3,6 +3,7 @@ import ChartCreator from "modules/charts";
 import PropTypes from "prop-types";
 import Event from "utils/event";
 import { parseKeyToObj } from "utils/util"
+import { is } from 'immutable'
 
 class Chart extends PureComponent {
   static propTypes = {
@@ -14,19 +15,23 @@ class Chart extends PureComponent {
     super(props);
     this.chart = null
     this.state = {
-      left: props.widget.left,
-      top: props.widget.top
+      left: props.widget.get('left'),
+      top: props.widget.get('top')
     }
   }
 
   // 当组件的位置和尺寸改变的时候 处理
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      left: nextProps.widget.left,
-      top: nextProps.widget.top
-    })
-    if (nextProps.widget.width !== this.props.widget.width ||
-      nextProps.widget.height !== this.props.widget.height) {
+    if (!is(nextProps.widget.get('left'), this.props.widget.get('left')) ||
+      !is(nextProps.widget.get('top'), this.props.widget.get('top'))) {
+      this.setState({
+        left: nextProps.widget.get('left'),
+        top: nextProps.widget.get('top')
+      })
+    }
+
+    if (!is(nextProps.widget.get('width'), this.props.widget.get('width')) ||
+      !is(nextProps.widget.get('height'), this.props.widget.get('height'))) {
       this.chart.resize()
     }
   }
@@ -38,7 +43,7 @@ class Chart extends PureComponent {
   // 创建图表实例
   createChart() {
     const { widget, widgetId, dispatch } = this.props
-    ChartCreator.create(this.refs.chart, widget.type).then(chart => {
+    ChartCreator.create(this.refs.chart, widget.get('type')).then(chart => {
       this.chart = chart;
       this.chart.render();
       draggle.init();
@@ -72,7 +77,10 @@ class Chart extends PureComponent {
 
   // 计算边界条件（避免超出下和右边界）
   calculateReact() {
-    const { left, top, width, height } = this.props.widget;
+    const left = this.props.widget.get('left')
+    const top = this.props.widget.get('top')
+    const width = this.props.widget.get('width')
+    const height = this.props.widget.get('height')
     const wrapWidth = draggle.$container.css("width")
     const wrapHeight = draggle.$container.css("height")
     if (parseInt(width + left) > parseInt(wrapWidth)) {
@@ -88,7 +96,12 @@ class Chart extends PureComponent {
   }
 
   render() {
-    const { id, width, height, backgroundType, background } = this.props.widget;
+    const id = this.props.widget.get('id')
+    const width = this.props.widget.get('width')
+    const height = this.props.widget.get('height')
+    const backgroundType = this.props.widget.get('backgroundType')
+    const background = this.props.widget.get('background')
+
     const { left, top } = this.state
     let backgroundValue = background
     if (backgroundType === "picture") {

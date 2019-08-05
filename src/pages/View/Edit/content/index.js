@@ -4,9 +4,12 @@ import Draggle from "components/Draggle";
 import Chart from "components/Chart";
 import Event from "utils/event";
 import PropTypes from "prop-types";
-import { setActiveWidgetId, updateWidgetPosition } from "store/window/action";
+import { updateWidgetPosition } from "store/widgets/action";
+import { setActiveWidgetId } from "store/window/action";
 import ColorPicker from "components/ColorPicker";
 import Zoom from "components/Zoom"
+import { Map, merge } from 'immutable'
+
 
 const ColorModal = ColorPicker.ColorModal;
 
@@ -29,7 +32,7 @@ class Content extends Component {
   init(widgets) {
     const el = findDOMNode(this.refs.wrap);
     window.draggle = this.draggle = new Draggle(el, {
-      widgets: widgets,
+      widgets: widgets.toJS(),
       widget_selector: ".dragger",
       resizeable: {
         handle: ".resize-handle",
@@ -67,9 +70,29 @@ class Content extends Component {
     });
   }
 
+  createCharts() {
+    const { widgets, dispatch } = this.props;
+    const charts = []
+    widgets.map(widget => {
+      charts.push(
+        <Chart
+          dispatch={dispatch}
+          key={widget.get('id')}
+          widget={widget}
+          widgetId={widget.get('id')}
+        />
+      )
+    })
+    return charts
+  }
+
   render() {
-    const { widgets, dispatch, window } = this.props;
-    const { width, height, backgroundType, background } = window
+    const { window } = this.props;
+    const width = window.get('width')
+    const height = window.get('height')
+    const backgroundType = window.get('backgroundType')
+    const background = window.get('background')
+
     let backgroundValue
     if (backgroundType !== 'color') {
       backgroundValue = `url(${background})`
@@ -79,14 +102,7 @@ class Content extends Component {
     return (
       <div className="content">
         <div ref="wrap" className="content-wrap" style={{ width, height, background: backgroundValue }} >
-          {Object.keys(widgets).map(widgetId => {
-            return <Chart
-              dispatch={dispatch}
-              key={widgetId}
-              widget={widgets[widgetId]}
-              widgetId={widgetId}
-            />;
-          })}
+          {this.createCharts()}
         </div>
         {/* 颜色选择组件 */}
         <ColorModal />

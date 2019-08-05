@@ -68,13 +68,13 @@ class Editer extends Component {
           <div className="left-panel">
             <Panel dispatch={dispatch} addWidget={this.addWidget} />
           </div>
-          {/* <Content
+          <Content
             dispatch={dispatch}
             widgets={widgets}
             window={window}
             activeWidgetId={activeWidgetId}
           />
-          <div className="right-panel">
+          {/* <div className="right-panel">
             <Setting
               dispatch={dispatch}
               activeWidgetId={activeWidgetId}

@@ -5,7 +5,7 @@ import Form from "components/Form"
 import ChartOptionSettingItem from "../components/ChartOptionSettingItem"
 import BaseSetting from "./baseSetting"
 import Event from "utils/event";
-import { updateStyleSetting } from "store/window/action";
+import { updateStyleSetting } from "store/widgets/action";
 
 class StyleSetting extends Component {
 
