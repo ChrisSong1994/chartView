@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { Form, InputNumber, Radio } from 'antd'
 import { updateWidgetPosition } from "store/widgets/action";
 import Color from "components/Form/Controls/Color"
+import { is } from 'immutable';
 
 const RadioGroup = Radio.Group;
 const FormItem = Form.Item
@@ -20,6 +21,15 @@ class BaseSetting extends Component {
   constructor() {
     super()
   }
+
+  shouldComponentUpdate(nextProps) {
+    if (is(this.props.widget, nextProps.widget) && is(this.props.activeWidgetId, nextProps.activeWidgetId)) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   handleChange(type, value) {
     const { activeWidgetId, dispatch } = this.props
     if (type === "backgroundType") {
@@ -32,7 +42,13 @@ class BaseSetting extends Component {
   render() {
     const { widget, form, activeWidgetId } = this.props
     const { getFieldDecorator, getFieldValue } = form
-    const { left, top, width, height, backgroundType, background } = widget
+    const left = widget.get('left')
+    const top = widget.get('top')
+    const width = widget.get('width')
+    const height = widget.get('height')
+    const backgroundType = widget.get('backgroundType')
+    const background = widget.get('background')
+
     return (
       <Form className="base-setting-form">
         <FormItem {...formItemLayout} label={'位置'}>
@@ -101,10 +117,10 @@ class BaseSetting extends Component {
         {
           getFieldValue(backgroundType) === "color" ?
             <FormItem {...formItemLayout} label={'颜色'}>
-              <Color value={background} onChange={(value)=> { this.handleChange("background", value) }} />
+              <Color value={background} onChange={(value) => { this.handleChange("background", value) }} />
             </FormItem> :
             <FormItem {...formItemLayout} label={'背景图片'}>
-              <Color value={background} onChange={(value)=> { this.handleChange("background", value) }} />
+              <Color value={background} onChange={(value) => { this.handleChange("background", value) }} />
             </FormItem>
         }
       </Form>

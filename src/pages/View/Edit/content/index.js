@@ -9,6 +9,7 @@ import { setActiveWidgetId } from "store/window/action";
 import ColorPicker from "components/ColorPicker";
 import Zoom from "components/Zoom"
 import { Map, merge } from 'immutable'
+import _ from 'lodash'
 
 
 const ColorModal = ColorPicker.ColorModal;
@@ -22,6 +23,8 @@ class Content extends Component {
   };
   constructor() {
     super();
+    this.handleDrag = _.throttle(this.handleDrag.bind(this), 100)
+    this.handleResize = _.throttle(this.handleResize.bind(this), 100)
   }
   componentDidMount() {
     const { widgets } = this.props;
@@ -40,8 +43,7 @@ class Content extends Component {
           // console.log("start resizing", id);
         },
         onResize: (id, size) => {
-          Event.emit("widgetResize", id, size);
-          this.props.dispatch(updateWidgetPosition(id, { width: size.w, height: size.h }))
+          this.handleResize(id, size)
         },
         onStop: (id, size) => {
           // console.log("stop resizing", id, size);
@@ -53,7 +55,8 @@ class Content extends Component {
         },
         onDrag: (id, pos) => {
           // console.log(id, pos);
-          this.props.dispatch(updateWidgetPosition(id, { left: pos.x, top: pos.y }))
+          this.handleDrag(id, pos)
+          // this.props.dispatch(updateWidgetPosition(id, { left: pos.x, top: pos.y }))
         },
         onStop: (id, pos) => {
           // console.log("stop moving", id, pos);
@@ -68,6 +71,16 @@ class Content extends Component {
         }
       }
     });
+  }
+
+
+  handleDrag(id, pos) {
+    this.props.dispatch(updateWidgetPosition(id, { left: pos.x, top: pos.y }))
+  }
+
+  handleResize(id, size) {
+    Event.emit("widgetResize", id, size);
+    this.props.dispatch(updateWidgetPosition(id, { width: size.w, height: size.h }))
   }
 
   createCharts() {

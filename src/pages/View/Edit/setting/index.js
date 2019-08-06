@@ -38,10 +38,10 @@ class Setting extends Component {
     const { activeKey } = this.state;
     const { dispatch, activeWidgetId, widgets, window } = this.props
     let widget, styleSetting, dataSetting
-    if (activeWidgetId && widgets[activeWidgetId]) {
-      widget = widgets[activeWidgetId]
-      styleSetting = widget.styleSetting
-      dataSetting = widget.dataSetting
+    if (activeWidgetId && widgets.get(activeWidgetId)) {
+      widget = widgets.get(activeWidgetId)
+      styleSetting = widget.get('styleSetting')
+      dataSetting = widget.get('dataSetting')
     }
 
     return (
@@ -64,7 +64,7 @@ class Setting extends Component {
                 />
               </TabPane> : null
           }
-          {
+          {/* {
             activeWidgetId ?
               <TabPane tab="数据配置" key="dataSetting">
                 <DataSetting
@@ -74,7 +74,7 @@ class Setting extends Component {
                   widget={widget}
                 />
               </TabPane> : null
-          }
+          } */}
         </Tabs>
       </div>
     );

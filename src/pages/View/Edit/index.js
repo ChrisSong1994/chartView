@@ -74,14 +74,14 @@ class Editer extends Component {
             window={window}
             activeWidgetId={activeWidgetId}
           />
-          {/* <div className="right-panel">
+          <div className="right-panel">
             <Setting
               dispatch={dispatch}
               activeWidgetId={activeWidgetId}
               widgets={widgets}
               window={window}
             />
-          </div> */}
+          </div>
         </div>
       </section>
     );

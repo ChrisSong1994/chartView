@@ -4,6 +4,8 @@ import _ from "lodash";
 import PropTypes from "prop-types"
 import Color from "components/Form/Controls/Color"
 import { updateWindowSetting } from "store/window/action"
+import { is } from 'immutable';
+
 
 const RadioGroup = Radio.Group;
 
@@ -23,9 +25,16 @@ class WindowSetting extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (is(this.props.window, nextProps.window)) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   handleChangeValue(name, value) {
     this.props.dispatch(updateWindowSetting(name, value))
-    
   }
 
   handleChange(name, value) {
@@ -39,7 +48,13 @@ class WindowSetting extends Component {
 
   render() {
     const { getFieldDecorator, getFieldValue } = this.props.form;
-    const { name, width, height, backgroundType, background } = this.props.window
+    const { window } = this.props
+    const name = window.get('name')
+    const width = window.get('width')
+    const height = window.get('height')
+    const backgroundType = window.get('backgroundType')
+    const background = window.get('background')
+
     return (
       <div className="window-setting">
         <Form>
