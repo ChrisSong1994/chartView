@@ -35,7 +35,7 @@ class StyleSetting extends Component {
       <ChartOptionSettingItem key={"base-config"} title={"基础配置"}>
         <BaseSetting widget={widget} activeWidgetId={activeWidgetId} dispatch={dispatch} />
       </ChartOptionSettingItem>
-      {/* {
+      {
         styleConfig.map((config, index) => {
           return (
             <ChartOptionSettingItem key={config.type} title={config.title}>
@@ -48,7 +48,7 @@ class StyleSetting extends Component {
             </ChartOptionSettingItem>
           )
         })
-      } */}
+      }
     </div>;
   }
 }

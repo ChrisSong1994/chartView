@@ -16,9 +16,12 @@ class Chart extends PureComponent {
     this.chart = null
     this.state = {
       left: props.widget.get('left'),
-      top: props.widget.get('top')
+      top: props.widget.get('top'),
+      width: props.widget.get('width'),
+      height: props.widget.get('height')
     }
   }
+
 
   // 当组件的位置和尺寸改变的时候 处理
   componentWillReceiveProps(nextProps) {
@@ -32,7 +35,12 @@ class Chart extends PureComponent {
 
     if (!is(nextProps.widget.get('width'), this.props.widget.get('width')) ||
       !is(nextProps.widget.get('height'), this.props.widget.get('height'))) {
-      this.chart.resize()
+      this.setState({
+        width: nextProps.widget.get('width'),
+        height: nextProps.widget.get('height')
+      }, () => {
+        this.chart.resize()
+      })
     }
   }
 
@@ -97,12 +105,10 @@ class Chart extends PureComponent {
 
   render() {
     const id = this.props.widget.get('id')
-    const width = this.props.widget.get('width')
-    const height = this.props.widget.get('height')
     const backgroundType = this.props.widget.get('backgroundType')
     const background = this.props.widget.get('background')
+    const { left, top, width, height } = this.state
 
-    const { left, top } = this.state
     let backgroundValue = background
     if (backgroundType === "picture") {
       backgroundValue = `url(${background})`

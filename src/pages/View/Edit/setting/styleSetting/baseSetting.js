@@ -11,6 +11,8 @@ const formItemLayout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 18 },
 }
+
+
 class BaseSetting extends Component {
   static propTypes = {
     dispatch: PropTypes.func,

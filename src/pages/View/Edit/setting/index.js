@@ -64,7 +64,7 @@ class Setting extends Component {
                 />
               </TabPane> : null
           }
-          {/* {
+          {
             activeWidgetId ?
               <TabPane tab="数据配置" key="dataSetting">
                 <DataSetting
@@ -74,7 +74,7 @@ class Setting extends Component {
                   widget={widget}
                 />
               </TabPane> : null
-          } */}
+          }
         </Tabs>
       </div>
     );
